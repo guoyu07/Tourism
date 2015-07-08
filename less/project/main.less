@@ -1,6 +1,14 @@
 .wrapper {
+    direction: rtl;
     &._green{ background: @green; }
     &._white{ background: #fff; }
     &._gray{ background: @gray; }
     &._dark-gray{ background: @darkGray; }
+}
+#main {
+    & > .wrapper {  }
+    & > .page {
+	height: 100vh; max-width: 100vw; overflow: hidden; position: relative;
+	& > .page-inner { height: 100%; }
+    }
 }

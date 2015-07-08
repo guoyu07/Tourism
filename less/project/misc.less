@@ -1,1 +1,27 @@
-body { font-family: @fontFamily; }
+body { font-family: @fontFamily; text-align: right; }
+text-area, input, button, .form-control { direction: rtl; text-align: right; }
+.btn {
+    &.btn-success {
+	background-color: @green; transition: all 0.2s;
+	&:focus, &.focus {
+	    background-color: darken(@green, 10%);
+	}
+	&:hover {
+	    background-color: darken(@green, 10%);
+	}
+	&:active, &.active, .open > .dropdown-toggle& {
+	    background-color: darken(@green, 10%);
+	    &:hover,&:focus, &.focus {
+		background-color: darken(@green, 17%);
+	    }
+	}
+	&:active, &.active, .open > .dropdown-toggle & {
+	    background-image: none;
+	}
+	&.disabled, &[disabled], fieldset[disabled] & {
+	    &, &:hover, &:focus, &.focus, &:active, &.active {
+		background-color: @green;
+	    }
+	}
+    }
+}
