@@ -1,9 +1,9 @@
 #header {
     position: fixed; width: 100%; height: 80px; border-top: 4px solid @green; z-index: 800;
     .logo {
-	margin: 4px 0;
+	margin: 8px 0;
 	a {
-	    display: block; width: 68px; height: 69px; text-indent: -999px; overflow: hidden; background: url('../img/logo.png') no-repeat center center transparent;
+	    display: block; width: 60px; height: 61px; text-indent: -999px; overflow: hidden; background: url('../img/logo.png') no-repeat center center transparent;
 	}
     }
     .search {
@@ -12,7 +12,10 @@
 	    .form-group { margin: 0; position: relative; }
 	    input { height: 30px; border-radius: 0; padding: 6px; border: 0 none; background: #ebebeb; }
 	    button {
-		height: 30px; width: 30px; padding: 6px; text-align: center; line-height: 18px; border-radius: 0; position: absolute; top: 0; left: 0;
+		height: 30px; width: 30px; padding: 6px; font-size: 18px; text-align: center; line-height: 18px; border-radius: 0; position: absolute; top: 0; left: 0;
+		i {
+		    &:before { margin-right: 0; }
+		}
 	    }
 	}
     }
