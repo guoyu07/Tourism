@@ -10,9 +10,10 @@
 		<meta name="description" content="{Description}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="css/style.css" />
+		<!--<link rel="stylesheet" href="css/polyfill.object-fit.css" />-->
 		<script src="js/modernizr-2.6.2.min.js"></script>
 	</head>
-	<body>
+	<body data-spy="scroll" data-target="#menu">
 		<header id="header">
 			<div class="wrapper _white">
 				<div class="container">
@@ -23,15 +24,15 @@
 							</h1>
 						</div>
 						<div class="col-xs-6 col-md-9">
-							<nav class="menu">
-								<ul class="list-unstyled list-inline">
-									<li class="active"><a href="#">خانه</a></li>
-									<li><a href="#">ترین های ایران</a></li>
-									<li><a href="#">هفت اقلیم گردشگری</a></li>
-									<li><a href="#">پیشنهاد ما</a></li>
-									<li><a href="#">360</a></li>
+							<nav id="menu" class="menu">
+								<ul class="list-unstyled list-inline nav nav-tabs" role="tablist">
+									<li class="active"><a href="#home">خانه</a></li>
+									<li><a href="#content">ترین های ایران</a></li>
+									<li><a href="#categories">هفت اقلیم گردشگری</a></li>
+									<li><a href="#recommendations">پیشنهاد ما</a></li>
+									<li><a href="#panorama">360</a></li>
+									<li><a href="#interaction">تماس با ما</a></li>
 									<li><a href="#">شبکه مستند</a></li>
-									<li><a href="#">تماس با ما</a></li>
 								</ul>
 							</nav>
 						</div>
@@ -50,7 +51,7 @@
 			</div>
 		</header>
 		<section id="main">
-			<div id="showcase" class="page wrapper _white">
+			<div id="home" class="page wrapper _white">
 				<div class="page-inner">
 					<div class="slideshow">
 						<div class="caption-container">
@@ -101,7 +102,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="most" class="page wrapper _dark-gray">
+			<div id="content" class="page wrapper _dark-gray">
 				<div class="panel content">
 					<div class="panel-body">
 						<div class="tools">
@@ -146,7 +147,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="logs" class="page wrapper _dark-gray">
+			<div id="recommendations" class="page wrapper _dark-gray">
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-12">
@@ -186,6 +187,8 @@
 			</div>
 		</footer>
 		<script src="js/jquery-1.11.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<!--<script src="js/polyfill.object-fit.min.js"></script>-->
 		<script src="js/main.js"></script>
 	</body>
 </html>
