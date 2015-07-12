@@ -80,6 +80,7 @@
 	}
     }
     &.panorama {
+	@carousel-height: 200px;
 	h2 {
 	    font-size: 36px; color: #fff; text-align: center; margin: 0 0 80px 0; text-shadow: 0 0 6px #000;
 	    a, span {
@@ -95,21 +96,27 @@
 	}
 	.caption-container {
 	    .inner {
-		height: 200px; background: #000; background: rgba(0, 0, 0, 0.8); position: relative;
+		height: @carousel-height; background: #000; background: rgba(0, 0, 0, 0.8); position: relative;
 		.controls {
 		    position: absolute; height: 0; width: 100%; bottom: 140px; left: 0; overflow: visible;
 		}
 	    }
 	}
 	.items-holder {
+	    position: absolute; width: 100%; top: 50%; margin: -60px 0 0 0; height: 200px;
 	    .inner {
-		position: absolute; left: 0; top: 50%; margin-top: -160px; z-index: 700; width: 100%;
+		position: relative; width: 100%; z-index: 700; padding: 0 70px; height: @carousel-height; overflow: hidden; /* background: rgba(234, 54, 65, 0.7); */
 		.items {
-		    background: tomato; position: absolute; width: 400px; height: 100px; z-index: 900; 
+		    height: @carousel-height;
 		    li {
-			width: 40px; height: 40px;
+			width: 120px; height: auto; float: right; padding: 50px 0; cursor: pointer; text-align: center;
+			& ~ li { margin-right: 15px }
 			.thumb {
-			    img { display: block; width: 40px; height: 40px; }
+			    margin-bottom: 10px; max-height: 68px; overflow: hidden;
+			    img { display: block; width: 100%; height: auto; }
+			}
+			.title {
+			    color: #ddd; font-size: 16px;
 			}
 		    }
 		}
