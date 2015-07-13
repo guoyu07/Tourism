@@ -2,8 +2,11 @@ $(function () {
     $('body').scrollspy({target: '#menu'});
     $("#menu a").click(function (e) {
 	if ($(this).attr('href').indexOf('#') !== -1) {
-	    var offset = $($(this).attr('href')).offset().top;
-	    $("html, body").animate({"scrollTop": offset}, 700, 'easeInCubic');
+	    var $target = $($(this).attr('href'));
+	    if ($target.length && $target.hasClass('page')) {
+		var offset = $target.offset().top;
+		$("html, body").animate({"scrollTop": offset}, 700, 'easeInCubic');
+	    }
 	    e.preventDefault();
 	}
     });
