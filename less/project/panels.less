@@ -207,7 +207,15 @@
 	padding-top: 100px; color: #fff;
 	.panel-heading {
 	    text-align: center;
-	    h2 { display: inline-block; border-top: 1px solid #fff; border-bottom: 1px solid #fff; font-size: 60px; margin: 80px auto 60px; }
+	    h2 { display: inline-block; border-top: 1px solid #fff; border-bottom: 1px solid #fff; font-size: 60px; margin: 50px auto 25px; }
+	}
+	.alert {
+	    background: @darkGray; padding: @grid-gutter-width; font-size: 16px; margin-bottom: @grid-gutter-width;
+	    p {
+		& ~ p {
+		    margin-bottom: 0;
+		}
+	    }
 	}
 	.contact-form {
 	    a {
