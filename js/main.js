@@ -10,13 +10,50 @@ $(function () {
 	    e.preventDefault();
 	}
     });
-});
 
-//objectFit.polyfill({
-//    selector: '.slideshow .items .img img', // this can be any CSS selector
-//    fittype: 'cover', // either contain, cover, fill or none
-//    disableCrossDomain: 'true' // either 'true' or 'false' to not parse external CSS files.
-//});
+    var $content = $(".panel.content");
+
+    $.fn.pages = function (options) {
+	console.log(options);
+	var o = $.extend({
+	    next: $(this).find(".tools .next")
+	    , prev: $(this).find(".tools .prev")
+	}, options);
+	return this.each(function () {
+	    var $i = $(this);
+	    o.next.on('click', function (e) {
+		console.log('next');
+		if ($i.find(".items li.active").next().is("li")) {
+		    var $a = $i.find(".items li.active");
+		    var $n = $a.next();
+		    $n.animate({'height': '100%'}, 1000, 'easeOutExpo', function () {
+			$n.addClass('active');
+			$a.removeClass('active');
+		    });
+		}
+		e.preventDefault();
+	    });
+	    o.prev.on('click', function (e) {
+		console.log('prev');
+		if ($i.find(".items li.active").prev().is("li")) {
+		    var $a = $i.find(".items li.active");
+		    var $p = $a.prev();
+		    $p.animate({'height': '100%'}, 1000, 'easeOutExpo', function () {
+			$p.addClass('active');
+			$a.removeClass('active');
+		    });
+		}
+		e.preventDefault();
+	    });
+	});
+    };
+    $content.each(function () {
+	$(this).pages({
+	    next: $(this).find(".next")
+	    , prev: $(this).find(".prev")
+	});
+    });
+});
 
 /*
  * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
