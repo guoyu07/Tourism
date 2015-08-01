@@ -14,7 +14,6 @@ $(function () {
     var $content = $(".panel.content");
 
     $.fn.pages = function (options) {
-	console.log(options);
 	var o = $.extend({
 	    next: $(this).find(".tools .next")
 	    , prev: $(this).find(".tools .prev")
