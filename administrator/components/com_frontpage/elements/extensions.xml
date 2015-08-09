@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<extensions>
+		
+            <extension>
+                <name>item</name>
+                <listview>items</listview>
+                <display>title</display>
+                <field>catid</field>
+                <statefield>published</statefield>
+                <primary>id</primary>
+                <table>#__k2_items</table>
+            </extension>
+
+	</extensions>	
+</root>

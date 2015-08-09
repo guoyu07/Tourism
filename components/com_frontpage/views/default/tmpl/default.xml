@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Default">
+		<help
+			key = "Default_DESC"
+		/>
+		<message>
+			<![CDATA[Default_DESC]]>
+		</message>
+	</layout>
+	<state>
+	<name>Default Layout</name>
+		<description>Default Layout_DESC</description>	
+		<params>
+		</params>
+	</state>
+	
+	<!-- Fields for Joomla > 1.5. -->
+	<fields name="request">
+		<fieldset name="request"
+			addfieldpath="/administrator/components/com_frontpage/models/fields"
+		>
+			<field name="sample"
+				type="frontpagedefault"
+				description="Default_SELECT_DESC"
+				label="Select Default"
+				required="false"
+			/>
+		</fieldset>
+	</fields>	
+	<!-- Add fields to the parameters object for the layout. -->
+	<fields name="params">
+	</fields>
+</metadata>

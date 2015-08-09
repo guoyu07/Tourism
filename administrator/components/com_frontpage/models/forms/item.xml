@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields>
+
+		<field
+			name="id"
+			type="hidden"
+			default="0"
+			required="true"
+			readonly="true"/>							
+															
+		<field
+			id="title"
+			name="title"
+			type="text"
+			required="true"
+			label="Title"
+			description="title_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+														
+		<field
+			id="alias"
+			name="alias"
+			type="text"
+			required="false"
+			label="Alias"
+			description="alias_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+						
+		<field
+			id="published"
+			name="published"
+			type="list"
+			class="inputbox"
+			default="1"
+			size="1"
+			label="JField_Published_Label"
+			description="JField_Published_Desc">
+			<option
+				value="1">
+				JOption_Published</option>
+			<option
+				value="0">
+				JOption_UnPublished</option>
+			<option
+				value="-1">
+				JOption_Archived</option>
+			<option
+				value="-2">
+				JOption_Trashed</option>
+		</field>
+                          												
+		<field
+			id="language"
+			name="language"
+			required="false"
+			type="language"
+			label="Language"
+			description="language_Desc"
+			class="inputbox"
+			size="40"/>						
+						
+		<field
+			id="created"
+			name="created"
+			type="calendar"
+			required="false"
+			label="Creation Time"
+			description="created_Desc"
+			class="inputbox"
+			size="16"
+			format="%Y-%m-%d %H-%M-%S"/>			
+							
+																			
+		<field
+			id="created_by"
+			name="created_by"
+			required="false"
+			type="print"
+			label="Created_by"
+			description="created_by_Desc"
+			class="inputbox"
+			size="40"/>						
+																		
+		<field
+			id="created_by_alias"
+			name="created_by_alias"
+			required="false"
+			type="print"
+			label="Created_by_alias"
+			description="created_by_alias_Desc"
+			class="inputbox"
+			size="40"/>						
+																		
+		<field
+			id="modified"
+			name="modified"
+			required="false"
+			type="print"
+			label="Modified"
+			description="modified_Desc"
+			class="inputbox"
+			size="40"/>						
+																		
+		<field
+			id="modified_by"
+			name="modified_by"
+			required="false"
+			type="print"
+			label="Modified_by"
+			description="modified_by_Desc"
+			class="inputbox"
+			size="40"/>						
+						
+		<field
+			name="checked_out_time"
+			type="hidden"
+			filter="unset"/>						  
+							
+		<field
+			name="checked_out"
+			type="hidden"
+			filter="unset"/>						  
+							
+		<field
+			name="access"
+			type="hidden"
+			filter="unset"/>						  
+							
+		<field
+			id="publish_up"
+			name="publish_up"
+			type="calendar"
+			required="false"
+			label="Publish_up"
+			description="publish_up_Desc"
+			class="inputbox"
+			size="16"
+			format="%Y-%m-%d %H-%M-%S"/>			
+							
+							
+		<field
+			id="publish_down"
+			name="publish_down"
+			type="calendar"
+			required="false"
+			label="Publish_down"
+			description="publish_down_Desc"
+			class="inputbox"
+			size="16"
+			format="%Y-%m-%d %H-%M-%S"/>			
+							
+							
+		<field
+			name="ordering"
+			type="hidden"
+			filter="unset"/>						  
+							
+		<field
+			id="introtext"
+			name="introtext"
+			type="editor"
+			label="Introtext"
+			description="introtext_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+							
+		<field
+			id="fulltext"
+			name="fulltext"
+			type="editor"
+			label="Fulltext"
+			description="fulltext_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+							
+		<field
+			id="video"
+			name="video"
+			type="editor"
+			label="Video"
+			description="video_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+															
+		<field
+			id="gallery"
+			name="gallery"
+			type="text"
+			required="false"
+			label="Gallery"
+			description="gallery_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+						
+		<field
+			id="extra_fields"
+			name="extra_fields"
+			type="editor"
+			label="Extra_fields"
+			description="extra_fields_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+							
+		<field
+			id="extra_fields_search"
+			name="extra_fields_search"
+			type="editor"
+			label="Extra_fields_search"
+			description="extra_fields_search_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+															
+		<field
+			id="trash"
+			name="trash"
+			type="text"
+			required="false"
+			label="Trash"
+			description="trash_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+														
+		<field
+			id="featured"
+			name="featured"
+			type="text"
+			required="false"
+			label="Featured"
+			description="featured_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+														
+		<field
+			id="featured_ordering"
+			name="featured_ordering"
+			type="text"
+			required="false"
+			label="Featured_ordering"
+			description="featured_ordering_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+						
+		<field
+			id="image_caption"
+			name="image_caption"
+			type="editor"
+			label="Image_caption"
+			description="image_caption_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+															
+		<field
+			id="image_credits"
+			name="image_credits"
+			type="text"
+			required="false"
+			label="Image_credits"
+			description="image_credits_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+						
+		<field
+			id="video_caption"
+			name="video_caption"
+			type="editor"
+			label="Video_caption"
+			description="video_caption_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+															
+		<field
+			id="video_credits"
+			name="video_credits"
+			type="text"
+			required="false"
+			label="Video_credits"
+			description="video_credits_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+														
+		<field
+			id="hits"
+			name="hits"
+			type="text"
+			required="false"
+			label="Hits"
+			description="hits_Desc"
+			class="inputbox"
+			size="40"/>						
+								
+						
+		<field
+			id="metadesc"
+			name="metadesc"
+			type="editor"
+			label="Metadesc"
+			description="metadesc_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+							
+		<field
+			id="metadata"
+			name="metadata"
+			type="editor"
+			label="Metadata"
+			description="metadata_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+							
+		<field
+			id="metakey"
+			name="metakey"
+			type="editor"
+			label="Metakey"
+			description="metakey_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+							
+		<field
+			id="plugins"
+			name="plugins"
+			type="editor"
+			label="Plugins"
+			description="plugins_Desc"
+			class="inputbox"
+			buttons="readmore,pagebreak"/>
+									
+	</fields>	
+		
+	<fields name="params">
+		<fieldset
+			name="basic">		
+			<field
+				name="example_param"
+				type="list"
+				default=""
+				label="Params_Example_Label"
+				description="Params_Example_Desc">
+				<option
+					value="0">No</option>
+				<option
+					value="1">Yes</option>
+			</field>
+		</fieldset>
+	</fields>
+		
+</form>	

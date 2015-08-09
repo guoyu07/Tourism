@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.3" method="upgrade">
+	<name>COM_K2</name>
+	<author>JoomlaWorks</author>
+	<creationDate>December 18th, 2014</creationDate>
+	<copyright>Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.</copyright>
+	<authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
+	<authorUrl>www.joomlaworks.net</authorUrl>
+	<version>3.0.0</version>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<description>Thank you for installing K2 by JoomlaWorks, the powerful content extension for Joomla!</description>
+	<scriptfile>script.k2.php</scriptfile>
+	<install>
+		<sql>
+			<file driver="mysqli" charset="utf8">install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysqli" charset="utf8">uninstall.sql</file>
+		</sql>
+	</uninstall>
+	<updateservers>
+		<server type="extension" priority="1" name="K2 Updates">http://getk2.org/update.xml</server>
+	</updateservers>
+	<files folder="components/com_k2">
+		<folder>css</folder>
+		<folder>helpers</folder>
+		<folder>images</folder>
+		<folder>templates</folder>
+		<folder>views</folder>
+		<filename>controller.php</filename>
+		<filename>k2.php</filename>
+		<filename>router.php</filename>
+	</files>
+	<media destination="k2" folder="media/k2">
+		<folder>attachments</folder>
+		<folder>categories</folder>
+		<folder>galleries</folder>
+		<folder>items</folder>
+		<folder>media</folder>
+		<folder>users</folder>
+	</media>
+	<media destination="k2app" folder="media/k2app">
+		<folder>app</folder>
+		<folder>assets</folder>
+		<folder>vendor</folder>
+	</media>
+	<administration>
+		<menu>COM_K2</menu>
+		<submenu>
+			<menu view="items" link="option=com_k2#items">K2_ITEMS</menu>
+			<menu view="categories" link="option=com_k2#categories">K2_CATEGORIES</menu>
+			<menu view="tags" link="option=com_k2#tags">K2_TAGS</menu>
+			<menu view="comments" link="option=com_k2#comments">K2_COMMENTS</menu>
+			<menu view="extrafields" link="option=com_k2#extrafields">K2_EXTRA_FIELDS</menu>
+			<menu view="extrafieldgroups" link="option=com_k2#extrafieldsgroups">K2_EXTRA_FIELD_GROUPS</menu>
+			<menu view="usergroups" link="option=com_k2#usergroups">K2_USER_GROUPS</menu>
+			<menu view="users" link="option=com_k2#users">K2_USERS</menu>
+			<menu view="media" link="option=com_k2#media">K2_MEDIA_MANAGER</menu>
+			<menu view="utilities" link="option=com_k2#utilities">K2_UTILITIES</menu>
+			<menu view="info" link="option=com_k2#information">K2_INFORMATION</menu>
+		</submenu>
+		<files folder="administrator/components/com_k2">
+			<folder>classes</folder>
+			<folder>controllers</folder>
+			<folder>extrafields</folder>
+			<folder>fields</folder>
+			<folder>helpers</folder>
+			<folder>models</folder>
+			<folder>resources</folder>
+			<folder>tables</folder>
+			<folder>vendor</folder>
+			<folder>views</folder>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
+			<filename>install.sql</filename>
+			<filename>uninstall.sql</filename>
+			<filename>k2.php</filename>
+		</files>
+		<languages folder="administrator/language/en-GB">
+			<language tag="en-GB">en-GB.com_k2.ini</language>
+		</languages>
+	</administration>
+	<config>
+		<fields>
+			<fieldset></fieldset>
+		</fields>
+	</config>
+	<modules>
+		<module module="mod_k2_comments" client="site" />
+		<module module="mod_k2_content" client="site" />
+		<module module="mod_k2_tools" client="site" />
+		<module module="mod_k2_users" client="site" />
+		<module module="mod_k2_user" client="site" />
+		<module module="mod_k2_quickicons" client="administrator" />
+		<module module="mod_k2_stats" client="administrator" />
+	</modules>
+	<plugins>
+		<plugin plugin="k2" group="finder" />
+		<plugin plugin="k2" group="search" />
+		<plugin plugin="k2" group="system" />
+		<plugin plugin="k2" group="user" />
+	</plugins>
+</extension>

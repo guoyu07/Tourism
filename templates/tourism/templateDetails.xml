@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<extension version="3.1" type="template" client="site">
+    <name>Tourism</name>
+    <creationDate>August 2015</creationDate>
+    <author>Farid Roshan</author>
+    <authorEmail>faridv@gmail.com</authorEmail>
+    <authorUrl>http://www.faridr.ir</authorUrl>
+    <copyright>Copyright (C) 2015 IRIB Tourism. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <version>1.0.0</version>
+    <description>IRIB Documentray TV: Tourism websites template</description>
+    <files>
+	<folder>html</folder>
+	<folder>libs</folder>
+	<folder>sources</folder>
+	<filename>index.html</filename>
+	<filename>index.php</filename>
+	<filename>templateDetails.xml</filename>
+	<filename>helper.php</filename>
+	<filename>error.php</filename>
+    </files>
+    <positions>
+	<position>debug</position>
+	<position>search</position>
+	<position>menu</position>
+	<position>showcase</position>
+	<position>content</position>
+	<position>categories</position>
+	<position>recommendations</position>
+	<position>panorama</position>
+	<position>interaction</position>
+	<position>contacts</position>
+	<position>upload</position>
+	<position>footer</position>
+	<position>copyright</position>
+    </positions>
+    <languages folder="language">
+	<language tag="fa-IR">fa-IR/fa-IR.tpl_tourism.ini</language>
+	<language tag="fa-IR">fa-IR/fa-IR.tpl_tourism.sys.ini</language>
+    </languages>
+    <config>
+	<fields name="params">
+	    <fieldset name="advanced">
+		<field name="font-size" type="list" default="" label="Default font-size" description="Any values here will overwrite the default value of template">
+		    <option value="10">10</option>
+		    <option value="11">11</option>
+		    <option value="12">12</option>
+		    <option value="13">13</option>
+		    <option value="14">14</option>
+		</field>
+	    </fieldset>
+	</fields>
+    </config>
+</extension>
