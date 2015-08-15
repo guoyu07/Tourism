@@ -49,13 +49,13 @@
     .items {
 	list-style: none; margin: 0; padding: 0;
 	& > li {
-	    width: 100vw; position: relative; height: 100vh;
+	    width: 100vw; position: relative; height: 100vh; float: left;
 	    .img {
 		position: absolute; top: 0; left: 0; width: 100%; height: 100vh; text-align: center;
 		img { display: inline-block; height: 100%; width: 100%; object-fit: cover; }
 	    }
 	    .desc {
-		color: #fff; height: 100%; position: relative; top: 50%; 
+		color: #fff; height: 100%; position: relative; top: 50%; text-align: right;
 		.inner {
 		    position: relative; height: 300px; z-index: 720; margin-top: -150px; padding: 0 (@grid-gutter-width * 2) 0 (@grid-gutter-width * 2.5);
 		    h2 {

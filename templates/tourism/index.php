@@ -124,8 +124,9 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 		</footer>
 		<jdoc:include type="message" />
 		<script src="<?php echo JURI::base(); ?>assets/js/jquery-1.11.1.min.js"></script>
+		<script src="<?php echo JURI::base(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/bootstrap.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/jquery.carouFredSel-6.2.1-packed.js"></script>
-		<script src="<?php echo JURI::base(); ?>assets/js/main.js"></script>
+		<script src="<?php echo JURI::base(); ?>assets/js/main.min.js"></script>
 	</body>
 </html>

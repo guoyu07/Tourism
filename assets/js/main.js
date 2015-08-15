@@ -11,8 +11,25 @@ $(function () {
 	}
     });
 
-    var $content = $(".panel.content");
+    if ($(".slideshow").length) {
+	var $slideshowHome = $(".slideshow").not(".panorama");
+	$slideshowHome.imagesLoaded(function () {
+	    $slideshowHome.find("ul.items").caroufredsel({
+		items: 1
+		, auto: false
+		, responsive: true
+		, pagination: $slideshowHome.find(".pages")
+		, next: $slideshowHome.find(".controls .next")
+		, prev: $slideshowHome.find(".controls .prev")
+		, scroll: {
+		    items: 1
+		    , fx: 'crossfade'
+		}
+	    });
+	})
+    }
 
+    var $content = $(".panel.content");
     $.fn.pages = function (options) {
 	var o = $.extend({
 	    next: $(this).find(".tools .next")
