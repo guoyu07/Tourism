@@ -26,8 +26,44 @@ $(function () {
 		    , fx: 'crossfade'
 		}
 	    });
-	})
+	});
     }
+
+    // Live Search
+    $(".search form input[name=q]").keyup(function (e) {
+	var $input = $(this);
+	var $form = $input.parents("form:first");
+	var $results = $form.parent().find(".search-resluts");
+	console.log($results);
+	if ($input.val().length > 3 && e.key !== 'enter') {
+	    $input.addClass('loading');
+	    $results.empty();
+	    if (!$results.is(":hidden"))
+		$results.fadeOut('fast');
+	    $form.find('input[name=t]').val($.now());
+	    $form.find('input[name=format]').val('raw');
+	    $.ajax({
+		url: 'index.php?option=com_k2&view=itemlist&task=search'
+		, type: 'get'
+		, data: $form.serialize()
+		, success: function (d) {
+		    $input.removeClass('loading');
+		    $results.html(d).fadeIn('fast');
+		}
+	    });
+	} else {
+	    $results.empty();
+	    if (!$results.is(":hidden"))
+		$results.fadeOut('fast');
+	}
+	
+    });
+    $(document).on('focusout', ".search form", function() {
+	$(".search .search-resluts").fadeOut('fast');
+    }).on('focusin', ".search form", function() {
+	if (!$(".search .search-resluts").is(":empty"))
+	    $(".search .search-resluts").fadeIn('fast');
+    });
 
     var $content = $(".panel.content");
     $.fn.pages = function (options) {

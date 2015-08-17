@@ -8,6 +8,7 @@
 	}
     }
     .search {
+	position: relative;
 	form {
 	    margin-top: 23px; height: 30px;
 	    .form-group { margin: 0; position: relative; }
@@ -16,6 +17,18 @@
 		height: 30px; width: 30px; padding: 6px; font-size: 18px; text-align: center; line-height: 18px; border-radius: 0; position: absolute; top: 0; left: 0;
 		i {
 		    &:before { margin-right: 0; }
+		}
+	    }
+	}
+	.search-resluts {
+	    position: absolute; background: #fff; width: 100%; padding: 0; box-shadow: 0 0 3px @pageBackground;
+	    ul {
+		list-style: none; margin: 0; padding: 0;
+		li {
+		    a {
+			color: @green; transition: all 0.2s; display: block; padding: 6px 8px;
+			&:hover { color: @text-color; text-decoration: none; background: @lightGray; }
+		    }
 		}
 	    }
 	}
