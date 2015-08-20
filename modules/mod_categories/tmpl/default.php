@@ -76,6 +76,12 @@ defined('_JEXEC') or die('Restricted access');
 						</li>
 					</ul>
 				</div>
+				<div class="itemlist" style="display: none;">
+					<div class="close">&times;</div>
+					<div class="inner" style="display: none">
+						
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
