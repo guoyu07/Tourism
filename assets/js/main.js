@@ -81,7 +81,9 @@ $(function () {
 	    $tiles.eq(3).fadeOut(speed[1], function() {
 		$container.hide(1, function() {
 		    $itemlist.animate({'margin-top': -50});
-		    $itemlist.slideDown();
+		    $itemlist.slideDown(function() {
+			// load items via ajax
+		    });
 		});
 	    });
 	});
