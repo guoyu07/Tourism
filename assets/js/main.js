@@ -69,7 +69,7 @@ $(function () {
 	var speed = [300, 500, 600, 600];
 	var $tiles = $(".panel.tiles").find(".tiles li");
 	var $container = $(".panel.tiles").children(".tiles");
-	var id = $(this).attr("data-catid");
+	var $this = $(this);
 	var $itemlist = $(".panel.tiles").find(".itemlist");
 	var j = 0;
 	for (var i = 1; i < 4; i++) {
@@ -80,9 +80,16 @@ $(function () {
 	$tiles.eq(0).promise().done(function() {
 	    $tiles.eq(3).fadeOut(speed[1], function() {
 		$container.hide(1, function() {
+		    $itemlist.find(".inner").empty();
 		    $itemlist.animate({'margin-top': -50});
 		    $itemlist.slideDown(function() {
-			// load items via ajax
+			$.ajax({
+			    url: $this.attr('href')
+			    , type: 'get'
+			    , success: function(r) {
+				$itemlist.find(".inner").empty().html(r).slideDown();
+			    }
+			});
 		    });
 		});
 	    });
@@ -92,10 +99,12 @@ $(function () {
 	$(".panel.tiles").on('click', ".close", function(e) {
 	    $itemlist.slideUp(function() {
 		$container.show(1, function() {
-		    $tiles.fadeIn(speed[1]);
+		    $tiles.fadeIn(speed[0]);
 		});
 	    });
-	    $itemlist.animate({'margin-top': 0});
+	    $itemlist.animate({'margin-top': 0}, function() {
+		$itemlist.find(".inner").hide(1);
+	    });
 	});
     });
     
