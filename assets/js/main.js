@@ -56,13 +56,26 @@ $(function () {
 	    if (!$results.is(":hidden"))
 		$results.fadeOut('fast');
 	}
-	
     });
     $(document).on('focusout', ".search form", function() {
 	$(".search .search-resluts").fadeOut('fast');
     }).on('focusin', ".search form", function() {
 	if (!$(".search .search-resluts").is(":empty"))
 	    $(".search .search-resluts").fadeIn('fast');
+    });
+    
+    $(".panel.tiles").on('click', ".tiles a", function(e) {
+	var $tiles = $(".panel.tiles").find(".tiles a");
+	var $container = $(".panel.tiles").find(".tiles");
+	var id = $(this).attr("data-catid");
+	for (var i = 1; i < 4; i++) {
+	    $tiles.eq(i - 1).parent().fadeOut(300 * i);
+	    $tiles.eq(7 - i).parent().fadeOut(300 * i);
+	}
+//	$.each($tiles, function(i) {
+//	    $(this).fadeOut(400 * i);
+//	});
+	e.preventDefault();
     });
 
     var $content = $(".panel.content");
