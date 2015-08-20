@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
 				<div class="tiles">
 					<ul class="list-unstyled list-inline text-center">
 						<li>
-							<a href="#" data-catid="5">
+							<a href="<?php echo JURI::base() . 'categories/طبیعت?format=raw'; ?>" data-catid="5">
 								<span class="icon">
 									<i class="icon-nature"></i>
 								</span>
