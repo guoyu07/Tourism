@@ -16,18 +16,10 @@ defined('_JEXEC') or die('Restricted access');
 				<div class="panel-heading text-center">
 					<h2>هفت اقلیم گردشگری</h2>
 				</div>
-				<!--									<form role="form" class="city-select">
-														<div class="form-center">
-															<div class="form-group">
-																<input type="text" name="c" placeholder="شهر/استان مورد نظر" class="form-control" />
-																<button type="submit" class="btn btn-success"><i class="icon-search"></i></button>
-															</div>
-														</div>
-													</form>-->
 				<div class="tiles">
 					<ul class="list-unstyled list-inline text-center">
 						<li>
-							<a href="#">
+							<a href="#" data-catid="5">
 								<span class="icon">
 									<i class="icon-nature"></i>
 								</span>
@@ -35,51 +27,51 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#" data-catid="6">
 								<span class="icon">
 									<i class="icon-mosque"></i>
 								</span>
-								<span class="title">طبیعت</span>
+								<span class="title">زیارت</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#" data-catid="7">
 								<span class="icon">
 									<i class="icon-health"></i>
 								</span>
-								<span class="title">طبیعت</span>
+								<span class="title">سلامت</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#" data-catid="8">
 								<span class="icon">
 									<i class="icon-music"></i>
 								</span>
-								<span class="title">طبیعت</span>
+								<span class="title">موسیقی</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#" data-catid="9">
 								<span class="icon">
 									<i class="icon-history"></i>
 								</span>
-								<span class="title">طبیعت</span>
+								<span class="title">آثار باستانی</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#" data-catid="10">
 								<span class="icon">
 									<i class="icon-society"></i>
 								</span>
-								<span class="title">طبیعت</span>
+								<span class="title">آداب و سنن</span>
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#" data-catid="11">
 								<span class="icon">
 									<i class="icon-food"></i>
 								</span>
-								<span class="title">طبیعت</span>
+								<span class="title">خوراک</span>
 							</a>
 						</li>
 					</ul>
