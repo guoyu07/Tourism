@@ -107,6 +107,19 @@ $(function () {
 	    });
 	});
     });
+    $(document).on('click', ".panel.tiles .itemlist a", function(e) {
+	var href = $(this).attr('href');
+	$.ajax({
+	    url: href
+	    , type: 'get'
+	    , data: 'format=raw'
+	    , success: function(r) {
+		$("#item-modal").find(".modal-body").empty().html(r);
+		$("#item-modal").modal('show');
+	    }
+	});
+	e.preventDefault();
+    });
     
 
     var $content = $(".panel.content");

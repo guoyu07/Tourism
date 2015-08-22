@@ -123,6 +123,19 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 			</div>
 		</footer>
 		<jdoc:include type="message" />
+		<div class="modal fade zoom-out" id="item-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content" role="tabpanel">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body">
+						
+					</div>
+				</div>
+			</div>
+		</div>
 		<script src="<?php echo JURI::base(); ?>assets/js/jquery-1.11.1.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/bootstrap.min.js"></script>

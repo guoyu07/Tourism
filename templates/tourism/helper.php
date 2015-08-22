@@ -3,6 +3,14 @@
 if (!class_exists('Browser')) {
 	require_once ('libs/browser.php');
 }
+if (!defined('DS')) {
+	define('DS', DIRECTORY_SEPARATOR);
+}
+if (!class_exists('K2ModelItem')) {
+	if (file_exists(JPATH_BASE . DS . 'components' . DS . 'com_k2' . DS . 'models' . DS . 'item.php')) {
+		require_once (JPATH_BASE . DS . 'components' . DS . 'com_k2' . DS . 'models' . DS . 'item.php');
+	}
+}
 
 class templateHelper {
 
