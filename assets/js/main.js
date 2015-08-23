@@ -28,6 +28,52 @@ $(function () {
 	    });
 	});
     }
+    
+    $(".contact-form").on('submit', function(e) {
+//	console.log($(".contact-form").serialize());
+	var er = [];
+	var $f = $(".contact-form");
+	if  ($f.find("[required]").length) {
+	    $f.find("[required]").each(function () {
+		if ($(this).val() === '') {
+		    er.push($(this));
+		}
+	    });
+	}
+	if (er.length > 0) {
+	    $.each(er, function (i, o) {
+		er[i].parent().addClass('has-error');
+	    });
+	    return false;
+	}
+	$.ajax({
+	    url: base + 'contacts'
+	    , type: 'post'
+	    , data: $f.serializeObject()
+	    , success: function(d) {
+		var response = d.split(':');
+		if (response[0] !== "success")
+		    alert(response[1]);
+		else {
+		    $(".results-container").fadeIn('fast');
+		    $(".results-container").find(".inner").empty().text(response[1]).animate({'height': '100px', 'margin-top': '-50px'});
+		    window.setTimeout(function() {
+			$(".results-container").fadeOut('fast', function() {
+			    $(".results-container").find(".inner").css({'height': '0', 'margin-top': '0'});
+			});
+		    }, 5000);
+		}
+	    }
+	});
+	e.preventDefault();
+	return false;
+    });
+    $(document).on('click', ".results-container, .results-container .inner", function(e) {
+	$(".results-container").fadeOut('fast', function() {
+	    $(".results-container").find(".inner").css({'height': '0', 'margin-top': '0'});
+	});
+	e.preventDefault();
+    });
 
     // Live Search
     $(".search form input[name=q]").keyup(function (e) {
@@ -347,3 +393,19 @@ jQuery.extend(jQuery.easing, {
 	return jQuery.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
     }
 });
+
+$.fn.serializeObject = function () { // serializeArray - serialize form as an array instead of default object
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+	if (o[this.name] !== undefined) {
+	    if (!o[this.name].push) {
+		o[this.name] = [o[this.name]];
+	    }
+	    o[this.name].push(this.value || '');
+	} else {
+	    o[this.name] = this.value || '';
+	}
+    });
+    return o;
+};
