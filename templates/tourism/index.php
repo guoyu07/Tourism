@@ -31,7 +31,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 	$schedule = (stristr(JURI::getInstance()->toString(), 'schedule')) ? true : false; // Check if we are on schedules page
 	$programsTable = (stristr(JURI::getInstance()->toString(), 'programs-table')) ? true : false; // Check if we are on programs-table page
 	$sitename = $app->getCfg('sitename');
-// $dir_suffix = ($this->direction == 'rtl') ? '_rtl' : '';
+	// $dir_suffix = ($this->direction == 'rtl') ? '_rtl' : '';
 	?>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -44,9 +44,10 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 		unset($this->_scripts); //unset($this->_style); // Unsetting default stylesheets and script even after helpers try and adding my own files
 		foreach ($this->_style as $style)
 			unset($style);
-// Adding stylesheets and scripts to joomla head to prevent core to face an empty array
+		// Adding stylesheets and scripts to joomla head to prevent core to face an empty array
 		$this->_styleSheets[JURI::base() . 'assets/css/style.css'] = array('mime' => "text/css", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
 		$this->_scripts[JURI::base() . 'assets/js/modernizr-2.6.2.min.js'] = array('mime' => "text/javascript", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
+		JFactory::getDocument()->addScriptDeclaration('var base = "' . JURI::base() . '"');
 		?><jdoc:include type="head" />
 	</head>
 	<body id="bd" class="<?php echo strtolower($helper->device); ?>" data-spy="scroll" data-target="#menu">
@@ -74,39 +75,53 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 			</div>
 		</header>
 		<section id="main">
-			<?php if ($helper->countModules('showcase')) { ?>
-			<div id="home" class="page wrapper _white">
-				<div class="page-inner">
-					<jdoc:include type="modules" name="showcase" />
+			<?php if ($fp) { ?>
+				<?php if ($helper->countModules('showcase')) { ?>
+				<div id="home" class="page wrapper _white">
+					<div class="page-inner">
+						<jdoc:include type="modules" name="showcase" />
+					</div>
 				</div>
-			</div>
-			<?php } ?>
-			<?php if ($helper->countModules('content')) { ?>
-			<div id="content" class="page wrapper _dark-gray">
-				<jdoc:include type="modules" name="content" />
-			</div>
-			<?php } ?>
-			<?php if ($helper->countModules('categories')) { ?>
-			<div id="categories" class="page wrapper _green">
-				<jdoc:include type="modules" name="categories" />
-			</div>
-			<?php } ?>
-			<?php if ($helper->countModules('recommendations')) { ?>
-			<div id="recommendations" class="page wrapper _dark-gray">
-				<jdoc:include type="modules" name="recommendations" />
-			</div>
-			<?php } ?>
-			<?php if ($helper->countModules('panorama')) { ?>
-			<div id="panorama" class="page wrapper _white">
-				<div class="page-inner">
-					<jdoc:include type="modules" name="panorama" />
+				<?php } ?>
+				<?php if ($helper->countModules('content')) { ?>
+				<div id="content" class="page wrapper _dark-gray">
+					<jdoc:include type="modules" name="content" />
 				</div>
-			</div>
-			<?php } ?>
-			<?php if ($helper->countModules('interaction')) { ?>
-			<div id="interaction" class="page wrapper _gray _bg-contacts">
-				<jdoc:include type="modules" name="interaction" />
-			</div>
+				<?php } ?>
+				<?php if ($helper->countModules('categories')) { ?>
+				<div id="categories" class="page wrapper _green">
+					<jdoc:include type="modules" name="categories" />
+				</div>
+				<?php } ?>
+				<?php if ($helper->countModules('recommendations')) { ?>
+				<div id="recommendations" class="page wrapper _dark-gray">
+					<jdoc:include type="modules" name="recommendations" />
+				</div>
+				<?php } ?>
+				<?php if ($helper->countModules('panorama')) { ?>
+				<div id="panorama" class="page wrapper _white">
+					<div class="page-inner">
+						<jdoc:include type="modules" name="panorama" />
+					</div>
+				</div>
+				<?php } ?>
+				<?php if ($helper->countModules('interaction')) { ?>
+				<div id="interaction" class="page wrapper _gray _bg-contacts">
+					<jdoc:include type="modules" name="interaction" />
+				</div>
+				<?php } ?>
+			<?php } else { // not frontpage ?>
+				<div id="home" class="page component wrapper _white">
+					<div class="page-inner">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12">
+									<jdoc:include type="component" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			<?php } ?>
 		</section>
 		<footer id="footer">
@@ -130,9 +145,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						<h4 class="modal-title"></h4>
 					</div>
-					<div class="modal-body">
-						
-					</div>
+					<div class="modal-body"></div>
 				</div>
 			</div>
 		</div>
