@@ -329,7 +329,7 @@ class templateHelper {
 				break;
 		}
 		if ($direction == 'rtl') { //RTL CSS
-			$document = & JFactory::getDocument();
+			$document = JFactory::getDocument();
 			$document->addStyleSheet($rtlStylesheet);
 		}
 	}
