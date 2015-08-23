@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field name="search" type="text" hint="COM_CONTACTS_SEARCH_FILTER_SUBMIT"
+               label="COM_USERS_FILTER_SEARCH_DESC"
+               class="js-stools-search-string" />
+
+        
+		<!-- Keep "_dateformat" suffix for date validation on form submit -->
+		<field name="created_from_dateformat" type="calendar" label="" />
+		<!-- Keep "_dateformat" suffix for date validation on form submit -->
+		<field name="created_to_dateformat" type="calendar" label="" />
+		<field value="Submit" type="submit" for="created" onclick="this.form.submit();" /> 
+
+ 
+		<field name="published" type="list" onchange="this.form.submit();">
+		<option value="">COM_CONTACTS_CONTACTS_PUBLISHED_FILTER</option>
+		<option value="0">COM_CONTACTS_CONTACTS_PUBLISHED_OPTION_0</option>
+		<option value="1">COM_CONTACTS_CONTACTS_PUBLISHED_OPTION_1</option>
+		</field>
+
+    </fields>
+</form>

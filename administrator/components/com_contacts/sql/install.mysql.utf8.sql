@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS `#__contacts` (
+`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+
+`name` VARCHAR(255)  NOT NULL ,
+`email` VARCHAR(255)  NOT NULL ,
+`message` TEXT NOT NULL ,
+`ip` VARCHAR(255)  NOT NULL ,
+`created` DATE NOT NULL ,
+`published` VARCHAR(255)  NOT NULL ,
+PRIMARY KEY (`id`)
+) DEFAULT COLLATE=utf8_general_ci;
+
