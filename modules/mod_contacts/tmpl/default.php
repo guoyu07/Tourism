@@ -20,7 +20,7 @@ defined('_JEXEC') or die('Restricted access');
 					<p>شما می توانید آثار خود ، منجمله ویدیو ها و تصاویرتان را با ما در اشترک بگذارید.</p>
 					<p>برای ارسال آثارتان، <a href="#" data-toggle="modal" data-target="#upload-modal">اینجا</a> را کلیک کتید.</p>
 				</div>
-				<form role="form" action="#" method="post" class="contact-form">
+				<form role="form" action="<?php echo JURI::base() . 'contacts'; ?>" method="post" class="contact-form">
 					<ul class="list-unstyled contact-details">
 						<li>
 							<span class="title">
@@ -49,18 +49,22 @@ defined('_JEXEC') or die('Restricted access');
 						</li>
 					</ul>
 					<div class="form-group">
-						<input type="text" name="name" class="form-control" placeholder="نام" />
+						<?php echo JHtml::_('form.token'); ?>
+						<input type="text" name="name" class="form-control" placeholder="نام" required />
 					</div>
 					<div class="form-group">
-						<input type="text" name="email" class="form-control" placeholder="آدرس ایمیل" />
+						<input type="email" name="email" class="form-control" placeholder="آدرس ایمیل" required />
 					</div>
 					<div class="form-group">
-						<textarea class="form-control" placeholder="پیام" rows="3"></textarea>
+						<textarea class="form-control" name="message" placeholder="پیام" rows="3" required></textarea>
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-success pull-left">ارسال</button>
 					</div>
 				</form>
+				<div class="results-container" style="display: none;">
+					<div class="inner"></div>
+				</div>
 			</div>
 		</div>
 	</div>
