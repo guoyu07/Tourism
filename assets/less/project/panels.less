@@ -190,9 +190,12 @@
 		    & > a {
 			display: block; border-bottom: 1px solid darken(@gray, 32%); transition: 0.2s all;
 			&:hover { text-decoration: none; background: @green; }
+			.img { width: 50%; float: left; }
+			.title { display: block; margin-left: 50%; padding: (@grid-gutter-width * (2/3)) @grid-gutter-width; color: #fff; font-size: 18px; }
 		    }
-		    .img { width: 50%; float: left; }
-		    .title { display: block; margin-left: 50%; padding: (@grid-gutter-width * (2/3)) @grid-gutter-width; color: #fff; font-size: 18px; }
+		    &.active {
+			a { background: @green; }
+		    }
 		}
 	    }
 	}
