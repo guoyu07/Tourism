@@ -126,8 +126,13 @@
 }
 .panel {
     &.content {
+	position: relative;
+	a { outline: 0 none; }
 	.panel-body {
-	    height: 100vh;
+	    height: 100vh; position: relative; right: 0;
+	    &.open {
+		&:after { display: block; content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); transition: 0.2s all; z-index: 130; }
+	    }
 	    .player {
 		position: absolute; top: 0; left: 0; width: 60%; height: 100%; height: 100vh; background: @green; overflow: hidden;
 		.img {
@@ -144,7 +149,7 @@
 		}
 	    }
 	    .tools {
-		width: 100%; height: 120px; position: absolute; bottom: 0;  z-index: 790;
+		width: 100%; height: 80px; position: absolute; bottom: 0;  z-index: 790;
 		.right {
 		    margin-left: 60%; width: 40%;
 		    ul {
@@ -158,11 +163,11 @@
 		    ul { float: right; }
 		}
 		ul {
-		    background: rgba(0, 0, 0, 0.8); height: 120px;
+		    background: rgba(0, 0, 0, 0.8); height: 80px;
 		    li {
 			display: inline-block; padding: 0; margin: 0;
 			a {
-			    display: block; width: 120px; height: 120px; text-align: center; line-height: 120px; font-size: 48px; color: #fff;
+			    display: block; width: 80px; height: 80px; text-align: center; line-height: 80px; font-size: 32px; color: #fff;
 			    &:hover { text-decoration: none; }
 			}
 			& ~ li { border-right: 1px solid #fff; }
@@ -171,8 +176,23 @@
 	    }
 	    .items {
 		li {
-		    position: absolute; top: 0; left: 0; width: 100%; height: 100vh; overflow: hidden;
+		    position: absolute; top: 0; left: 0; width: 100%; height: 100vh; overflow: hidden; z-index: 120;
 		    &.active { display: block; }
+		}
+	    }
+	}
+	& > .itemlist {
+	    position: absolute; right: 0; top: 0; width: 400px; height: 100%; padding-top: 80px; z-index: 100;
+ 	    ul {
+		height: 100%; overflow: hidden; overflow-y: auto; 
+		li {
+		    float: none; margin: 0; padding: 0;
+		    & > a {
+			display: block; border-bottom: 1px solid darken(@gray, 32%); transition: 0.2s all;
+			&:hover { text-decoration: none; background: @green; }
+		    }
+		    .img { width: 50%; float: left; }
+		    .title { display: block; margin-left: 50%; padding: (@grid-gutter-width * (2/3)) @grid-gutter-width; color: #fff; font-size: 18px; }
 		}
 	    }
 	}
