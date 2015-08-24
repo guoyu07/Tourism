@@ -20,9 +20,9 @@ defined('_JEXEC') or die;
 			</div>
 			<div class="right">
 				<ul class="list-unstyled">
-					<li class="pull-right"><a href="#"><i class="icon-menu"></i></a></li>
-					<li><a href="#" id="prev" class="prev"><i class="icon-up"></i></a></li>
-					<li><a href="#" id="next" class="next"><i class="icon-down"></i></a></li>
+					<li class="pull-right"><a href="#" class="menu"><i class="icon-menu"></i></a></li>
+					<li><a href="#" class="prev"><i class="icon-up"></i></a></li>
+					<li><a href="#" class="next"><i class="icon-down"></i></a></li>
 				</ul>
 			</div>
 		</div>
@@ -60,5 +60,30 @@ defined('_JEXEC') or die;
 			<?php } // forach [items] ?>
 		</ul>
 		<?php } // if [count items] ?>
+	</div>
+	<div class="itemlist">
+		<ul class="items list-unstyled">
+			<?php foreach ($items as $key => $item) { ?>
+			<li class="<?php if ($key == 0) echo 'active'; ?>">
+				<a href="#">
+					<?php echo $item->event->BeforeDisplay; ?>
+					<?php echo $item->event->K2BeforeDisplay; ?>
+					<?php if ($params->get('itemImage') && isset($item->image)) { ?>
+					<span class="img">
+						<img src="<?php echo $item->image; ?>" alt="<?php echo K2HelperUtilities::cleanHtml($item->title); ?>" />
+					</span>
+					<?php } ?>
+					<span class="title">
+						<?php if ($params->get('itemTitle')) { ?><?php echo $item->title; ?><?php } ?>
+						<?php echo $item->event->AfterDisplayTitle; ?>
+						<?php echo $item->event->K2AfterDisplayTitle; ?>
+					</span>
+					<?php echo $item->event->AfterDisplay; ?>
+					<?php echo $item->event->K2AfterDisplay; ?>
+					<span class="clearfix"></span>
+				</a>
+			</li>
+			<?php } // forach [items] ?>
+		</ul>
 	</div>
 </div>
