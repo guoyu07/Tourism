@@ -48,7 +48,7 @@ $upper_limit = $lang->getUpperLimitSearchWord();
 	</fieldset>
 
 	<?php if ($this->params->get('search_areas', 1)) : ?>
-		<fieldset class="only">
+		<fieldset>
 		<legend><?php echo JText::_('COM_SEARCH_SEARCH_ONLY');?></legend>
 		<?php foreach ($this->searchareas['search'] as $val => $txt) :
 			$checked = is_array($this->searchareas['active']) && in_array($val, $this->searchareas['active']) ? 'checked="checked"' : '';
