@@ -9,15 +9,38 @@
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<?php if (isset($this->secondary) && count($this->secondary)): ?>
-	<!-- Secondary items -->
-	<ul class="items list-unstyled">
-		<?php foreach ($this->secondary as $key => $item): ?>
-			<?php
-			// Load category_item.php by default
-			$this->item = $item;
-			echo $this->loadTemplate('item');
-			?>
-		<?php endforeach; ?>
-	</ul>
-<?php endif; ?>  \
+<?php if (JRequest::getVar('format', '') == "feed") { ?>
+	<?php if (isset($this->secondary) && count($this->secondary)) { ?>
+		<!-- Secondary items -->
+		<ul class="items list-unstyled">
+			<?php foreach ($this->secondary as $key => $item): ?>
+				<?php
+				// Load category_item.php by default
+				$this->item = $item;
+				echo $this->loadTemplate('item');
+				?>
+			<?php endforeach; ?>
+		</ul>
+	<?php } ?>
+<?php } else { ?>
+	<div class="category-items">
+		<div class="page-header">
+			<h2><?php echo $this->category->name; ?></h2>
+		</div>
+		<div class="itemlist">
+			<?php if (isset($this->secondary) && count($this->secondary)) { ?>
+				<!-- Secondary items -->
+				<ul class="items list-unstyled">
+					<?php foreach ($this->secondary as $key => $item): ?>
+						<?php
+						// Load category_item.php by default
+						$this->item = $item;
+						echo $this->loadTemplate('item');
+						?>
+					<?php endforeach; ?>
+				</ul>
+			<?php } ?>
+		</div>
+	</div>
+<?php
+}
