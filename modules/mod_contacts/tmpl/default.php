@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="text-center alert">
+				<div class="text-center alert hide">
 					<p>شما می توانید آثار خود ، منجمله ویدیو ها و تصاویرتان را با ما در اشترک بگذارید.</p>
 					<p>برای ارسال آثارتان، <a href="#" data-toggle="modal" data-target="#upload-modal">اینجا</a> را کلیک کتید.</p>
 				</div>
