@@ -87,7 +87,9 @@ defined('_JEXEC') or die('Restricted access');
 			<span><?php echo JText::_('K2_PRINT_THIS_PAGE'); ?></span>
 		</a>
 	<?php } ?>
-	<?php if ((JRequest::getInt('print') != 1) && ($this->item->params->get('itemTwitterButton', 1) || $this->item->params->get('itemFacebookButton', 1) || $this->item->params->get('itemGooglePlusOneButton', 1))) { ?>
+	<?php
+		/*
+		<?php if ((JRequest::getInt('print') != 1) && ($this->item->params->get('itemTwitterButton', 1) || $this->item->params->get('itemFacebookButton', 1) || $this->item->params->get('itemGooglePlusOneButton', 1))) { ?>
 		<div class="item-sharings">
 			<?php if ($this->item->params->get('itemTwitterButton', 1)) { ?>
 				<div class="item-twitter">
@@ -131,6 +133,8 @@ defined('_JEXEC') or die('Restricted access');
 			<div class="clearfix"></div>
 		</div>
 	<?php } ?>
+	*/ ?>
+	<?php /*
 	<?php if ($this->item->params->get('itemCategory') || $this->item->params->get('itemTags') || $this->item->params->get('itemAttachments')) { ?>
 		<div class="item-links">
 			<?php if ($this->item->params->get('itemCategory')) { ?>
@@ -156,7 +160,7 @@ defined('_JEXEC') or die('Restricted access');
 			<?php } ?>
 			<div class="clearfix"></div>
 		</div>
-	<?php } ?>
+	<?php } */ ?>
 	<?php if ($this->item->params->get('itemRelated') && isset($this->relatedItems)) { ?>
 		<div class="item-related">
 			<h3><?php echo JText::_("K2_RELATED_ITEMS_BY_TAG"); ?></h3>
