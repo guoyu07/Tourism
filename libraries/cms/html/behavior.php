@@ -399,15 +399,15 @@ abstract class JHtmlBehavior
 		$document
 			->addScriptDeclaration(
 			"
-		jQuery(function($) {
-			SqueezeBox.initialize(" . $options . ");
-			SqueezeBox.assign($('" . $selector . "').get(), {
-				parse: 'rel'
-			});
-		});
-		function jModalClose() {
-			SqueezeBox.close();
-		}"
+//		jQuery(function($) {
+//			SqueezeBox.initialize(" . $options . ");
+//			SqueezeBox.assign($('" . $selector . "').get(), {
+//				parse: 'rel'
+//			});
+//		});
+//		function jModalClose() {
+//			SqueezeBox.close();
+//		}"
 		);
 
 		// Set static array
