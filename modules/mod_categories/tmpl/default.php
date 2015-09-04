@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
 				<div class="tiles">
 					<ul class="list-unstyled list-inline text-center">
 						<li>
-							<a href="<?php echo JURI::base() . 'categories/طبیعت?format=raw'; ?>" data-catid="5">
+							<a href="<?php echo JURI::base() . 'categories/nature?format=raw'; ?>" data-catid="5">
 								<span class="icon">
 									<i class="icon-nature"></i>
 								</span>
@@ -27,7 +27,7 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="#" data-catid="6">
+							<a href="<?php echo JURI::base() . 'categories/pilgrimage?format=raw'; ?>" data-catid="6">
 								<span class="icon">
 									<i class="icon-mosque"></i>
 								</span>
@@ -35,7 +35,7 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="#" data-catid="7">
+							<a href="<?php echo JURI::base() . 'categories/health?format=raw'; ?>" data-catid="7">
 								<span class="icon">
 									<i class="icon-health"></i>
 								</span>
@@ -43,7 +43,7 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="#" data-catid="8">
+							<a href="<?php echo JURI::base() . 'categories/music?format=raw'; ?>" data-catid="8">
 								<span class="icon">
 									<i class="icon-music"></i>
 								</span>
@@ -51,7 +51,7 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="#" data-catid="9">
+							<a href="<?php echo JURI::base() . 'categories/ancient-relics?format=raw'; ?>" data-catid="9">
 								<span class="icon">
 									<i class="icon-history"></i>
 								</span>
@@ -59,7 +59,7 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="#" data-catid="10">
+							<a href="<?php echo JURI::base() . 'categories/traditions?format=raw'; ?>" data-catid="10">
 								<span class="icon">
 									<i class="icon-society"></i>
 								</span>
@@ -67,7 +67,7 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="#" data-catid="11">
+							<a href="<?php echo JURI::base() . 'categories/foods?format=raw'; ?>" data-catid="11">
 								<span class="icon">
 									<i class="icon-food"></i>
 								</span>
