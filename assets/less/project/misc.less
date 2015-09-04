@@ -28,12 +28,17 @@ text-area, input, button, .form-control { direction: rtl; text-align: right; }
 .modal {
     .modal-dialog { width: 800px; }
     .close { float: left; }
-    .modal-header { padding-bottom: 0; }
+    .modal-header {
+	padding-bottom: 0;
+	
+    }
     .modal-body { padding-top: 0; }
     article.item {
 	font-size: 16px;
 	.item-header {
 	    margin-bottom: (@grid-gutter-width / 2);
+	    h2 { margin-top: 0; }
+	    .link-ext { position: absolute; top: 0; left: 50px; }
 	}
 	.item-body {
 	    .img {
@@ -43,7 +48,7 @@ text-area, input, button, .form-control { direction: rtl; text-align: right; }
 	}
     }
 }
-
+.tooltip { font-family: Tahoma, Arial; }
 
 
 
