@@ -18,7 +18,11 @@ $(function () {
 	    e.preventDefault();
 	}
     });
-
+    
+    $('#item-modal').on('shown.bs.modal', function (e) {
+	$('[data-toggle=tooltip]').tooltip({container:'body'});
+    });
+    
     if ($(".slideshow").length) {
 	var $slideshowHome = $(".slideshow").not(".panorama");
 	$slideshowHome.imagesLoaded(function () {
@@ -82,8 +86,7 @@ $(function () {
 		});
 	    });
 	}
-    }
-    
+    } 
     if ($(".panel.content").length) {
 	var $panel = $(".panel.content");
 	$.each($panel, function () {
