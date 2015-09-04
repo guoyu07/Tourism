@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 ?>
 <div class="panel content">
 	<div class="panel-body">
-		<div class="tools">
+<!--		<div class="tools">
 			<div class="left">
 				<ul class="list-unstyled">
 					<li><a href="#"><i class="icon-play"></i></a></li>
@@ -25,11 +25,12 @@ defined('_JEXEC') or die;
 					<li><a href="#" class="next"><i class="icon-down"></i></a></li>
 				</ul>
 			</div>
-		</div>
+		</div>-->
 		<?php if (count($items)) { ?>
 		<ul class="items list-unstyled">
 			<?php foreach ($items as $key => $item) { ?>
-			<li class="<?php if ($key == 0) echo 'active'; ?>"<?php if ($key != 0) echo ' style="height: 0;"'; ?>>
+			<?php /* <li class="<?php if ($key == 0) echo 'active'; ?>"<?php if ($key != 0) echo ' style="height: 0;"'; ?>> */ ?>
+			<li>
 				<div class="player">
 					<?php echo $item->event->BeforeDisplay; ?>
 					<?php echo $item->event->K2BeforeDisplay; ?>
@@ -39,30 +40,36 @@ defined('_JEXEC') or die;
 					</div>
 					<?php } ?>
 				</div>
-				<div class="desc sidebar">
-					<div class="inner">
-						<?php if ($module->showtitle) { ?><h2><?php echo $module->title; ?></h2><?php } ?>
-						<?php if ($params->get('itemTitle')) { ?><h3><?php echo $item->title; ?></h3><?php } ?>
-						<?php echo $item->event->AfterDisplayTitle; ?>
-						<?php echo $item->event->K2AfterDisplayTitle; ?>
-						<?php echo $item->event->BeforeDisplayContent; ?>
-						<?php echo $item->event->K2BeforeDisplayContent; ?>
-						<?php if ($params->get('itemIntroText')) { ?>
-							<p><?php echo $item->introtext; ?></p>
-						<?php } ?>
-						<?php echo $item->event->AfterDisplayContent; ?>
-						<?php echo $item->event->K2AfterDisplayContent; ?>
-					</div>
-				</div>
 				<?php echo $item->event->AfterDisplay; ?>
 				<?php echo $item->event->K2AfterDisplay; ?>
 			</li>
 			<?php } // forach [items] ?>
 		</ul>
 		<?php } // if [count items] ?>
+		<div class="sidebar">
+			<div class="subcategories">
+				<ul class="list-unstyled">
+					<li>
+						<a href="<?php echo JURI::base() . 'content/natural-heritage'; ?>" data-catid="12">
+							<span class="title">میراث معنوی و طبیعی</span>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo JURI::base() . 'content/global-heritage'; ?>" data-catid="13">
+							<span class="title">میراث جهانی</span>
+						</a>
+					</li>
+					<li>
+						<a href="<?php echo JURI::base() . 'content/the-mosts'; ?>" data-catid="14">
+							<span class="title">ترین‌ها</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<div class="itemlist">
-		<ul class="items list-unstyled">
+<!--		<ul class="items list-unstyled">
 			<?php foreach ($items as $key => $item) { ?>
 			<li class="<?php if ($key == 0) echo 'active'; ?>">
 				<a href="#">
@@ -84,6 +91,6 @@ defined('_JEXEC') or die;
 				</a>
 			</li>
 			<?php } // forach [items] ?>
-		</ul>
+		</ul>-->
 	</div>
 </div>
