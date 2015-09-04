@@ -10,10 +10,18 @@ $(function () {
     };
     $("#menu a").click(function (e) {
 	if ($(this).attr('href').indexOf('#') !== -1) {
-	    var $target = $($(this).attr('href'));
+	    var $target = $(this).attr('href');
+	    console.log(base + $target);
+	    return false;
+	    window.location = base + $target;
+	}
+	if ($(this).attr('title').indexOf('#') !== -1) {
+	    var $target = $($(this).attr('title'));
 	    if ($target.length && $target.hasClass('page')) {
 		var offset = $target.offset().top;
 		$("html, body").animate({"scrollTop": offset}, 700, 'easeInCubic');
+	    } else {
+		window.location = base + $(this).attr('title');
 	    }
 	    e.preventDefault();
 	}
@@ -29,6 +37,7 @@ $(function () {
 	    $slideshowHome.find("ul.items").caroufredsel({
 		items: 1
 		, auto: false
+		, debug: false
 		, responsive: true
 		, pagination: $slideshowHome.find(".pages")
 		, next: $slideshowHome.find(".controls .next")
