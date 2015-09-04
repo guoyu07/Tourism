@@ -111,7 +111,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 				</div>
 				<?php } ?>
 			<?php } else { // not frontpage ?>
-				<div id="home" class="page component wrapper _white">
+				<div id="home" class="page full-page component wrapper _white">
 					<div class="page-inner">
 						<div class="container">
 							<div class="row">
@@ -149,6 +149,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 				</div>
 			</div>
 		</div>
+		<div id="ajax-cache" style="display: none !important;"></div>
 		<script src="<?php echo JURI::base(); ?>assets/js/jquery-1.11.1.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/bootstrap.min.js"></script>
