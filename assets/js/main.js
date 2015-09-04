@@ -89,29 +89,10 @@ $(function () {
 	$.each($panel, function () {
 	    var $items = $(this).find("ul.items:first");
 	    var s = window.setInterval(function() {
-		$items.find("li:first").fadeOut('slow', function() {
-		    $(this).appendTo($items).fadeIn(1);
+		$items.find("li:last").slideUp('slow', function() {
+		    $(this).prependTo($items).show(1);
 		});
-	    }, 5000);
-//	    $items.caroufredsel({
-//		items: 1
-//		, auto: false
-//		, scroll: {
-//		    fx: 'crossfade'
-//		}
-//	    });
-//	    $items.owlCarousel({
-//		rtl: true
-//		, loop: true
-//		, navContainer: false
-//		, items: 1
-//		, slideBy: 1
-//		, responsive: {
-//		    0: {items: 1}
-//		    , 600: {items: 1}
-//		    , 1000: {items: 1}
-//		}
-//	    });
+	    }, 20000);
 	});
     }
 
