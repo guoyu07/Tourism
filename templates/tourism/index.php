@@ -116,6 +116,9 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12">
+									<?php if ($helper->countModules('breadcrumbs')) { ?>
+									<jdoc:include type="modules" name="breadcrumbs" />
+									<?php } ?>
 									<jdoc:include type="component" />
 								</div>
 							</div>
