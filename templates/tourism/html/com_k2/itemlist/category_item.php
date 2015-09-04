@@ -14,7 +14,7 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 ?>
 <?php echo $this->item->event->BeforeDisplay; ?>
 <?php echo $this->item->event->K2BeforeDisplay; ?>
-<?php if (JRequest::getVar('format', '') == "feed") { ?>
+<?php if (JRequest::getVar('format', '') == "raw") { ?>
 	<li class="">
 		<a href="<?php echo $this->item->link; ?>">
 			<span class="img">

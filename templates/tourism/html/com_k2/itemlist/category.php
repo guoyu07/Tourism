@@ -9,7 +9,7 @@
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<?php if (JRequest::getVar('format', '') == "feed") { ?>
+<?php if (JRequest::getVar('format', '') == "raw") { ?>
 	<?php if (isset($this->secondary) && count($this->secondary)) { ?>
 		<!-- Secondary items -->
 		<ul class="items list-unstyled">
