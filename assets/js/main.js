@@ -11,8 +11,6 @@ $(function () {
     $("#menu a").click(function (e) {
 	if ($(this).attr('href').indexOf('#') !== -1) {
 	    var $target = $(this).attr('href');
-	    console.log(base + $target);
-	    return false;
 	    window.location = base + $target;
 	}
 	if ($(this).attr('title').indexOf('#') !== -1) {
