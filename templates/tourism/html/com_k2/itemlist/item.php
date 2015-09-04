@@ -13,11 +13,16 @@ defined('_JEXEC') or die('Restricted access');
 <article class="item" data-created="<?php echo JHTML::_('date', $this->item->created, JText::_('K2_DATE_FORMAT_LC2')); ?>">
 	<?php echo $this->item->event->BeforeDisplay; ?>
 	<?php echo $this->item->event->K2BeforeDisplay; ?>
+	<?php if ($this->item->params->get('itemTitle')) { ?>
 	<header class="item-header">
-		<?php if ($this->item->params->get('itemTitle')) { ?>
-			<h2 class="item-title"><?php echo $this->item->title; ?></h2>
+		<h2 class="item-title"><?php echo $this->item->title; ?></h2>
+		<?php if (JRequest::getVar('format', null) == "raw") { ?>
+		<div class="link-ext">
+			<a href="<?php echo $this->item->link; ?>" target="_blank" data-title="باز کردن این صفحه در تب جدید" data-toggle="tooltip" data-placement="top"><i class="icon-link-ext"></i></a>
+		</div>
 		<?php } ?>
 	</header>
+	<?php } ?>
 	<?php echo $this->item->event->AfterDisplayTitle; ?>
 	<?php echo $this->item->event->K2AfterDisplayTitle; ?>
 	<div class="item-body">
