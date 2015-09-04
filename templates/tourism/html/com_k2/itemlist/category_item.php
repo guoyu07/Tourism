@@ -14,17 +14,48 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 ?>
 <?php echo $this->item->event->BeforeDisplay; ?>
 <?php echo $this->item->event->K2BeforeDisplay; ?>
-<li class="">
-	<a href="<?php echo $this->item->link; ?>">
-		<span class="img">
-			<img src="<?php echo $this->item->image; ?>" alt="<?php
-			if (!empty($this->item->image_caption))
-				echo K2HelperUtilities::cleanHtml($this->item->image_caption);
-			else
-				echo K2HelperUtilities::cleanHtml($this->item->title);
-			?>" />
-		</span>
-		<span class="title"><?php echo $this->item->title; ?></span>
-		<span class="clearfix"></span>
-	</a>
-</li>
+<?php if (JRequest::getVar('format', '') == "feed") { ?>
+	<li class="">
+		<a href="<?php echo $this->item->link; ?>">
+			<span class="img">
+				<img src="<?php echo $this->item->image; ?>" alt="<?php
+				if (!empty($this->item->image_caption))
+					echo K2HelperUtilities::cleanHtml($this->item->image_caption);
+				else
+					echo K2HelperUtilities::cleanHtml($this->item->title);
+				?>" />
+			</span>
+			<span class="title"><?php echo $this->item->title; ?></span>
+			<span class="clearfix"></span>
+		</a>
+	</li>
+<?php } else { ?>
+	<li>
+		<div class="item-header">
+			<h3 class="item-title">
+				<a href="<?php echo $this->item->link; ?>"><?php echo $this->item->title; ?></a>
+			</h3>
+		</div>
+		<div class="item-body">
+			<?php if ($this->item->params->get('catItemImage') && !empty($this->item->image)): ?>
+				<div class="item-img">
+					<a href="<?php echo $this->item->link; ?>">
+						<img src="<?php echo $this->item->image; ?>" alt="<?php
+						if (!empty($this->item->image_caption))
+							echo K2HelperUtilities::cleanHtml($this->item->image_caption);
+						else
+							echo K2HelperUtilities::cleanHtml($this->item->title);
+						?>" />
+					</a>
+				</div>
+			<?php endif; ?>
+			<?php if ($this->item->params->get('catItemIntroText')): ?>
+				<div class="item-text">
+					<?php echo $this->item->introtext; ?>
+				</div>
+			<?php endif; ?>
+		</div>
+		<div class="clearfix"></div>
+	</li>
+	<?php
+}
