@@ -67,7 +67,7 @@
 			    }
 			}
 		    }
-		    p { margin-top: 26px; }
+		    p { margin-top: 26px; text-align: justify; }
 		    .section {
 			text-align: center; margin-top: 26px;
 			a {
@@ -145,10 +145,13 @@
 	.panel-body {
 	    height: 100vh; position: relative; right: 0;
 	    &.open {
-		&:after { display: block; content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); transition: 0.2s all; z-index: 130; }
+		&:after { display: block; content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-position: center center; background-repeat: no-repeat; background-color: rgba(0, 0, 0, 0.7); transition: 0.2s all; z-index: 130; }
+		&.loading {
+		    /*&:after { background-image: url('../img/loading.gif'); }*/
+		}
 	    }
 	    .player {
-		position: absolute; top: 0; left: 0; width: 60%; height: 100%; height: 100vh; background: @green; overflow: hidden;
+		position: absolute; top: 0; left: 0; width: 70%; height: 100%; height: 100vh; background: @green; overflow: hidden;
 		.img {
 		    text-align: center; position: relative; height: 100%;
 		    img { display: block; height: 100%; width: auto; position: absolute; top: 0; left: 50%; margin-left: -50%; }
@@ -161,6 +164,26 @@
 		    h2 { margin: 0; font-size: 48px; padding-bottom: 10px; border-bottom: 1px solid #fff; }
 		    p { margin-top: 30px; font-size: 20px; line-height: 1.7; }
 		}
+	    }
+	    .subcategories {
+		position: absolute; top: 0; left: 0; width: 100%; background: @darGray; height: 100%; height: 100vh;
+		& > ul {
+		    border-top: 80px solid transparent; position: relative; height: 100%;
+		    li {
+			height: 33.33333%; top: 0;
+			& + li { top: 33.33333%; }
+			& + li + li { top: 66.66666%; }
+			& ~ li { border-top: 1px solid #afafaf; }
+			a {
+			    display: block; width: 100%; height: 100%; transition: 0.2s all; color: #fff; font-size: 32px; text-align: center; line-height: 30vh; text-decoration: none; outline: 0 none;
+			    &:hover { background: @green; text-decoration: none; }
+			    /*span { display: inline-block; width: 100%; height: 100%; vertical-align: middle; }*/
+			}
+		    }
+		}
+	    }
+	    .sidebar {
+		margin-left: 70%; width: 30%; height: 100vh; position: relative; z-index: 200;
 	    }
 	    .tools {
 		width: 100%; height: 80px; position: absolute; bottom: 0;  z-index: 790;
