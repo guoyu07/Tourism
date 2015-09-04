@@ -18,3 +18,36 @@ article.item {
 	}
     }
 }
+.category-items {
+    width: 900px; margin: @grid-gutter-width auto 0; margin-bottom: @grid-gutter-width;
+    .itemlist {
+	ul {
+	    li {
+		padding: (@grid-gutter-width / 2) 0;
+		.item-header {
+		    h3 {
+			margin-top: 0;
+			a {
+			    color: @green; transition: 0.2s all;
+			    &:hover {
+				text-decoration: none; color: @darkGreen;
+			    }
+			}
+		    }
+		}
+		.item-body {
+		    .item-img {
+			float: left; width: 33.33333%;
+			& > a {
+			    display: block; width: 100%;
+			    img { display: block; width: 100%; height: auto; }
+			}
+		    }
+		    .item-text {
+			margin-left: 33.33333%; padding-left: (@grid-gutter-width);
+		    }
+		}
+	    }
+	}
+    }
+}
