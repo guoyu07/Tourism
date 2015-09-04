@@ -26,9 +26,22 @@ text-area, input, button, .form-control { direction: rtl; text-align: right; }
     }
 }
 .modal {
+    .modal-dialog { width: 800px; }
     .close { float: left; }
     .modal-header { padding-bottom: 0; }
     .modal-body { padding-top: 0; }
+    article.item {
+	font-size: 16px;
+	.item-header {
+	    margin-bottom: (@grid-gutter-width / 2);
+	}
+	.item-body {
+	    .img {
+		width: 100%; float: none;
+	    }
+	    .item-fulltext { padding-left: 0; margin-left: 0; }
+	}
+    }
 }
 
 
