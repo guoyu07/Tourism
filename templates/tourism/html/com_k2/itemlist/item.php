@@ -231,7 +231,7 @@ defined('_JEXEC') or die('Restricted access');
 			<?php echo $this->item->gallery; ?>
 		</div>
 	<?php } ?>
-	<?php if ($this->item->params->get('itemNavigation') && !JRequest::getCmd('print') && (isset($this->item->nextLink) || isset($this->item->previousLink))) { ?>
+	<?php /* if ($this->item->params->get('itemNavigation') && !JRequest::getCmd('print') && (isset($this->item->nextLink) || isset($this->item->previousLink))) { ?>
 		<div class="item-navigation">
 			<span class="navigation-titles"><?php echo JText::_('K2_MORE_IN_THIS_CATEGORY'); ?></span>
 			<?php if (isset($this->item->previousLink)) { ?>
@@ -245,7 +245,7 @@ defined('_JEXEC') or die('Restricted access');
 				</a>
 			<?php } ?>
 		</div>
-	<?php } ?>
+	<?php } */ ?>
 	<?php echo $this->item->event->AfterDisplay; ?>
 	<?php echo $this->item->event->K2AfterDisplay; ?>
 	<?php if ($this->item->params->get('itemComments') && ( ($this->item->params->get('comments') == '2' && !$this->user->guest) || ($this->item->params->get('comments') == '1'))) { ?>
