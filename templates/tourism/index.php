@@ -111,7 +111,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 				</div>
 				<?php } ?>
 			<?php } else { // not frontpage ?>
-				<div id="home" class="page full-page component wrapper _white">
+				<div id="mainbody" class="page full-page component wrapper _white">
 					<div class="page-inner">
 						<div class="container">
 							<div class="row">
