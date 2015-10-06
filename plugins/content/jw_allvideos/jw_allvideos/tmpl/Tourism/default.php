@@ -9,6 +9,9 @@
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
-
-?>
-<?php echo $tagsource; ?>
+$app = JFactory::getApplication();
+if ($app->isAdmin())
+	echo '<video width="480" controls src="';
+echo $tagsource;
+if ($app->isAdmin())
+	echo '"></video>';
