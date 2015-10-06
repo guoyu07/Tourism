@@ -152,6 +152,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 				</div>
 			</div>
 		</div>
+		<div class="player-container"></div>
 		<div id="ajax-cache" style="display: none !important;"></div>
 		<script src="<?php echo JURI::base(); ?>assets/js/jquery-1.11.1.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
