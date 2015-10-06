@@ -14,22 +14,29 @@ defined('_JEXEC') or die('Restricted access');
 	<?php echo $this->item->event->BeforeDisplay; ?>
 	<?php echo $this->item->event->K2BeforeDisplay; ?>
 	<?php if ($this->item->params->get('itemTitle')) { ?>
-	<header class="item-header">
-		<h2 class="item-title"><?php echo $this->item->title; ?></h2>
-		<?php if (JRequest::getVar('format', null) == "raw") { ?>
-		<div class="link-ext">
-			<a href="<?php echo $this->item->link; ?>" target="_blank" data-title="باز کردن این صفحه در تب جدید" data-toggle="tooltip" data-placement="top"><i class="icon-link-ext"></i></a>
-		</div>
-		<?php } ?>
-	</header>
+		<header class="item-header">
+			<h2 class="item-title"><?php echo $this->item->title; ?></h2>
+			<?php if (JRequest::getVar('format', null) == "raw") { ?>
+				<div class="link-ext">
+					<a href="<?php echo $this->item->link; ?>" target="_blank" data-title="باز کردن این صفحه در تب جدید" data-toggle="tooltip" data-placement="top"><i class="icon-link-ext"></i></a>
+				</div>
+			<?php } ?>
+		</header>
 	<?php } ?>
 	<?php echo $this->item->event->AfterDisplayTitle; ?>
 	<?php echo $this->item->event->K2AfterDisplayTitle; ?>
 	<div class="item-body">
 		<?php echo $this->item->event->BeforeDisplayContent; ?>
 		<?php echo $this->item->event->K2BeforeDisplayContent; ?>
-		<?php if ($this->item->params->get('itemImage') && !empty($this->item->image)) { ?>
-			<div class="img">
+		<?php
+		if ($this->item->params->get('itemImage') && !empty($this->item->image)) {
+			$hasVideo = $videoFile = '';
+			if ($this->item->params->get('itemVideo') && !empty($this->item->video)) {
+				$hasVideo = ' has-video';
+				$videoFile = ' data-video="' . $this->item->video . '"';
+			}
+			?>
+			<div class="img<?php echo $hasVideo; ?>"<?php echo $videoFile; ?> id="item-media">
 				<img src="<?php echo $this->item->image; ?>" alt="<?php
 				if (!empty($this->item->image_caption))
 					echo K2HelperUtilities::cleanHtml($this->item->image_caption);
@@ -87,85 +94,84 @@ defined('_JEXEC') or die('Restricted access');
 		<div class="clearfix"></div>
 	</div>
 	<?php if (JRequest::getInt('print') == 1) { ?>
-		<a class="itemPrintThisPage" rel="nofollow" href="#" onclick="window.print();
-			return false;">
+		   <a class="itemPrintThisPage" rel="nofollow" href="#" onclick="window.print();
+	                   return false;">
 			<span><?php echo JText::_('K2_PRINT_THIS_PAGE'); ?></span>
 		</a>
 	<?php } ?>
-	<?php
-		/*
-		<?php if ((JRequest::getInt('print') != 1) && ($this->item->params->get('itemTwitterButton', 1) || $this->item->params->get('itemFacebookButton', 1) || $this->item->params->get('itemGooglePlusOneButton', 1))) { ?>
-		<div class="item-sharings">
-			<?php if ($this->item->params->get('itemTwitterButton', 1)) { ?>
-				<div class="item-twitter">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal"<?php if ($this->item->params->get('twitterUsername')): ?> data-via="<?php echo $this->item->params->get('twitterUsername'); ?>"<?php endif; ?>><?php echo JText::_('K2_TWEET'); ?></a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-				</div>
-			<?php } ?>
-			<?php if ($this->item->params->get('itemFacebookButton', 1)) { ?>
-				<div class="item-facebook">
-					<div id="fb-root"></div>
-					<script type="text/javascript">
-		(function (d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {
-			return;
-		}
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "//connect.facebook.net/en_US/all.js#appId=177111755694317&xfbml=1";
-		fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-					</script>
-					<div class="fb-like" data-send="false" data-width="200" data-show-faces="true"></div>
-				</div>
-			<?php } ?>
-			<?php if ($this->item->params->get('itemGooglePlusOneButton', 1)) { ?>
-				<div class="item-gplus">	
-					<g:plusone annotation="inline" width="120"></g:plusone>
-					<script type="text/javascript">
-			(function () {
-				window.___gcfg = {lang: 'en'}; // Define button default language here
-				var po = document.createElement('script');
-				po.type = 'text/javascript';
-				po.async = true;
-				po.src = 'https://apis.google.com/js/plusone.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(po, s);
-			})();
-					</script>
-				</div>
-			<?php } ?>
-			<div class="clearfix"></div>
-		</div>
-	<?php } ?>
-	*/ ?>
 	<?php /*
-	<?php if ($this->item->params->get('itemCategory') || $this->item->params->get('itemTags') || $this->item->params->get('itemAttachments')) { ?>
-		<div class="item-links">
-			<?php if ($this->item->params->get('itemCategory')) { ?>
-				<div class="item-category">
-					<span><?php echo JText::_('K2_PUBLISHED_IN'); ?></span>
-					<a href="<?php echo $this->item->category->link; ?>"><?php echo $this->item->category->name; ?></a>
-				</div>
-			<?php } ?>
-			<?php if ($this->item->params->get('itemAttachments') && count($this->item->attachments)) { ?>
-				<div class="item-attachments">
-					<span><?php echo JText::_('K2_DOWNLOAD_ATTACHMENTS'); ?></span>
-					<ul>
-						<?php foreach ($this->item->attachments as $attachment) { ?>
-							<li>
-								<a title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>" href="<?php echo $attachment->link; ?>"><?php echo $attachment->title; ?></a>
-								<?php if ($this->item->params->get('itemAttachmentsCounter')) { ?>
-									<span>(<?php echo $attachment->hits; ?> <?php echo ($attachment->hits == 1) ? JText::_('K2_DOWNLOAD') : JText::_('K2_DOWNLOADS'); ?>)</span>
-								<?php } ?>
-							</li>
-						<?php } ?>
-					</ul>
-				</div>
-			<?php } ?>
-			<div class="clearfix"></div>
-		</div>
-	<?php } */ ?>
+	  <?php if ((JRequest::getInt('print') != 1) && ($this->item->params->get('itemTwitterButton', 1) || $this->item->params->get('itemFacebookButton', 1) || $this->item->params->get('itemGooglePlusOneButton', 1))) { ?>
+	  <div class="item-sharings">
+	  <?php if ($this->item->params->get('itemTwitterButton', 1)) { ?>
+	  <div class="item-twitter">
+	  <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal"<?php if ($this->item->params->get('twitterUsername')): ?> data-via="<?php echo $this->item->params->get('twitterUsername'); ?>"<?php endif; ?>><?php echo JText::_('K2_TWEET'); ?></a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+	  </div>
+	  <?php } ?>
+	  <?php if ($this->item->params->get('itemFacebookButton', 1)) { ?>
+	  <div class="item-facebook">
+	  <div id="fb-root"></div>
+	  <script type="text/javascript">
+	  (function (d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) {
+	  return;
+	  }
+	  js = d.createElement(s);
+	  js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#appId=177111755694317&xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));
+	  </script>
+	  <div class="fb-like" data-send="false" data-width="200" data-show-faces="true"></div>
+	  </div>
+	  <?php } ?>
+	  <?php if ($this->item->params->get('itemGooglePlusOneButton', 1)) { ?>
+	  <div class="item-gplus">
+	  <g:plusone annotation="inline" width="120"></g:plusone>
+	  <script type="text/javascript">
+	  (function () {
+	  window.___gcfg = {lang: 'en'}; // Define button default language here
+	  var po = document.createElement('script');
+	  po.type = 'text/javascript';
+	  po.async = true;
+	  po.src = 'https://apis.google.com/js/plusone.js';
+	  var s = document.getElementsByTagName('script')[0];
+	  s.parentNode.insertBefore(po, s);
+	  })();
+	  </script>
+	  </div>
+	  <?php } ?>
+	  <div class="clearfix"></div>
+	  </div>
+	  <?php } ?>
+	 */ ?>
+	<?php /*
+	  <?php if ($this->item->params->get('itemCategory') || $this->item->params->get('itemTags') || $this->item->params->get('itemAttachments')) { ?>
+	  <div class="item-links">
+	  <?php if ($this->item->params->get('itemCategory')) { ?>
+	  <div class="item-category">
+	  <span><?php echo JText::_('K2_PUBLISHED_IN'); ?></span>
+	  <a href="<?php echo $this->item->category->link; ?>"><?php echo $this->item->category->name; ?></a>
+	  </div>
+	  <?php } ?>
+	  <?php if ($this->item->params->get('itemAttachments') && count($this->item->attachments)) { ?>
+	  <div class="item-attachments">
+	  <span><?php echo JText::_('K2_DOWNLOAD_ATTACHMENTS'); ?></span>
+	  <ul>
+	  <?php foreach ($this->item->attachments as $attachment) { ?>
+	  <li>
+	  <a title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>" href="<?php echo $attachment->link; ?>"><?php echo $attachment->title; ?></a>
+	  <?php if ($this->item->params->get('itemAttachmentsCounter')) { ?>
+	  <span>(<?php echo $attachment->hits; ?> <?php echo ($attachment->hits == 1) ? JText::_('K2_DOWNLOAD') : JText::_('K2_DOWNLOADS'); ?>)</span>
+	  <?php } ?>
+	  </li>
+	  <?php } ?>
+	  </ul>
+	  </div>
+	  <?php } ?>
+	  <div class="clearfix"></div>
+	  </div>
+	  <?php } */ ?>
 	<?php if ($this->item->params->get('itemRelated') && isset($this->relatedItems)) { ?>
 		<div class="item-related">
 			<h3><?php echo JText::_("K2_RELATED_ITEMS_BY_TAG"); ?></h3>
@@ -206,46 +212,46 @@ defined('_JEXEC') or die('Restricted access');
 			<div class="clearfix"></div>
 		</div>
 	<?php } ?>
-	<?php if ($this->item->params->get('itemVideo') && !empty($this->item->video)) { ?>
-		<div class="item-video">
-			<h3><?php echo JText::_('K2_MEDIA'); ?></h3>
-			<?php if ($this->item->videoType == 'embedded') { ?>
-				<div class="item-video-embed">
-					<?php echo $this->item->video; ?>
-				</div>
-			<?php } else { ?>
-				<div class="mediaplayer"><?php echo $this->item->video; ?></div>
-			<?php } ?>
-			<?php if ($this->item->params->get('itemVideoCaption') && !empty($this->item->video_caption)) { ?>
-				<span class="item-video-caption"><?php echo $this->item->video_caption; ?></span>
-			<?php } ?>
-			<?php if ($this->item->params->get('itemVideoCredits') && !empty($this->item->video_credits)) { ?>
-				<span class="item-video-credits"><?php echo $this->item->video_credits; ?></span>
-			<?php } ?>
-			<div class="clearfix"></div>
-		</div>
-	<?php } ?>
-	<?php if ($this->item->params->get('itemImageGallery') && !empty($this->item->gallery)) { ?>
-		<div class="item-gallery">
-			<h3><?php echo JText::_('K2_IMAGE_GALLERY'); ?></h3>
-			<?php echo $this->item->gallery; ?>
-		</div>
-	<?php } ?>
+	<?php /* if ($this->item->params->get('itemVideo') && !empty($this->item->video)) { ?>
+	  <div class="item-video">
+	  <h3><?php echo JText::_('K2_MEDIA'); ?></h3>
+	  <?php if ($this->item->videoType == 'embedded') { ?>
+	  <div class="item-video-embed">
+	  <?php echo $this->item->video; ?>
+	  </div>
+	  <?php } else { ?>
+	  <div class="mediaplayer"><?php echo $this->item->video; ?></div>
+	  <?php } ?>
+	  <?php if ($this->item->params->get('itemVideoCaption') && !empty($this->item->video_caption)) { ?>
+	  <span class="item-video-caption"><?php echo $this->item->video_caption; ?></span>
+	  <?php } ?>
+	  <?php if ($this->item->params->get('itemVideoCredits') && !empty($this->item->video_credits)) { ?>
+	  <span class="item-video-credits"><?php echo $this->item->video_credits; ?></span>
+	  <?php } ?>
+	  <div class="clearfix"></div>
+	  </div>
+	  <?php } ?>
+	  <?php if ($this->item->params->get('itemImageGallery') && !empty($this->item->gallery)) { ?>
+	  <div class="item-gallery">
+	  <h3><?php echo JText::_('K2_IMAGE_GALLERY'); ?></h3>
+	  <?php echo $this->item->gallery; ?>
+	  </div>
+	  <?php } */ ?>
 	<?php /* if ($this->item->params->get('itemNavigation') && !JRequest::getCmd('print') && (isset($this->item->nextLink) || isset($this->item->previousLink))) { ?>
-		<div class="item-navigation">
-			<span class="navigation-titles"><?php echo JText::_('K2_MORE_IN_THIS_CATEGORY'); ?></span>
-			<?php if (isset($this->item->previousLink)) { ?>
-				<a class="item-prev" href="<?php echo $this->item->previousLink; ?>">
-					&laquo; <?php echo $this->item->previousTitle; ?>
-				</a>
-			<?php } ?>
-			<?php if (isset($this->item->nextLink)) { ?>
-				<a class="item-next" href="<?php echo $this->item->nextLink; ?>">
-					<?php echo $this->item->nextTitle; ?> &raquo;
-				</a>
-			<?php } ?>
-		</div>
-	<?php } */ ?>
+	  <div class="item-navigation">
+	  <span class="navigation-titles"><?php echo JText::_('K2_MORE_IN_THIS_CATEGORY'); ?></span>
+	  <?php if (isset($this->item->previousLink)) { ?>
+	  <a class="item-prev" href="<?php echo $this->item->previousLink; ?>">
+	  &laquo; <?php echo $this->item->previousTitle; ?>
+	  </a>
+	  <?php } ?>
+	  <?php if (isset($this->item->nextLink)) { ?>
+	  <a class="item-next" href="<?php echo $this->item->nextLink; ?>">
+	  <?php echo $this->item->nextTitle; ?> &raquo;
+	  </a>
+	  <?php } ?>
+	  </div>
+	  <?php } */ ?>
 	<?php echo $this->item->event->AfterDisplay; ?>
 	<?php echo $this->item->event->K2AfterDisplay; ?>
 	<?php if ($this->item->params->get('itemComments') && ( ($this->item->params->get('comments') == '2' && !$this->user->guest) || ($this->item->params->get('comments') == '1'))) { ?>

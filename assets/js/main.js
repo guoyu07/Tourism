@@ -28,6 +28,9 @@ $(function () {
     $('#item-modal').on('shown.bs.modal', function (e) {
         $('[data-toggle=tooltip]').tooltip({container: 'body'});
     });
+    $('#item-modal').on('hidden.bs.modal', function (e) {
+        $('#item-modal').find(".img-has-video").empty();
+    });
     
     $(".video-container").on('click', function(e) {
         var file = $(this).attr('data-video');
@@ -57,6 +60,23 @@ $(function () {
         $('.player-container').fadeOut(500, function() {
             Body.allowScroll();
         });
+    });
+    
+    $(document).on('click', "article.item .img.has-video", function (e) {
+        var file = $(this).attr('data-video');
+        var poster = $(this).find("img").attr('src').replace('_S', '_L');
+        jwplayer("item-media").setup({
+            abouttext: 'MostanadTV Tourism'
+            , aboutlink: "http://motv.com/tourism"
+            , file: file
+            , image: poster
+            , width: "100%"
+            , height: 432
+            , stretching: 'uniform'
+            , controls: true
+            , autostart: true
+        });
+        e.preventDefault();
     });
 
     if ($(".slideshow").length) {
