@@ -28,6 +28,36 @@ $(function () {
     $('#item-modal').on('shown.bs.modal', function (e) {
         $('[data-toggle=tooltip]').tooltip({container: 'body'});
     });
+    
+    $(".video-container").on('click', function(e) {
+        var file = $(this).attr('data-video');
+        var poster = $(this).find("img").attr('src').replace('_S', '_XL');
+        jwplayer("showcase-player").setup({
+            abouttext: 'MostanadTV Tourism'
+            , aboutlink: "http://motv.com/tourism"
+            , file: file
+            , image: poster
+    //                , primary: "flash"
+            , width: 720
+            , height: 576
+            , stretching: 'uniform'
+            , controls: true
+            , autostart: false
+        });
+        Body.preventScroll();
+        $(".player-container").fadeIn(500, function() {
+            jwplayer().play();
+        });
+        e.preventDefault();
+    });
+    $('.player-container').on('click', function(e) { 
+        if (e.target !== this)
+            return;
+        $('.player-container').find("#showcase-player").empty();
+        $('.player-container').fadeOut(500, function() {
+            Body.allowScroll();
+        });
+    });
 
     if ($(".slideshow").length) {
         var $slideshowHome = $(".slideshow").not(".panorama");
