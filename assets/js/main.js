@@ -29,7 +29,7 @@ $(function () {
         $('[data-toggle=tooltip]').tooltip({container: 'body'});
     });
     $('#item-modal').on('hidden.bs.modal', function (e) {
-        $('#item-modal').find(".img-has-video").empty();
+        $('#item-modal').find("#item-media").empty();
     });
     
     $(".video-container").on('click', function(e) {
