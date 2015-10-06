@@ -151,7 +151,7 @@ class plgContentJw_allvideos extends JPlugin {
 			}
 
 			if($jwPlayerLoading=='local'){
-				$document->addScript($pluginLivePath.'/includes/js/jwplayer/jwplayer.js?v=4.6.1');
+//				$document->addScript($pluginLivePath.'/includes/js/jwplayer/jwplayer.js?v=4.6.1');
 				$document->addScriptDeclaration('
 					/* JW Player API Key */
 					jwplayer.key="'.$jwPlayerAPIKey.'";
