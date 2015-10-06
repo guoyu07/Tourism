@@ -1,53 +1,53 @@
 article.item {
     width: 900px; margin: @grid-gutter-width auto 0;
     .item-header {
-	margin-bottom: (@grid-gutter-width * 2);
-	h2 { font-size: 36px; text-align: center; margin-bottom: 0; }
+        margin-bottom: (@grid-gutter-width * 2);
+        h2 { font-size: 36px; text-align: center; margin-bottom: 0; }
     }
     .item-body {
-	font-size: 16px;
-	.img {
-	    width: 50%; float: left; position: relative; margin-bottom: (@grid-gutter-width / 2);
-	    & > span {
-		display: block; position: absolute; bottom: 24px; left: 0; padding: (@grid-gutter-width / 3); color: #fff; text-shadow: 0 0 3px #333; font-family: Tahoma, Arial; font-size: 12px; font-weight: bold;
-		&.image-credits { bottom: 0; font-weight: normal; }
-	    }
-	}
-	.item-fulltext {
-	    margin-left: 50%; padding-left: (@grid-gutter-width); font-size: 17px;
-	}
+        font-size: 16px;
+        .img {
+            width: 50%; float: left; position: relative; margin-bottom: (@grid-gutter-width / 2); margin-right: (@grid-gutter-width);
+            & > span {
+                display: block; position: absolute; bottom: 24px; left: 0; padding: (@grid-gutter-width / 3); color: #fff; text-shadow: 0 0 3px #333; font-family: Tahoma, Arial; font-size: 12px; font-weight: bold;
+                &.image-credits { bottom: 0; font-weight: normal; }
+            }
+        }
+        .item-fulltext {
+            font-size: 17px; margin-bottom: @grid-gutter-width;
+        }
     }
 }
 .category-items {
     width: 900px; margin: @grid-gutter-width auto 0; margin-bottom: @grid-gutter-width;
     .itemlist {
-	ul {
-	    li {
-		padding: (@grid-gutter-width / 2) 0;
-		.item-header {
-		    h3 {
-			margin-top: 0;
-			a {
-			    color: @green; transition: 0.2s all;
-			    &:hover {
-				text-decoration: none; color: @darkGreen;
-			    }
-			}
-		    }
-		}
-		.item-body {
-		    .item-img {
-			float: left; width: 33.33333%;
-			& > a {
-			    display: block; width: 100%;
-			    img { display: block; width: 100%; height: auto; }
-			}
-		    }
-		    .item-text {
-			margin-left: 33.33333%; padding-left: (@grid-gutter-width);
-		    }
-		}
-	    }
-	}
+        ul {
+            li {
+                padding: (@grid-gutter-width / 2) 0;
+                .item-header {
+                    h3 {
+                        margin-top: 0;
+                        a {
+                            color: @green; transition: 0.2s all;
+                            &:hover {
+                                text-decoration: none; color: @darkGreen;
+                            }
+                        }
+                    }
+                }
+                .item-body {
+                    .item-img {
+                        float: left; width: 33.33333%;
+                        & > a {
+                            display: block; width: 100%;
+                            img { display: block; width: 100%; height: auto; }
+                        }
+                    }
+                    .item-text {
+                        margin-left: 33.33333%; padding-left: (@grid-gutter-width);
+                    }
+                }
+            }
+        }
     }
 }
