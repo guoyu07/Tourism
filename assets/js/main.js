@@ -286,6 +286,10 @@ $(function () {
         if (!$(".search .search-resluts").is(":empty"))
             $(".search .search-resluts").fadeIn('fast');
     });
+    $(".search form").on('submit', function(e) {
+        e.preventDefault();
+        return false;
+    });
 
     // Tiles
     $(".panel.tiles").on('click', ".tiles a", function (e) {
