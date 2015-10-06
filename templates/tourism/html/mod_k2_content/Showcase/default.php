@@ -18,6 +18,7 @@ defined('_JEXEC') or die;
 						<span class="prev"><i class="icon-left"></i></span>
 						<span class="next"><i class="icon-right"></i></span>
 					</div>
+					<!--
 					<ul class="sharings list-unstyled list-inline text-center">
 						<li><a href="<?php echo JURI::base(); ?>"><i class="icon-instagram"></i></a></li>
 						<li><a href="#"><i class="icon-facebook"></i></a></li>
@@ -25,6 +26,7 @@ defined('_JEXEC') or die;
 						<li><a href="#"><i class="icon-twitter"></i></a></li>
 						<li><a href="#"><i class="icon-vimeo"></i></a></li>
 					</ul>
+					-->
 					<div class="pages"></div>
 				</div>
 			</div>
@@ -51,6 +53,11 @@ defined('_JEXEC') or die;
 									<?php echo $item->event->BeforeDisplayContent; ?>
 									<?php echo $item->event->K2BeforeDisplayContent; ?>
 									<?php if ($params->get('itemIntroText')) { ?>
+										<?php if ($item->video) { ?>
+											<div class="video-container" data-video="<?php echo $item->video; ?>">
+												<img src="<?php echo str_replace('_XL', '_S', $item->image); ?>" alt="<?php echo K2HelperUtilities::cleanHtml($item->title); ?>" />
+											</div>
+										<?php } ?>
 										<?php echo $item->introtext; ?>
 									<?php } ?>
 									<?php echo $item->event->AfterDisplayContent; ?>
