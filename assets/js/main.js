@@ -1,359 +1,359 @@
 $(function () {
     $('body').scrollspy({target: '#menu'});
     var Body = {
-	preventScroll: function() {
-	    $("body").addClass("no-scroll");
-	}
-	, allowScroll: function() {
-	    $("body").removeClass("no-scroll");
-	}
+        preventScroll: function () {
+            $("body").addClass("no-scroll");
+        }
+        , allowScroll: function () {
+            $("body").removeClass("no-scroll");
+        }
     };
     $("#menu a").click(function (e) {
-	if ($(this).attr('href').indexOf('#') !== -1) {
-	    var $target = $(this).attr('href');
-	    window.location = base + $target;
-	}
-	if ($(this).attr('title').indexOf('#') !== -1) {
-	    var $target = $($(this).attr('title'));
-	    if ($target.length && $target.hasClass('page')) {
-		var offset = $target.offset().top;
-		$("html, body").animate({"scrollTop": offset}, 700, 'easeInCubic');
-	    } else {
-		window.location = base + $(this).attr('title');
-	    }
-	    e.preventDefault();
-	}
+        if ($(this).attr('href').indexOf('#') !== -1) {
+            var $target = $(this).attr('href');
+            window.location = base + $target;
+        }
+        if ($(this).attr('title').indexOf('#') !== -1) {
+            var $target = $($(this).attr('title'));
+            if ($target.length && $target.hasClass('page')) {
+                var offset = $target.offset().top;
+                $("html, body").animate({"scrollTop": offset}, 700, 'easeInCubic');
+            } else {
+                window.location = base + $(this).attr('title');
+            }
+            e.preventDefault();
+        }
     });
-    
+
     $('#item-modal').on('shown.bs.modal', function (e) {
-	$('[data-toggle=tooltip]').tooltip({container:'body'});
+        $('[data-toggle=tooltip]').tooltip({container: 'body'});
     });
-    
+
     if ($(".slideshow").length) {
-	var $slideshowHome = $(".slideshow").not(".panorama");
-	$slideshowHome.imagesLoaded(function () {
-	    $slideshowHome.find("ul.items").caroufredsel({
-		items: 1
-		, auto: false
-		, debug: false
-		, responsive: true
-		, pagination: $slideshowHome.find(".pages")
-		, next: $slideshowHome.find(".controls .next")
-		, prev: $slideshowHome.find(".controls .prev")
-		, scroll: {
-		    items: 1
-		    , fx: 'crossfade'
-		}
-	    });
-	});
-	
-	if ($(".slideshow.panorama").length) {
-	    var $panorama = $(".slideshow.panorama");
-	    var $items = $panorama.find("ul.items");
-	    $items.owlCarousel({
-		rtl:true
-		, loop:true
-		, navContainer: false
-		, items: 4
-		, slideBy: 4
-		, responsive:{
-		    0:{ items: 1 }
-		    , 600:{ items: 3 }
-		    , 1000:{ items: 4 }
-		}
-	    });
-	    $panorama.find(".next").click(function() {
-		$items.trigger('next.owl.carousel');
-	    });
-	    $panorama.find(".prev").click(function() {
-		$items.trigger('prev.owl.carousel');
-	    });
-	    $items.on('click', "li, a", function(e) {
-		var swf = $(this).find("img").attr('src').replace('.jpg', '.swf');
-		var $container = $(".slideshow.panorama .preview");
-		$container.find(".player").empty();
-		$container.fadeIn('fast', function() {
-		    $container.find(".close").show(1);
-		    $container.find(".inner").animate({'margin-top': -200}, function() {
-			Body.preventScroll();
-		    });
-		    $container.find(".inner").slideDown(function() {
-			$container.find(".player").html('<object width="600" height="400" data="' + swf + '"></object>');
-		    });
-		});
-		e.preventDefault();
-		
-		$container.on('click', ".close", function(e) {
-		    $container.find(".inner").slideUp(function() {
-			$container.fadeOut('fast', function() {
-			    $container.find(".close").hide(1);
-			    Body.allowScroll();
-			});
-		    });
-		});
-	    });
-	}
-    } 
+        var $slideshowHome = $(".slideshow").not(".panorama");
+        $slideshowHome.imagesLoaded(function () {
+            $slideshowHome.find("ul.items").caroufredsel({
+                items: 1
+                , auto: false
+                , debug: false
+                , responsive: true
+                , pagination: $slideshowHome.find(".pages")
+                , next: $slideshowHome.find(".controls .next")
+                , prev: $slideshowHome.find(".controls .prev")
+                , scroll: {
+                    items: 1
+                    , fx: 'crossfade'
+                }
+            });
+        });
+
+        if ($(".slideshow.panorama").length) {
+            var $panorama = $(".slideshow.panorama");
+            var $items = $panorama.find("ul.items");
+            $items.owlCarousel({
+                rtl: true
+                , loop: true
+                , navContainer: false
+                , items: 4
+                , slideBy: 4
+                , responsive: {
+                    0: {items: 1}
+                    , 600: {items: 3}
+                    , 1000: {items: 4}
+                }
+            });
+            $panorama.find(".next").click(function () {
+                $items.trigger('next.owl.carousel');
+            });
+            $panorama.find(".prev").click(function () {
+                $items.trigger('prev.owl.carousel');
+            });
+            $items.on('click', "li, a", function (e) {
+                var swf = $(this).find("img").attr('src').replace('.jpg', '.swf');
+                var $container = $(".slideshow.panorama .preview");
+                $container.find(".player").empty();
+                $container.fadeIn('fast', function () {
+                    $container.find(".close").show(1);
+                    $container.find(".inner").animate({'margin-top': -200}, function () {
+                        Body.preventScroll();
+                    });
+                    $container.find(".inner").slideDown(function () {
+                        $container.find(".player").html('<object width="600" height="400" data="' + swf + '"></object>');
+                    });
+                });
+                e.preventDefault();
+
+                $container.on('click', ".close", function (e) {
+                    $container.find(".inner").slideUp(function () {
+                        $container.fadeOut('fast', function () {
+                            $container.find(".close").hide(1);
+                            Body.allowScroll();
+                        });
+                    });
+                });
+            });
+        }
+    }
     if ($(".panel.content").length) {
-	var $panel = $(".panel.content");
-	$.each($panel, function () {
-	    var $items = $(this).find("ul.items:first");
-	    var s = window.setInterval(function() {
-		$items.find("li:last").slideUp('slow', function() {
-		    $(this).prependTo($items).show(1);
-		});
-	    }, 20000);
-	});
+        var $panel = $(".panel.content");
+        $.each($panel, function () {
+            var $items = $(this).find("ul.items:first");
+            var s = window.setInterval(function () {
+                $items.find("li:last").slideUp('slow', function () {
+                    $(this).prependTo($items).show(1);
+                });
+            }, 20000);
+        });
     }
 
     $(".panel.content").off('click', "a.menu, .subcategories li a").on('click', "a.menu, .subcategories li a", function (e) {
-	var $parent = $(this).parents(".panel.content:first .panel-body");
-	var catid = $(this).attr("data-catid");
-	var options = null;
-	if (typeof catid !== "undefined" && catid !== "") {
-	    o = {
-		catid: catid
-		, href: $(this).attr("href")
-	    };
-	}
-	if ($parent.hasClass("open"))
-	    Pane.close($parent);
-	else
-	    Pane.open($parent, o);
-	e.preventDefault();
+        var $parent = $(this).parents(".panel.content:first .panel-body");
+        var catid = $(this).attr("data-catid");
+        var options = null;
+        if (typeof catid !== "undefined" && catid !== "") {
+            o = {
+                catid: catid
+                , href: $(this).attr("href")
+            };
+        }
+        if ($parent.hasClass("open"))
+            Pane.close($parent);
+        else
+            Pane.open($parent, o);
+        e.preventDefault();
     });
-    
-    $(document).on('click', ".panel.content .itemlist a", function(e) {
-	var href = $(this).attr('href');
-	$.ajax({
-	    url: href
-	    , type: 'get'
-	    , data: 'format=raw'
-	    , success: function(r) {
-		$("#item-modal").find(".modal-body").empty().html(r);
-		$("#item-modal").modal('show');
-	    }
-	});
-	e.preventDefault();
+
+    $(document).on('click', ".panel.content .itemlist a", function (e) {
+        var href = $(this).attr('href');
+        $.ajax({
+            url: href
+            , type: 'get'
+            , data: 'format=raw'
+            , success: function (r) {
+                $("#item-modal").find(".modal-body").empty().html(r);
+                $("#item-modal").modal('show');
+            }
+        });
+        e.preventDefault();
     });
-    
+
     var Pane = {
-	close: function($pane) {
-	    $pane.animate({'right': '0'}, 500, 'easeOutCubic').removeClass("open");
-	}
-	, open: function($pane, options) {
-	    var data = '';
-	    $pane.addClass("loading").addClass("open");
-	    if (options !== null) {
-		if ($("#ajax-cache").find(".cat-" + options.catid).length) {
-		    data = $("#ajax-cache").find(".cat-" + options.catid).html();
-		    $pane.removeClass("loading");
-		    $pane.parent().find(".itemlist").html(data);
-		    $pane.animate({'right': '400px'}, 500, 'easeOutCubic', function() {
-			Pane.delegateClose($pane);
-		    });
-		} else {
-		    $.ajax({
-			url: options.href + '?format=raw'
-			, success: function(d) {
-			    $("#ajax-cache").append('<div class="cat-' + options.catid + '"></div>');
-			    $("#ajax-cache").find(".cat-" + options.catid).html(d);
-			    $pane.removeClass("loading");
-			    $pane.parent().find(".itemlist").html(d);
-			    $pane.animate({'right': '400px'}, 500, 'easeOutCubic', function() {
-				Pane.delegateClose($pane);
-			    });
-			}
-		    });
-		}
-	    }
-	}
-	, delegateClose: function ($pane) {		
-		// Delegating close
-	    $pane.off('click').on('click', function(e) {
-		Pane.close($pane);
-		e.preventDefault();
-	    });
-	}
+        close: function ($pane) {
+            $pane.animate({'right': '0'}, 500, 'easeOutCubic').removeClass("open");
+        }
+        , open: function ($pane, options) {
+            var data = '';
+            $pane.addClass("loading").addClass("open");
+            if (options !== null) {
+                if ($("#ajax-cache").find(".cat-" + options.catid).length) {
+                    data = $("#ajax-cache").find(".cat-" + options.catid).html();
+                    $pane.removeClass("loading");
+                    $pane.parent().find(".itemlist").html(data);
+                    $pane.animate({'right': '400px'}, 500, 'easeOutCubic', function () {
+                        Pane.delegateClose($pane);
+                    });
+                } else {
+                    $.ajax({
+                        url: options.href + '?format=raw'
+                        , success: function (d) {
+                            $("#ajax-cache").append('<div class="cat-' + options.catid + '"></div>');
+                            $("#ajax-cache").find(".cat-" + options.catid).html(d);
+                            $pane.removeClass("loading");
+                            $pane.parent().find(".itemlist").html(d);
+                            $pane.animate({'right': '400px'}, 500, 'easeOutCubic', function () {
+                                Pane.delegateClose($pane);
+                            });
+                        }
+                    });
+                }
+            }
+        }
+        , delegateClose: function ($pane) {
+            // Delegating close
+            $pane.off('click').on('click', function (e) {
+                Pane.close($pane);
+                e.preventDefault();
+            });
+        }
     };
-    
-    $(".contact-form").on('submit', function(e) {
-	var er = [];
-	var $f = $(".contact-form");
-	if  ($f.find("[required]").length) {
-	    $f.find("[required]").each(function () {
-		if ($(this).val() === '') {
-		    er.push($(this));
-		}
-	    });
-	}
-	if (er.length > 0) {
-	    $.each(er, function (i, o) {
-		er[i].parent().addClass('has-error');
-	    });
-	    return false;
-	}
-	$.ajax({
-	    url: base + 'contacts'
-	    , type: 'post'
-	    , data: $f.serializeObject()
-	    , success: function(d) {
-		var response = d.split(':');
-		if (response[0] !== "success")
-		    alert(response[1]);
-		else {
-		    $(".results-container").fadeIn('fast');
-		    $(".results-container").find(".inner").empty().text(response[1]).animate({'height': '100px', 'margin-top': '-50px'});
-		    window.setTimeout(function() {
-			$(".results-container").fadeOut('fast', function() {
-			    $(".results-container").find(".inner").css({'height': '0', 'margin-top': '0'});
-			});
-		    }, 5000);
-		}
-	    }
-	});
-	e.preventDefault();
-	return false;
+
+    $(".contact-form").on('submit', function (e) {
+        var er = [];
+        var $f = $(".contact-form");
+        if ($f.find("[required]").length) {
+            $f.find("[required]").each(function () {
+                if ($(this).val() === '') {
+                    er.push($(this));
+                }
+            });
+        }
+        if (er.length > 0) {
+            $.each(er, function (i, o) {
+                er[i].parent().addClass('has-error');
+            });
+            return false;
+        }
+        $.ajax({
+            url: base + 'contacts'
+            , type: 'post'
+            , data: $f.serializeObject()
+            , success: function (d) {
+                var response = d.split(':');
+                if (response[0] !== "success")
+                    alert(response[1]);
+                else {
+                    $(".results-container").fadeIn('fast');
+                    $(".results-container").find(".inner").empty().text(response[1]).animate({'height': '100px', 'margin-top': '-50px'});
+                    window.setTimeout(function () {
+                        $(".results-container").fadeOut('fast', function () {
+                            $(".results-container").find(".inner").css({'height': '0', 'margin-top': '0'});
+                        });
+                    }, 5000);
+                }
+            }
+        });
+        e.preventDefault();
+        return false;
     });
-    $(document).on('click', ".results-container, .results-container .inner", function(e) {
-	$(".results-container").fadeOut('fast', function() {
-	    $(".results-container").find(".inner").css({'height': '0', 'margin-top': '0'});
-	});
-	e.preventDefault();
+    $(document).on('click', ".results-container, .results-container .inner", function (e) {
+        $(".results-container").fadeOut('fast', function () {
+            $(".results-container").find(".inner").css({'height': '0', 'margin-top': '0'});
+        });
+        e.preventDefault();
     });
 
     // Live Search
     $(".search form input[name=q]").keyup(function (e) {
-	var $input = $(this);
-	var $form = $input.parents("form:first");
-	var $results = $form.parent().find(".search-resluts");
-	console.log($results);
-	if ($input.val().length > 3 && e.key !== 'enter') {
-	    $input.addClass('loading');
-	    $results.empty();
-	    if (!$results.is(":hidden"))
-		$results.fadeOut('fast');
-	    $form.find('input[name=t]').val($.now());
-	    $form.find('input[name=format]').val('raw');
-	    $.ajax({
-		url: 'index.php?option=com_k2&view=itemlist&task=search'
-		, type: 'get'
-		, data: $form.serialize()
-		, success: function (d) {
-		    $input.removeClass('loading');
-		    $results.html(d).fadeIn('fast');
-		}
-	    });
-	} else {
-	    $results.empty();
-	    if (!$results.is(":hidden"))
-		$results.fadeOut('fast');
-	}
+        var $input = $(this);
+        var $form = $input.parents("form:first");
+        var $results = $form.parent().find(".search-resluts");
+        console.log($results);
+        if ($input.val().length > 3 && e.key !== 'enter') {
+            $input.addClass('loading');
+            $results.empty();
+            if (!$results.is(":hidden"))
+                $results.fadeOut('fast');
+            $form.find('input[name=t]').val($.now());
+            $form.find('input[name=format]').val('raw');
+            $.ajax({
+                url: 'index.php?option=com_k2&view=itemlist&task=search'
+                , type: 'get'
+                , data: $form.serialize()
+                , success: function (d) {
+                    $input.removeClass('loading');
+                    $results.html(d).fadeIn('fast');
+                }
+            });
+        } else {
+            $results.empty();
+            if (!$results.is(":hidden"))
+                $results.fadeOut('fast');
+        }
     });
-    $(document).on('focusout', ".search form", function() {
-	$(".search .search-resluts").fadeOut('fast');
-    }).on('focusin', ".search form", function() {
-	if (!$(".search .search-resluts").is(":empty"))
-	    $(".search .search-resluts").fadeIn('fast');
+    $(document).on('focusout', ".search form", function () {
+        $(".search .search-resluts").fadeOut('fast');
+    }).on('focusin', ".search form", function () {
+        if (!$(".search .search-resluts").is(":empty"))
+            $(".search .search-resluts").fadeIn('fast');
     });
-    
+
     // Tiles
-    $(".panel.tiles").on('click', ".tiles a", function(e) {
-	var speed = [300, 500, 600, 600];
-	var $tiles = $(".panel.tiles").find(".tiles li");
-	var $container = $(".panel.tiles").children(".tiles");
-	var $this = $(this);
-	var $itemlist = $(".panel.tiles").find(".itemlist");
-	var j = 0;
-	for (var i = 1; i < 4; i++) {
-	    $tiles.eq(i - 1).fadeOut(speed[j]);
-	    $tiles.eq(7 - i).fadeOut(speed[j]);
-	    j++;
-	}
-	$tiles.eq(0).promise().done(function() {
-	    $tiles.eq(3).fadeOut(speed[1], function() {
-		$container.hide(1, function() {
-		    $itemlist.find(".inner").empty();
-		    $itemlist.animate({'margin-top': -50});
-		    $itemlist.slideDown(function() {
-			$.ajax({
-			    url: $this.attr('href')
-			    , type: 'get'
-			    , success: function(r) {
-				$itemlist.find(".inner").empty().html(r).slideDown();
-			    }
-			});
-		    });
-		});
-	    });
-	});
-	e.preventDefault();
-	
-	$(".panel.tiles").on('click', ".close", function(e) {
-	    $itemlist.slideUp(function() {
-		$container.show(1, function() {
-		    $tiles.fadeIn(speed[0]);
-		});
-	    });
-	    $itemlist.animate({'margin-top': 0}, function() {
-		$itemlist.find(".inner").hide(1);
-	    });
-	});
+    $(".panel.tiles").on('click', ".tiles a", function (e) {
+        var speed = [300, 500, 600, 600];
+        var $tiles = $(".panel.tiles").find(".tiles li");
+        var $container = $(".panel.tiles").children(".tiles");
+        var $this = $(this);
+        var $itemlist = $(".panel.tiles").find(".itemlist");
+        var j = 0;
+        for (var i = 1; i < 4; i++) {
+            $tiles.eq(i - 1).fadeOut(speed[j]);
+            $tiles.eq(7 - i).fadeOut(speed[j]);
+            j++;
+        }
+        $tiles.eq(0).promise().done(function () {
+            $tiles.eq(3).fadeOut(speed[1], function () {
+                $container.hide(1, function () {
+                    $itemlist.find(".inner").empty();
+                    $itemlist.animate({'margin-top': -50});
+                    $itemlist.slideDown(function () {
+                        $.ajax({
+                            url: $this.attr('href')
+                            , type: 'get'
+                            , success: function (r) {
+                                $itemlist.find(".inner").empty().html(r).slideDown();
+                            }
+                        });
+                    });
+                });
+            });
+        });
+        e.preventDefault();
+
+        $(".panel.tiles").on('click', ".close", function (e) {
+            $itemlist.slideUp(function () {
+                $container.show(1, function () {
+                    $tiles.fadeIn(speed[0]);
+                });
+            });
+            $itemlist.animate({'margin-top': 0}, function () {
+                $itemlist.find(".inner").hide(1);
+            });
+        });
     });
-    $(document).on('click', ".panel.tiles .itemlist a", function(e) {
-	var href = $(this).attr('href');
-	$.ajax({
-	    url: href
-	    , type: 'get'
-	    , data: 'format=raw'
-	    , success: function(r) {
-		$("#item-modal").find(".modal-body").empty().html(r);
-		$("#item-modal").modal('show');
-	    }
-	});
-	e.preventDefault();
+    $(document).on('click', ".panel.tiles .itemlist a", function (e) {
+        var href = $(this).attr('href');
+        $.ajax({
+            url: href
+            , type: 'get'
+            , data: 'format=raw'
+            , success: function (r) {
+                $("#item-modal").find(".modal-body").empty().html(r);
+                $("#item-modal").modal('show');
+            }
+        });
+        e.preventDefault();
     });
-    
+
 
     var $content = $(".panel.content");
     $.fn.pages = function (options) {
-	var o = $.extend({
-	    next: $(this).find(".tools .next")
-	    , prev: $(this).find(".tools .prev")
-	}, options);
-	return this.each(function () {
-	    var $i = $(this);
-	    o.next.on('click', function (e) {
-		console.log('next');
-		if ($i.find(".items li.active").next().is("li")) {
-		    var $a = $i.find(".items li.active");
-		    var $n = $a.next();
-		    $n.animate({'height': '100%'}, 1000, 'easeOutExpo', function () {
-			$n.addClass('active');
-			$a.removeClass('active');
-		    });
-		}
-		e.preventDefault();
-	    });
-	    o.prev.on('click', function (e) {
-		console.log('prev');
-		if ($i.find(".items li.active").prev().is("li")) {
-		    var $a = $i.find(".items li.active");
-		    var $p = $a.prev();
-		    $p.animate({'height': '100%'}, 1000, 'easeOutExpo', function () {
-			$p.addClass('active');
-			$a.removeClass('active');
-		    });
-		}
-		e.preventDefault();
-	    });
-	});
+        var o = $.extend({
+            next: $(this).find(".tools .next")
+            , prev: $(this).find(".tools .prev")
+        }, options);
+        return this.each(function () {
+            var $i = $(this);
+            o.next.on('click', function (e) {
+                console.log('next');
+                if ($i.find(".items li.active").next().is("li")) {
+                    var $a = $i.find(".items li.active");
+                    var $n = $a.next();
+                    $n.animate({'height': '100%'}, 1000, 'easeOutExpo', function () {
+                        $n.addClass('active');
+                        $a.removeClass('active');
+                    });
+                }
+                e.preventDefault();
+            });
+            o.prev.on('click', function (e) {
+                console.log('prev');
+                if ($i.find(".items li.active").prev().is("li")) {
+                    var $a = $i.find(".items li.active");
+                    var $p = $a.prev();
+                    $p.animate({'height': '100%'}, 1000, 'easeOutExpo', function () {
+                        $p.addClass('active');
+                        $a.removeClass('active');
+                    });
+                }
+                e.preventDefault();
+            });
+        });
     };
     $content.each(function () {
-	$(this).pages({
-	    next: $(this).find(".next")
-	    , prev: $(this).find(".prev")
-	});
+        $(this).pages({
+            next: $(this).find(".next")
+            , prev: $(this).find(".prev")
+        });
     });
 });
 
@@ -365,179 +365,179 @@ jQuery.easing['jswing'] = jQuery.easing['swing'];
 jQuery.extend(jQuery.easing, {
     def: 'easeOutQuad',
     swing: function (x, t, b, c, d) {
-	//alert(jQuery.easing.default);
-	return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+        //alert(jQuery.easing.default);
+        return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
     },
     easeInQuad: function (x, t, b, c, d) {
-	return c * (t /= d) * t + b;
+        return c * (t /= d) * t + b;
     },
     easeOutQuad: function (x, t, b, c, d) {
-	return -c * (t /= d) * (t - 2) + b;
+        return -c * (t /= d) * (t - 2) + b;
     },
     easeInOutQuad: function (x, t, b, c, d) {
-	if ((t /= d / 2) < 1)
-	    return c / 2 * t * t + b;
-	return -c / 2 * ((--t) * (t - 2) - 1) + b;
+        if ((t /= d / 2) < 1)
+            return c / 2 * t * t + b;
+        return -c / 2 * ((--t) * (t - 2) - 1) + b;
     },
     easeInCubic: function (x, t, b, c, d) {
-	return c * (t /= d) * t * t + b;
+        return c * (t /= d) * t * t + b;
     },
     easeOutCubic: function (x, t, b, c, d) {
-	return c * ((t = t / d - 1) * t * t + 1) + b;
+        return c * ((t = t / d - 1) * t * t + 1) + b;
     },
     easeInOutCubic: function (x, t, b, c, d) {
-	if ((t /= d / 2) < 1)
-	    return c / 2 * t * t * t + b;
-	return c / 2 * ((t -= 2) * t * t + 2) + b;
+        if ((t /= d / 2) < 1)
+            return c / 2 * t * t * t + b;
+        return c / 2 * ((t -= 2) * t * t + 2) + b;
     },
     easeInQuart: function (x, t, b, c, d) {
-	return c * (t /= d) * t * t * t + b;
+        return c * (t /= d) * t * t * t + b;
     },
     easeOutQuart: function (x, t, b, c, d) {
-	return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
     },
     easeInOutQuart: function (x, t, b, c, d) {
-	if ((t /= d / 2) < 1)
-	    return c / 2 * t * t * t * t + b;
-	return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+        if ((t /= d / 2) < 1)
+            return c / 2 * t * t * t * t + b;
+        return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
     },
     easeInQuint: function (x, t, b, c, d) {
-	return c * (t /= d) * t * t * t * t + b;
+        return c * (t /= d) * t * t * t * t + b;
     },
     easeOutQuint: function (x, t, b, c, d) {
-	return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
     },
     easeInOutQuint: function (x, t, b, c, d) {
-	if ((t /= d / 2) < 1)
-	    return c / 2 * t * t * t * t * t + b;
-	return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+        if ((t /= d / 2) < 1)
+            return c / 2 * t * t * t * t * t + b;
+        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
     },
     easeInSine: function (x, t, b, c, d) {
-	return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
+        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
     },
     easeOutSine: function (x, t, b, c, d) {
-	return c * Math.sin(t / d * (Math.PI / 2)) + b;
+        return c * Math.sin(t / d * (Math.PI / 2)) + b;
     },
     easeInOutSine: function (x, t, b, c, d) {
-	return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+        return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
     },
     easeInExpo: function (x, t, b, c, d) {
-	return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+        return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
     },
     easeOutExpo: function (x, t, b, c, d) {
-	return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+        return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
     },
     easeInOutExpo: function (x, t, b, c, d) {
-	if (t == 0)
-	    return b;
-	if (t == d)
-	    return b + c;
-	if ((t /= d / 2) < 1)
-	    return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
-	return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+        if (t == 0)
+            return b;
+        if (t == d)
+            return b + c;
+        if ((t /= d / 2) < 1)
+            return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
     },
     easeInCirc: function (x, t, b, c, d) {
-	return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
     },
     easeOutCirc: function (x, t, b, c, d) {
-	return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
+        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
     },
     easeInOutCirc: function (x, t, b, c, d) {
-	if ((t /= d / 2) < 1)
-	    return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
-	return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+        if ((t /= d / 2) < 1)
+            return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+        return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
     },
     easeInElastic: function (x, t, b, c, d) {
-	var s = 1.70158;
-	var p = 0;
-	var a = c;
-	if (t == 0)
-	    return b;
-	if ((t /= d) == 1)
-	    return b + c;
-	if (!p)
-	    p = d * .3;
-	if (a < Math.abs(c)) {
-	    a = c;
-	    var s = p / 4;
-	}
-	else
-	    var s = p / (2 * Math.PI) * Math.asin(c / a);
-	return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+        var s = 1.70158;
+        var p = 0;
+        var a = c;
+        if (t == 0)
+            return b;
+        if ((t /= d) == 1)
+            return b + c;
+        if (!p)
+            p = d * .3;
+        if (a < Math.abs(c)) {
+            a = c;
+            var s = p / 4;
+        }
+        else
+            var s = p / (2 * Math.PI) * Math.asin(c / a);
+        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
     },
     easeOutElastic: function (x, t, b, c, d) {
-	var s = 1.70158;
-	var p = 0;
-	var a = c;
-	if (t == 0)
-	    return b;
-	if ((t /= d) == 1)
-	    return b + c;
-	if (!p)
-	    p = d * .3;
-	if (a < Math.abs(c)) {
-	    a = c;
-	    var s = p / 4;
-	}
-	else
-	    var s = p / (2 * Math.PI) * Math.asin(c / a);
-	return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+        var s = 1.70158;
+        var p = 0;
+        var a = c;
+        if (t == 0)
+            return b;
+        if ((t /= d) == 1)
+            return b + c;
+        if (!p)
+            p = d * .3;
+        if (a < Math.abs(c)) {
+            a = c;
+            var s = p / 4;
+        }
+        else
+            var s = p / (2 * Math.PI) * Math.asin(c / a);
+        return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
     },
     easeInOutElastic: function (x, t, b, c, d) {
-	var s = 1.70158;
-	var p = 0;
-	var a = c;
-	if (t == 0)
-	    return b;
-	if ((t /= d / 2) == 2)
-	    return b + c;
-	if (!p)
-	    p = d * (.3 * 1.5);
-	if (a < Math.abs(c)) {
-	    a = c;
-	    var s = p / 4;
-	}
-	else
-	    var s = p / (2 * Math.PI) * Math.asin(c / a);
-	if (t < 1)
-	    return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
-	return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
+        var s = 1.70158;
+        var p = 0;
+        var a = c;
+        if (t == 0)
+            return b;
+        if ((t /= d / 2) == 2)
+            return b + c;
+        if (!p)
+            p = d * (.3 * 1.5);
+        if (a < Math.abs(c)) {
+            a = c;
+            var s = p / 4;
+        }
+        else
+            var s = p / (2 * Math.PI) * Math.asin(c / a);
+        if (t < 1)
+            return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
     },
     easeInBack: function (x, t, b, c, d, s) {
-	if (s == undefined)
-	    s = 1.70158;
-	return c * (t /= d) * t * ((s + 1) * t - s) + b;
+        if (s == undefined)
+            s = 1.70158;
+        return c * (t /= d) * t * ((s + 1) * t - s) + b;
     },
     easeOutBack: function (x, t, b, c, d, s) {
-	if (s == undefined)
-	    s = 1.70158;
-	return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+        if (s == undefined)
+            s = 1.70158;
+        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
     },
     easeInOutBack: function (x, t, b, c, d, s) {
-	if (s == undefined)
-	    s = 1.70158;
-	if ((t /= d / 2) < 1)
-	    return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
-	return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+        if (s == undefined)
+            s = 1.70158;
+        if ((t /= d / 2) < 1)
+            return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
+        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
     },
     easeInBounce: function (x, t, b, c, d) {
-	return c - jQuery.easing.easeOutBounce(x, d - t, 0, c, d) + b;
+        return c - jQuery.easing.easeOutBounce(x, d - t, 0, c, d) + b;
     },
     easeOutBounce: function (x, t, b, c, d) {
-	if ((t /= d) < (1 / 2.75)) {
-	    return c * (7.5625 * t * t) + b;
-	} else if (t < (2 / 2.75)) {
-	    return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
-	} else if (t < (2.5 / 2.75)) {
-	    return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
-	} else {
-	    return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
-	}
+        if ((t /= d) < (1 / 2.75)) {
+            return c * (7.5625 * t * t) + b;
+        } else if (t < (2 / 2.75)) {
+            return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
+        } else if (t < (2.5 / 2.75)) {
+            return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+        } else {
+            return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+        }
     },
     easeInOutBounce: function (x, t, b, c, d) {
-	if (t < d / 2)
-	    return jQuery.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
-	return jQuery.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+        if (t < d / 2)
+            return jQuery.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
+        return jQuery.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
     }
 });
 
@@ -546,14 +546,14 @@ $.fn.serializeObject = function () {
     var o = {};
     var a = this.serializeArray();
     $.each(a, function () {
-	if (o[this.name] !== undefined) {
-	    if (!o[this.name].push) {
-		o[this.name] = [o[this.name]];
-	    }
-	    o[this.name].push(this.value || '');
-	} else {
-	    o[this.name] = this.value || '';
-	}
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
     });
     return o;
 };
