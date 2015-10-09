@@ -24,11 +24,6 @@ defined('_JEXEC') or die('Restricted access');
 					<ul class="list-unstyled contact-details">
 						<li>
 							<span class="title">
-								<i class="icon-fax"></i>تلفکس
-							</span>22652918
-						</li>
-						<li>
-							<span class="title">
 								<i class="icon-phone"></i>تلفن گوياي شبكه
 							</span>27869000
 						</li>
@@ -40,12 +35,7 @@ defined('_JEXEC') or die('Restricted access');
 						<li>
 							<span class="title">
 								<i class="icon-mail"></i>پست الکترونیکی
-							</span><a href="mailto:intl@mostanadtv.com">intl@mostanadtv.com</a>
-						</li>
-						<li>
-							<span class="title">
-								<i class="icon-placeholder"></i>ماهواره
-							</span>بدر (عربست) فرکانس 11900عمودي 27500
+							</span><a href="mailto:intl@mostanadtv.com">office@mostanadtv.com</a>
 						</li>
 					</ul>
 					<div class="form-group">
