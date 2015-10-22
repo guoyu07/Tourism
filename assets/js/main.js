@@ -8,20 +8,30 @@ $(function () {
             $("body").removeClass("no-scroll");
         }
     };
-    $("#menu a").click(function (e) {
-        if ($(this).attr('href').indexOf('#') !== -1) {
-            var $target = $(this).attr('href');
-            window.location = base + $target;
+    $.each($("#menu a"), function () {
+        console.log($(this).attr('href').indexOf('#'));
+    });
+    function gotoPage($target) {
+        $page = $($target);
+        if ($page.length && $page.hasClass('page')) {
+            var offset = $page.offset().top;
+            $("html, body").animate({"scrollTop": offset}, 700, 'easeInCubic');
         }
-        if ($(this).attr('title').indexOf('#') !== -1) {
-            var $target = $($(this).attr('title'));
-            if ($target.length && $target.hasClass('page')) {
-                var offset = $target.offset().top;
-                $("html, body").animate({"scrollTop": offset}, 700, 'easeInCubic');
+    }
+    $("#menu a").click(function (e) {
+        if (typeof $(this).attr('target') === "undefined" || $(this).attr('target') !== "_blank") {
+            if ($(this).attr('href').indexOf('#') === 0) {
+                gotoPage($(this).attr('href'));
             } else {
-                window.location = base + $(this).attr('title');
+                if (typeof $(this).attr('title') !== "undefined" || $(this).attr('href').indexOf('#') === 0) {
+                    if ($(this).attr('href').indexOf('#') === 0)
+                        gotoPage($(this).attr('href'));
+                    else
+                        gotoPage($(this).attr('title'));
+                }
             }
             e.preventDefault();
+            return false;
         }
     });
 
@@ -410,6 +420,26 @@ $(function () {
         });
     });
 });
+
+$(window).resize(function () { // Change width value on user resize, after DOM
+    responsive_resize();
+});
+function responsive_resize() {
+    var current_width = $(window).width();
+    if (current_width < 768) {
+        // XS
+        $('body').addClass("_xs").removeClass("_sm").removeClass("_md").removeClass("_lg");
+//	    if (!$(".mainmenu").find(".change-mode").length)
+//		$(".mainmenu").prepend('<li class="change-mode" data-mode="night"><a href="#">حالت شب</a></li>');
+    } else if (current_width > 767 && current_width < 992) {
+        $('body').addClass("_sm").removeClass("_xs").removeClass("_md").removeClass("_lg");
+    } else if (current_width > 991 && current_width < 1200) {
+        $('body').addClass("_md").removeClass("_xs").removeClass("_sm").removeClass("_lg");
+    } else if (current_width > 1199) {
+        $('body').addClass("_lg").removeClass("_xs").removeClass("_sm").removeClass("_md");
+    }
+}
+responsive_resize();
 
 /*
  * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
