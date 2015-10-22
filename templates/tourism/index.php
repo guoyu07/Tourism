@@ -48,7 +48,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 		$this->_styleSheets[JURI::base() . 'assets/css/style.css'] = array('mime' => "text/css", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
 		$this->_scripts[JURI::base() . 'assets/js/modernizr-2.6.2.min.js'] = array('mime' => "text/javascript", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
 		$this->_scripts[JURI::base() . 'assets/js/jwplayer.js'] = array('mime' => "text/javascript", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
-		JFactory::getDocument()->addScriptDeclaration('var base = "' . JURI::base() . '"');
+		JFactory::getDocument()->addScriptDeclaration('var base = "' . JURI::base() . '";', false);
 		?><jdoc:include type="head" />
 	</head>
 	<body id="bd" class="<?php echo strtolower($helper->device); ?>" data-spy="scroll" data-target="#menu">
@@ -153,7 +153,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 				</div>
 			</div>
 		</div>
-		<div class="player-container" style="display: none;"><div class="player-inner"><div id="showcase-player"></div></div>
+		<div class="player-container" style="display: none;"><div class="player-inner"><div id="showcase-player"></div></div></div>
 		<div id="ajax-cache" style="display: none !important;"></div>
 		<script src="<?php echo JURI::base(); ?>assets/js/jquery-1.11.1.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
