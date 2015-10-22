@@ -1,12 +1,84 @@
-@media (max-width: @screen-sm-max){
-    body, .container, .wrapper {
-        min-width: 1170px !important;
+@md-page-height: 558px;
+@media (max-width: @screen-md-max){
+    #header {
+        .search { margin-right: -(@grid-gutter-width / 2); }
+        /*.logo a { margin-left: -(@grid-gutter-width / 2); }*/
+        .menu {
+            ul li {
+                & ~ li { margin-right: (@grid-gutter-width / 3); }
+            }
+        }
     }
-/*    .page
-    , .slideshow .items>li 
-    , .panel.content .panel-body .items li
-    , .panel.content .panel-body
-    { height: 150vh !important; }
+    .wrapper, #main > .page {
+        width: @screen-md-min; margin-left: auto; margin-right: auto;
+    }
+    #main {
+        & > .page {
+            height: @md-page-height;
+        }
+        & > #categories.page { padding-top: 80px; height: 100vh; }
+    }
+    // Boxes
+    .slideshow {
+        .caption-container {
+            height: 400px; margin-top: -130px;
+            .inner { height: 400px; }
+        }
+        .items > li {
+            .desc {
+                .inner { padding: 0 @grid-gutter-width; margin-top: -(140 + @grid-gutter-width); }
+            }
+            .img { height: @md-page-height; }
+        }
+        &.panorama {
+           .caption-container { margin-top: -200px; }
+           .items-holder .inner .items li { width: 125px; }
+        }
+    }
+    .panel {
+        &.content {
+            .panel-body {
+                height: @md-page-height;
+                &.open:before { top: 0; }
+                .subcategories {
+                    height: @md-page-height;
+                    & > ul { border-top: 0 transparent; }
+                }
+                .player {
+                    .img {
+                        img { height: @md-page-height; }
+                    }
+                }
+            }
+            & > .itemlist { padding-top: 0; }
+        }
+        &.tiles {
+           .panel-heading {
+               /*padding: 0;*/
+               /*h2 { margin: 60px auto; }*/
+           }
+           .tiles {
+               ul li {
+                   width: 100px; height: 100px;
+                   a {
+                       span { font-size: 16px; }
+                       span.icon { font-size: 45px; line-height: 60px; }
+                   }
+               }
+           }
+           .itemlist { height: 300px; margin: 0 100px; }
+        }
+    }
+}
+@media (max-width: @screen-sm-max){
+    /*    body, .container, .wrapper {
+            min-width: 1170px !important;
+        }*/
+    /*    .page
+        , .slideshow .items>li 
+        , .panel.content .panel-body .items li
+        , .panel.content .panel-body
+        { height: 150vh !important; }
     */
     .panel.tiles .panel-heading h2 { margin-bottom: 30px; }
 }
