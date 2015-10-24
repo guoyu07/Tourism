@@ -56,18 +56,18 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 			<div class="wrapper _white">
 				<div class="container">
 					<div class="row">
-						<div class="col-xs-1 col-md-1">
+						<div class="col-xs-2 col-md-1">
 							<h1 class="logo">
 								<a href="<?php echo JURI::base(); ?>" title="<?php echo $sitename; ?>"><?php echo $sitename; ?></a>
 							</h1>
 						</div>
 						<?php if ($helper->countModules('menu')) { ?>
-							<div class="col-xs-9 col-md-9">
+							<div class="col-xs-5 col-md-9">
 								<jdoc:include type="modules" name="menu" />
 							</div>
 						<?php } ?>
 						<?php if ($helper->countModules('search')) { ?>
-							<div class="col-xs-2 col-md-2">
+							<div class="col-xs-5 col-md-2">
 								<jdoc:include type="modules" name="search" />
 							</div>
 						<?php } ?>
