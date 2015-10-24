@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 // Note. It is important to remove spaces between elements.
 ?>
 <nav id="menu" class="menu">
+	<button class="btn btn-success hidden-md hidden-lg" data-target="#menu ul" data-toggle="slide"><i class="icon-menu"></i></button>
 	<ul class="list-unstyled list-inline nav nav-tabs" role="tablist">
 <?php
 foreach ($list as $i => &$item) {
