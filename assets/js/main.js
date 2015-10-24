@@ -8,9 +8,6 @@ $(function () {
             $("body").removeClass("no-scroll");
         }
     };
-    $.each($("#menu a"), function () {
-        console.log($(this).attr('href').indexOf('#'));
-    });
     function gotoPage($target) {
         $page = $($target);
         if ($page.length && $page.hasClass('page')) {
@@ -33,6 +30,19 @@ $(function () {
             e.preventDefault();
             return false;
         }
+    });
+    
+    $("[data-toggle]").click(function(e) {
+        var $target = $($(this).attr('data-target'));
+        var type = $(this).attr('data-toggle');
+        switch (type) {
+            case 'slide':
+                if ($target.is(":visible") || $target.hasClass('open'))
+                    $target.removeClass('open').slideUp();
+                else
+                    $target.addClass('open').slideDown();
+         }
+        e.preventDefault();
     });
 
     $('#item-modal').on('shown.bs.modal', function (e) {
@@ -117,7 +127,7 @@ $(function () {
                 , items: 4
                 , slideBy: 4
                 , responsive: {
-                    0: {items: 1}
+                    0: {items: 2}
                     , 600: {items: 3}
                     , 1000: {items: 4}
                 }
@@ -203,13 +213,14 @@ $(function () {
         }
         , open: function ($pane, options) {
             var data = '';
+            var width = ($("body").hasClass('_xs') || $("body").hasClass('_sm')) ? 300 : 400;
             $pane.addClass("loading").addClass("open");
             if (options !== null) {
                 if ($("#ajax-cache").find(".cat-" + options.catid).length) {
                     data = $("#ajax-cache").find(".cat-" + options.catid).html();
                     $pane.removeClass("loading");
                     $pane.parent().find(".itemlist").html(data);
-                    $pane.animate({'right': '400px'}, 500, 'easeOutCubic', function () {
+                    $pane.animate({'right': width + 'px'}, 500, 'easeOutCubic', function () {
                         Pane.delegateClose($pane);
                     });
                 } else {
@@ -220,7 +231,7 @@ $(function () {
                             $("#ajax-cache").find(".cat-" + options.catid).html(d);
                             $pane.removeClass("loading");
                             $pane.parent().find(".itemlist").html(d);
-                            $pane.animate({'right': '400px'}, 500, 'easeOutCubic', function () {
+                            $pane.animate({'right': width + 'px'}, 500, 'easeOutCubic', function () {
                                 Pane.delegateClose($pane);
                             });
                         }
