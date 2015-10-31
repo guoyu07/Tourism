@@ -45,7 +45,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 		foreach ($this->_style as $style)
 			unset($style);
 		// Adding stylesheets and scripts to joomla head to prevent core to face an empty array
-		$this->_styleSheets[JURI::base() . 'assets/css/style.css'] = array('mime' => "text/css", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
+		$this->_styleSheets[JURI::base() . 'assets/css/style.css?_=20151031'] = array('mime' => "text/css", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
 		$this->_scripts[JURI::base() . 'assets/js/modernizr-2.6.2.min.js'] = array('mime' => "text/javascript", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
 		$this->_scripts[JURI::base() . 'assets/js/jwplayer.js'] = array('mime' => "text/javascript", 'media' => 'all', 'attribs' => array(), 'defer' => '', 'async' => '');
 		JFactory::getDocument()->addScriptDeclaration('var base = "' . JURI::base() . '";', false);
@@ -159,7 +159,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 		<script src="<?php echo JURI::base(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/bootstrap.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/jquery.carouFredSel-6.2.1-packed.js"></script>
-		<script src="<?php echo JURI::base(); ?>assets/js/main.min.js"></script>
+		<script src="<?php echo JURI::base(); ?>assets/js/main.min.js?_=20151031"></script>
 		<script type="text/javascript">
 		  var _paq = _paq || [];
 		  _paq.push(["trackPageView"]);
