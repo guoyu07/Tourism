@@ -54,11 +54,17 @@ defined('_JEXEC') or die;
 									<?php echo $item->event->K2BeforeDisplayContent; ?>
 									<?php if ($params->get('itemIntroText')) { ?>
 										<?php if ($item->video) { ?>
-											<div class="video-container" data-video="<?php echo $item->video; ?>">
+											<div class="video-container hide" data-video="<?php echo $item->video; ?>">
 												<img src="<?php echo str_replace('_XL', '_S', $item->image); ?>" alt="<?php echo K2HelperUtilities::cleanHtml($item->title); ?>" />
 											</div>
 										<?php } ?>
 										<?php echo $item->introtext; ?>
+										<?php if ($item->video) { ?>
+											<div class="video-container text-center" data-video="<?php echo $item->video; ?>">
+												<i class="icon-play"></i>
+												<img src="<?php echo str_replace('_XL', '_S', $item->image); ?>" alt="<?php echo K2HelperUtilities::cleanHtml($item->title); ?>" class="hide" />
+											</div>
+										<?php } ?>
 									<?php } ?>
 									<?php echo $item->event->AfterDisplayContent; ?>
 									<?php echo $item->event->K2AfterDisplayContent; ?>
