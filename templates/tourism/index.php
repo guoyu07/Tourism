@@ -160,5 +160,17 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 		<script src="<?php echo JURI::base(); ?>assets/js/bootstrap.min.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/jquery.carouFredSel-6.2.1-packed.js"></script>
 		<script src="<?php echo JURI::base(); ?>assets/js/main.min.js"></script>
+		<script type="text/javascript">
+		  var _paq = _paq || [];
+		  _paq.push(["trackPageView"]);
+		  _paq.push(["enableLinkTracking"]);
+		  (function() {
+			var u="http://93.190.24.112/piwik/";
+			_paq.push(["setTrackerUrl", u+"piwik.php"]);
+			_paq.push(["setSiteId", "7"]);
+			var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+			g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+		  })();
+		</script>
 	</body>
 </html>
