@@ -57,7 +57,7 @@ $(function () {
         var poster = $(this).find("img").attr('src').replace('_S', '_XL');
         jwplayer("showcase-player").setup({
             abouttext: 'MostanadTV Tourism'
-            , aboutlink: "http://motv.com/tourism"
+            , aboutlink: "http://tourism.doctv.ir"
             , file: file
             , image: poster
     //                , primary: "flash"
