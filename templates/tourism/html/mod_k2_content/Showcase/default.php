@@ -18,15 +18,13 @@ defined('_JEXEC') or die;
 						<span class="prev"><i class="icon-left"></i></span>
 						<span class="next"><i class="icon-right"></i></span>
 					</div>
-					<!--
 					<ul class="sharings list-unstyled list-inline text-center">
-						<li><a href="<?php echo JURI::base(); ?>"><i class="icon-instagram"></i></a></li>
-						<li><a href="#"><i class="icon-facebook"></i></a></li>
-						<li><a href="#"><i class="icon-youtube"></i></a></li>
-						<li><a href="#"><i class="icon-twitter"></i></a></li>
-						<li><a href="#"><i class="icon-vimeo"></i></a></li>
+						<!--<li><a href="<?php echo JURI::base(); ?>"><i class="icon-instagram"></i></a></li>-->
+						<li><a href="https://www.facebook.com/%D8%B4%D8%A8%DA%A9%D9%87-%D9%85%D8%B3%D8%AA%D9%86%D8%AF-%D8%B3%DB%8C%D9%85%D8%A7-1409575439340446/"><i class="icon-facebook"></i></a></li>
+						<li><a href="https://www.youtube.com/channel/UC6m7kHAMbPhx6XtxZd9HM_g"><i class="icon-youtube"></i></a></li>
+						<!--<li><a href="#"><i class="icon-twitter"></i></a></li>-->
+						<li><a href="https://vimeo.com/user35891422"><i class="icon-vimeo"></i></a></li>
 					</ul>
-					-->
 					<div class="pages"></div>
 				</div>
 			</div>
