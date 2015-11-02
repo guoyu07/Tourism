@@ -241,8 +241,10 @@
                 height: 100%; overflow: hidden; overflow-y: auto; 
                 li {
                     float: none; margin: 0; padding: 0;
+                    &.first { margin-bottom: @grid-gutter-width; }
+                    & ~ li { a { border-top: 1px solid darken(@gray, 32%); } }
                     & > a {
-                        display: block; border-bottom: 1px solid darken(@gray, 32%); transition: 0.2s all;
+                        display: block; transition: 0.2s all;
                         &:hover { text-decoration: none; background: @green; }
                         .img { width: 50%; float: left; }
                         .title { display: block; margin-left: 50%; padding: (@grid-gutter-width * (2/3)) @grid-gutter-width; color: #fff; font-size: 18px; }

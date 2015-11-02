@@ -230,7 +230,15 @@ $(function () {
                             $("#ajax-cache").append('<div class="cat-' + options.catid + '"></div>');
                             $("#ajax-cache").find(".cat-" + options.catid).html(d);
                             $pane.removeClass("loading");
-                            $pane.parent().find(".itemlist").html(d);
+                            
+                            // new 
+                            var $itemlist = $("#ajax-cache").find(".cat-" + options.catid + " ul:first");
+                            if (!$itemlist.find("li.first").length) {
+                                $itemlist.find("li:last").addClass("first").prependTo($itemlist);
+                            }
+                            // !end of new
+                            
+                            $pane.parent().find(".itemlist").html($("#ajax-cache").find(".cat-" + options.catid).html());
                             $pane.animate({'right': width + 'px'}, 500, 'easeOutCubic', function () {
                                 Pane.delegateClose($pane);
                             });
