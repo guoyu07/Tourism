@@ -306,7 +306,6 @@ $(function () {
         var $input = $(this);
         var $form = $input.parents("form:first");
         var $results = $form.parent().find(".search-resluts");
-        console.log($results);
         if ($input.val().length > 3 && e.key !== 'enter') {
             $input.addClass('loading');
             $results.empty();
@@ -315,7 +314,7 @@ $(function () {
             $form.find('input[name=t]').val($.now());
             $form.find('input[name=format]').val('raw');
             $.ajax({
-                url: 'index.php?option=com_k2&view=itemlist&task=search'
+                url: '/index.php?option=com_k2&view=itemlist&task=search'
                 , type: 'get'
                 , data: $form.serialize()
                 , success: function (d) {
