@@ -39,7 +39,7 @@ defined('_JEXEC') or die('Restricted access');
 						</li>
 						<li>
 							<span class="title">
-								<i class="icon-chat"></i>کانال  تلگرام
+								<i class="icon-telegram"></i>کانال  تلگرام
 							</span><a href="http://telegram.me/mostanad_TV" target="_blank">@mostanad_TV</a>
 						</li>
 						<li>
