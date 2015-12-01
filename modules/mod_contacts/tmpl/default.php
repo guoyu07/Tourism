@@ -24,6 +24,11 @@ defined('_JEXEC') or die('Restricted access');
 					<ul class="list-unstyled contact-details">
 						<li>
 							<span class="title">
+								<i class="icon-phone"></i>تلفن روابط عمومی
+							</span>021-29152703
+						</li>
+						<li>
+							<span class="title">
 								<i class="icon-phone"></i>تلفن گوياي شبكه
 							</span>27869000
 						</li>
@@ -31,6 +36,11 @@ defined('_JEXEC') or die('Restricted access');
 							<span class="title">
 								<i class="icon-chat"></i>پیامک
 							</span>3000080
+						</li>
+						<li>
+							<span class="title">
+								<i class="icon-chat"></i>کانال  تلگرام
+							</span><a href="http://telegram.me/mostanad_TV" target="_blank">@mostanad_TV</a>
 						</li>
 						<li>
 							<span class="title">
