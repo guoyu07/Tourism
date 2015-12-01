@@ -20,10 +20,13 @@ defined('_JEXEC') or die;
 					</div>
 					<ul class="sharings list-unstyled list-inline text-center">
 						<!--<li><a href="<?php echo JURI::base(); ?>"><i class="icon-instagram"></i></a></li>-->
-						<li><a href="https://www.facebook.com/%D8%B4%D8%A8%DA%A9%D9%87-%D9%85%D8%B3%D8%AA%D9%86%D8%AF-%D8%B3%DB%8C%D9%85%D8%A7-1409575439340446/"><i class="icon-facebook"></i></a></li>
-						<li><a href="https://www.youtube.com/channel/UC6m7kHAMbPhx6XtxZd9HM_g"><i class="icon-youtube"></i></a></li>
+						<li><a target="_blank" href="https://www.facebook.com/%D8%B4%D8%A8%DA%A9%D9%87-%D9%85%D8%B3%D8%AA%D9%86%D8%AF-%D8%B3%DB%8C%D9%85%D8%A7-1409575439340446/"><i class="icon-facebook"></i></a></li>
+						<li><a target="_blank" href="https://www.youtube.com/channel/UC6m7kHAMbPhx6XtxZd9HM_g"><i class="icon-youtube"></i></a></li>
 						<!--<li><a href="#"><i class="icon-twitter"></i></a></li>-->
-						<li><a href="https://vimeo.com/user35891422"><i class="icon-vimeo"></i></a></li>
+						<li><a target="_blank" href="https://vimeo.com/user35891422"><i class="icon-vimeo"></i></a></li>
+						<li><a target="_blank" href="https://plus.google.com/u/0/109499617150127549017/posts"><i class="icon-gplus"></i></a></li>
+						<li><a target="_blank" href="http://www.aparat.com/mostanadsaz"><i class="icon-aparat"></i></a></li>
+						<li><a target="_blank" href="http://net.tebyan.net/pages/mostanad"><i class="icon-tebiyan"></i></a></li>
 					</ul>
 					<div class="pages"></div>
 				</div>
