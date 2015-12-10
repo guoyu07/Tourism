@@ -363,6 +363,10 @@ $(function () {
                             , type: 'get'
                             , success: function (r) {
                                 $itemlist.find(".inner").empty().html(r).slideDown();
+                                // new 
+                                if (!$itemlist.find(".inner .item.first").length)
+                                    $itemlist.find(".inner .items .item:last").addClass("first").prependTo($itemlist.find(".inner .items"));
+                                // end of new
                             }
                         });
                     });
