@@ -40,6 +40,10 @@ text-area, input, button, .form-control { direction: rtl; text-align: right; }
             .link-ext { position: absolute; top: 0; left: 50px; }
         }
         .item-body {
+            .item-gallery {
+                width: 100%; float: none; margin-right: 0; margin-bottom: (@grid-gutter-width / 2);
+                .img { width: 768px; height: auto; margin: 0; }
+            }
             .img {
                 width: 100%; float: none;
             }
@@ -275,4 +279,19 @@ text-area, input, button, .form-control { direction: rtl; text-align: right; }
 .owl-carousel .owl-video-frame {
     position: relative;
     z-index: 1;
+}
+
+.owl-carousel {
+    &:hover .owl-nav { opacity: 1; }
+    .owl-nav {
+        position: absolute; top: 50%; left: 0; width: 100%; overflow: visible; height: 0; margin-top: -18px; transition: 0.2s all; opacity: 0.3;
+        & > * {
+            width: 36px; height: 36px; position: relative; overflow: visible; font-size: 0; color: @text-color;
+            &:before { content: '\e807'; display: block; width: 36px; height: 36px; background: #fff; text-align: center; font-family: "tourism"; font-size: 18px; line-height: 36px; }
+            &.owl-prev { float: left; }
+            &.owl-next {
+                &:before { content: '\e808'; }
+            }
+        }
+    }
 }

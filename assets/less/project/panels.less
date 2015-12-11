@@ -299,6 +299,10 @@
                     .item {
                         padding: (@grid-gutter-width / 2);
                         &:nth-child(2n) { background: #f5f5f5; }
+                        .item-gallery {
+                            width: 50%; float: left; margin-right: (@grid-gutter-width);
+                            .img { width: 100%; margin-right: 0; }
+                        }
                         .img {
                             float: left; margin-right: (@grid-gutter-width / 2); width: 240px;
                             img { display: block; width: 100%; height: auto; }

@@ -6,6 +6,10 @@ article.item {
     }
     .item-body {
         font-size: 16px;
+        .item-gallery {
+            width: 500px; float: left; margin-right: (@grid-gutter-width);
+            .img { width: 500px; margin-right: 0; float: none; margin: 0; }
+        }
         .img {
             width: 50%; float: left; position: relative; margin-bottom: (@grid-gutter-width / 2); margin-right: (@grid-gutter-width);
             & > span {
@@ -22,6 +26,9 @@ article.item {
         }
         #item-media { margin-bottom: (@grid-gutter-width / 2); }
     }
+/*    .showing {
+        
+    }*/
 }
 .category-items {
     width: 900px; margin: @grid-gutter-width auto 0; margin-bottom: @grid-gutter-width;
