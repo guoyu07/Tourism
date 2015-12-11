@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: gallery.php 3113 2013-05-29 10:29:52Z lefteris.kavadas $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -234,10 +234,13 @@ class SigProModelGallery extends SigProModel
 				$this->setState('message', JText::_('COM_SIGPRO_GALLERY_CREATED'));
 				$this->setState('folder', $folder);
 				$gallery = '{gallery}'.$folder.'{/gallery}';
-				if ($this->getState('type') == 'k2')
+				if (!SigProHelper::isK2v3())
 				{
-					$db->setQuery('UPDATE #__k2_items SET gallery = '.$db->quote($gallery).'  WHERE id = '.(int)$folder);
-					$db->query();
+					if ($this->getState('type') == 'k2')
+					{
+						$db->setQuery('UPDATE #__k2_items SET gallery = '.$db->quote($gallery).'  WHERE id = '.(int)$folder);
+						$db->query();
+					}
 				}
 				return true;
 			}

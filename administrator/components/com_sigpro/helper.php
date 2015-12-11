@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: helper.php 3455 2013-08-27 15:36:43Z joomlaworks $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -13,12 +13,14 @@ defined('_JEXEC') or die ;
 class SigProHelper
 {
 
+	public static $isK2v3Var = null;
+
 	public static function copyrights()
 	{
 		$document = JFactory::getDocument();
 		if ($document->getType() == 'html' && JRequest::getCmd('tmpl', 'index') == 'index')
 		{
-			echo '<div id="sigProAdminFooter"><a href="http://www.joomlaworks.net/simple-image-gallery-pro" target="_blank">Simple Image Gallery Pro v3.0.4</a><br />Copyright &copy; 2006-'.date('Y').' <a href="http://www.joomlaworks.net/" target="_blank">JoomlaWorks Ltd.</a></div>';
+			echo '<div id="sigProAdminFooter"><a href="http://www.joomlaworks.net/simple-image-gallery-pro" target="_blank">Simple Image Gallery Pro v3.0.8</a><br />Copyright &copy; 2006-'.date('Y').' <a href="http://www.joomlaworks.net/" target="_blank">JoomlaWorks Ltd.</a></div>';
 		}
 	}
 
@@ -55,9 +57,18 @@ class SigProHelper
 		{
 			$path = JPATH_SITE.'/media/k2/galleries';
 		}
-		else
+		else if ($type == 'site')
 		{
-			if ($application->isAdmin())
+			$user = JFactory::getUser();
+			if (version_compare(JVERSION, '2.5', 'ge'))
+			{
+				$isAdmin = $user->authorise('core.admin', 'com_sigpro');
+			}
+			else
+			{
+				$isAdmin = $user->gid == 25;
+			}
+			if ($application->isAdmin() || $isAdmin)
 			{
 				if (version_compare(JVERSION, '1.6.0', 'ge'))
 				{
@@ -70,7 +81,6 @@ class SigProHelper
 
 				$params = JComponentHelper::getParams('com_sigpro');
 				$path = JPATH_SITE.'/'.$params->get('galleries_rootfolder', $defaultImagePath);
-
 			}
 			else
 			{
@@ -81,6 +91,10 @@ class SigProHelper
 					JFolder::create($path);
 				}
 			}
+		}
+		else if ($type == 'users')
+		{
+			$path = JPATH_SITE.'/media/jw_sigpro/users';
 		}
 
 		$path = JPath::clean($path);
@@ -102,11 +116,11 @@ class SigProHelper
 	public static function getImageURL($url)
 	{
 		$url = JString::str_ireplace(' ', '%20', $url);
-		$sencha = true;
+		$imgResizingService = true;
 		//if (in_array($_SERVER['HTTP_HOST'], array('localhost', '127.0.0.1')))
 		if (preg_match("#localhost#s", $_SERVER['HTTP_HOST'], $matches) !== false || preg_match("#127\.0\.0\.1#s", $_SERVER['HTTP_HOST'], $matches) !== false)
 		{
-			$sencha = false;
+			$imgResizingService = false;
 		}
 		if (JURI::root(true).'/' == '/')
 		{
@@ -116,7 +130,7 @@ class SigProHelper
 		{
 			$absoluteURL = JString::str_ireplace(JURI::root(true).'/', JURI::root(false), $url);
 		}
-		$preview = $sencha ? 'http://src'.rand(1, 6).'.sencha.io/550/'.$absoluteURL : $url;
+		$preview = $imgResizingService ? '//ir0.mobify.com/550/'.$absoluteURL : $url;
 		return $preview;
 	}
 
@@ -220,6 +234,29 @@ class SigProHelper
 			}
 		}
 		return $result;
+	}
+
+	public static function isK2v3()
+	{
+		if (self::$isK2v3Var === null)
+		{
+			$isK2v3 = false;
+			if (version_compare(JVERSION, '3.2', 'ge'))
+			{
+				$db = JFactory::getDbo();
+				$query = $db->getQuery(true);
+				$query->select($db->quoteName('manifest_cache'))->from($db->quoteName('#__extensions'))->where($db->quoteName('name').' = '.$db->quote('com_k2'));
+				$db->setQuery($query);
+				$manifest = json_decode($db->loadResult());
+				$installedVersion = $manifest->version;
+				if (version_compare($installedVersion, '3.0.0', 'ge'))
+				{
+					$isK2v3 = true;
+				}
+			}
+			self::$isK2v3Var = $isK2v3;
+		}
+		return self::$isK2v3Var;
 	}
 
 }

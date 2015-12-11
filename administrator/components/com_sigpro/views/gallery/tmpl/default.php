@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 3342 2013-07-12 13:46:24Z lefteris.kavadas $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -62,7 +62,7 @@ defined('_JEXEC') or die;
 		    	    	<span id="sigProImageCounter">(<?php echo count($this->row->images).' <span class="hide-on-tablet">'.JText::_('COM_SIGPRO_IMAGES').'</span>' ;?>)</span>
 		    	    </h3>
 		    	    <?php if($this->permissions->edit): ?>
-		    	    <a href="#" onclick="Joomla.submitbutton('add'); return false;" id="sigProUploader_browse" class="sigProBtnadd"><?php echo JText::_('COM_SIGPRO_ADD_FILES'); ?></a>
+		    	    <a href="#" onclick="Joomla.submitbutton('add'); return false;" class="sigProBtnadd"><?php echo JText::_('COM_SIGPRO_ADD_FILES'); ?></a>
 		    	    <?php endif; ?>
 		        	<div class="sigProLanguageSwitcher sigProOrdering">
 		        		<label class="selectHeading"><?php echo JText::_('COM_SIGPRO_LABELS_LANGUAGE'); ?>:</label>
@@ -121,13 +121,13 @@ defined('_JEXEC') or die;
 			                <a class="sigProPreviewButton sig-icon" title="<?php echo $image->path; ?>" href="<?php echo $image->path; ?>">
 			                	<span> <i class="hidden"><?php echo JText::_('COM_SIGPRO_PREVIEW'); ?></i></span></a>
 			                <?php endif; ?>
-			                <div class="sigProGalleryPreviewImage sigCover sigSafeTransition" style="background-image: url(<?php echo $image->url; ?>);">
+			                <div class="sigProGalleryPreviewImage sigCover sigSafeTransition" style="background-image:url('<?php echo $image->url; ?>');">
 			                </div>
 		                </div>
 	 
 		                <div class="sigProGalleryTextInner">
 		                   <label><?php echo JText::_('COM_SIGPRO_TITLE'); ?></label>
-		                    <input type="text" name="titles[]" value="<?php echo $image->title; ?>" <?php if(!$this->permissions->edit) { echo 'readonly="readonly"';} ?> />
+		                    <input type="text" name="titles[]" value="<?php echo htmlspecialchars($image->title, ENT_QUOTES, 'UTF-8'); ?>" <?php if(!$this->permissions->edit) { echo 'readonly="readonly"';} ?> />
 		                    <label><?php echo JText::_('COM_SIGPRO_DESCRIPTION'); ?></label>
 		                    <textarea rows="5" cols="30" name="descriptions[]" <?php if(!$this->permissions->edit) { echo 'readonly="readonly"';} ?>><?php echo $image->description; ?></textarea>
 		                    <input type="hidden" class="sigProFilename" name="filenames[]" value="<?php echo $image->name; ?>" />

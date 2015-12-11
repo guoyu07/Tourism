@@ -3,7 +3,7 @@
  * @version		$Id$
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2014 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -12,7 +12,7 @@ defined('_JEXEC') or die ;
 
 class SigProModelSettings extends SigProModel
 {
-	
+
 	protected $extensionID = null;
 
 	public function getForm()
@@ -124,7 +124,7 @@ class SigProModelSettings extends SigProModel
 		}
 		return true;
 	}
-	
+
 	public function getExtensionID()
 	{
 		return $this->extensionID;

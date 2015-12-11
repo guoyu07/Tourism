@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: jw_sigpro.php 3455 2013-08-27 15:36:43Z joomlaworks $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -22,8 +22,8 @@ class plgContentJw_sigpro extends JPlugin
 	// JoomlaWorks reference parameters
 	var $plg_name = "jw_sigpro";
 	var $plg_tag = "gallery";
-	var $plg_copyrights_start = "\n\n<!-- JoomlaWorks \"Simple Image Gallery Pro\" Plugin (v3.0.4) starts here -->\n";
-	var $plg_copyrights_end = "\n<!-- JoomlaWorks \"Simple Image Gallery Pro\" Plugin (v3.0.4) ends here -->\n\n";
+	var $plg_copyrights_start = "\n\n<!-- JoomlaWorks \"Simple Image Gallery Pro\" Plugin (v3.0.8) starts here -->\n";
+	var $plg_copyrights_end = "\n<!-- JoomlaWorks \"Simple Image Gallery Pro\" Plugin (v3.0.8) ends here -->\n\n";
 
 	function plgContentJw_sigpro(&$subject, $params)
 	{
@@ -120,19 +120,19 @@ class plgContentJw_sigpro extends JPlugin
 		// Check for basic requirements
 		if (!extension_loaded('gd') && !function_exists('gd_info'))
 		{
-			JError::raiseNotice('', JText::_('JW_SIGP_PLG_NOTICE_01'));
+			JError::raiseNotice('', JText::_('JW_SIGP_PLG_GD_MISSING_NOTICE'));
 			return;
 		}
 		if (!is_writable($sitePath.DS.'cache'))
 		{
-			JError::raiseNotice('', JText::_('JW_SIGP_PLG_NOTICE_02'));
+			JError::raiseNotice('', JText::_('JW_SIGP_PLG_CACHE_FOLDER_UNWRITABLE'));
 			return;
 		}
 
 		// Check if Simple Image Gallery is present and enabled and prompt to disable
 		if (JPluginHelper::isEnabled('content', 'jw_simpleImageGallery') == true)
 		{
-			JError::raiseNotice('', JText::_('JW_SIGP_PLG_NOTICE_00'));
+			JError::raiseNotice('', JText::_('JW_SIGP_PLG_SIGFREE_NOTICE'));
 			return;
 		}
 
@@ -144,13 +144,16 @@ class plgContentJw_sigpro extends JPlugin
 		// Control external parameters and set variable for controlling plugin layout within modules
 		if (!$params)
 			$params = class_exists('JParameter') ? new JParameter(null) : new JRegistry(null);
+		if(!is_object($params))
+			$params = class_exists('JParameter') ? new JParameter($params) : new JRegistry($params);
 		$parsedInModule = $params->get('parsedInModule');
 
 		$pluginParams = JComponentHelper::getParams('com_sigpro');
 
 		$galleries_rootfolder = ($params->get('galleries_rootfolder')) ? $params->get('galleries_rootfolder') : $pluginParams->get('galleries_rootfolder', $defaultImagePath);
 		$popup_engine = $pluginParams->get('popup_engine', 'jquery_fancybox');
-		$jQueryHandling = $pluginParams->get('jQueryHandling', '1.8');
+		$jQueryHandling = $pluginParams->get('jQueryHandling', 'googlecdn');
+		$jQueryRelease = $pluginParams->get('jQueryRelease', '1.11');
 		$thb_template = $pluginParams->get('thb_template', 'Classic');
 		$thb_width = $pluginParams->get('thb_width', 200);
 		$thb_height = $pluginParams->get('thb_height', 160);
@@ -164,7 +167,6 @@ class plgContentJw_sigpro extends JPlugin
 		$loadmoduleposition = $pluginParams->get('loadmoduleposition', '');
 		$flickrApiKey = $pluginParams->get('flickrApiKey', '82a76fbf755902903859df58d1dd5934');
 		$flickrImageCount = $pluginParams->get('flickrImageCount', 20);
-		$yqlMaxAge = $pluginParams->get('yqlMaxAge', 60) * 60;
 		$resizeSrcImage = (int) $pluginParams->get('resizeSrcImage', 0);
 		$cache_expire_time = $pluginParams->get('cache_expire_time', 120) * 60; // Cache expiration time in minutes
 		// Advanced
@@ -226,8 +228,7 @@ class plgContentJw_sigpro extends JPlugin
 					$gal_template = (array_key_exists(6, $tagparams) && $tagparams[6] != '') ? $tagparams[6] : $thb_template;
 
 					// Backwards compatibility
-					if ($gal_template == 'Default')
-						$gal_template = 'Classic';
+					if ($gal_template == 'Default') $gal_template = 'Classic';
 
 					// Dev assignments
 					if($sigplt) $gal_template = $sigplt;
@@ -240,14 +241,14 @@ class plgContentJw_sigpro extends JPlugin
 						$singleThumbClass = ' singleThumbGallery';
 					else
 						$singleThumbClass = '';
-					
+
 					// Normalize the source image folder
 					if(strpos($galleryFolder,'media/jw_sigpro/users')!==false){
 						$srcimgfolder = substr($galleryFolder, 1);
 					} else {
 						$srcimgfolder = $galleries_rootfolder.'/'.$galleryFolder;
 					}
-					
+
 					// Create a unique gallery ID
 					$gal_id = substr(md5($key.$srcimgfolder), 1, 10);
 
@@ -258,7 +259,7 @@ class plgContentJw_sigpro extends JPlugin
 
 					if (!$gallery)
 					{
-						JError::raiseNotice('', JText::_('JW_SIGP_PLG_NOTICE_03').' '.$srcimgfolder);
+						JError::raiseNotice('', JText::_('JW_SIGP_PLG_GALLERY_RENDER_PROBLEM').' '.$srcimgfolder);
 						continue;
 					}
 
@@ -268,19 +269,17 @@ class plgContentJw_sigpro extends JPlugin
 					// Make sure we got PHP5
 					if (version_compare(PHP_VERSION, '5.0.0', '<'))
 					{
-						JError::raiseNotice('', JText::_('PHP 5 is required for Flickr sets to be rendered by Simple Image Gallery Pro. Please consult your hosting company for upgrading your server to PHP5.'));
+						JError::raiseNotice('', JText::_('JW_SIGP_PLG_PHP5_REQUIRED'));
 						continue;
 					}
 
 					// Get the Flickr set
 					/* example tag: {gallery}http://www.flickr.com/photos/joomlaworks/sets/72157626907305094/:20:200:80:1:2:jquery_colorbox:Galleria{/gallery} */
 
-					if (substr($tagcontent, 0, 7) != 'http://')
-						$tagcontent = 'http://'.$tagcontent;
-
-					$tempFlickrParams = explode('http://', $tagcontent);
+					if (substr($tagcontent, 0, 4) != 'http') $tagcontent = 'http://'.$tagcontent;
+					$tempFlickrParams = explode('://', $tagcontent); // remove the protocol so it doesn't mess with the produced param array
 					$flickrParams = explode(':', $tempFlickrParams[1]);
-					$flickrSetUrl = $flickrParams[0];
+					$flickrSetUrl = 'https://'.$flickrParams[0]; // re-insert the protocol
 					$gal_count = (array_key_exists(1, $flickrParams) && $flickrParams[1] != '') ? $flickrParams[1] : $flickrImageCount;
 					$gal_width = (array_key_exists(2, $flickrParams) && $flickrParams[2] != '') ? $flickrParams[2] : $thb_width;
 					$gal_height = (array_key_exists(3, $flickrParams) && $flickrParams[3] != '') ? $flickrParams[3] : $thb_height;
@@ -290,8 +289,7 @@ class plgContentJw_sigpro extends JPlugin
 					$gal_template = (array_key_exists(7, $flickrParams) && $flickrParams[7] != '') ? $flickrParams[7] : $thb_template;
 
 					// Backwards compatibility
-					if ($gal_template == 'Default')
-						$gal_template = 'Classic';
+					if ($gal_template == 'Default') $gal_template = 'Classic';
 
 					// Dev assignments
 					if($sigplt) $gal_template = $sigplt;
@@ -299,33 +297,39 @@ class plgContentJw_sigpro extends JPlugin
 					if($sigpw) $gal_width = $sigpw;
 					if($sigph) $gal_height = $sigph;
 
-					if (substr($flickrSetUrl, 0, 7) != 'http://')
-						$flickrSetUrl = 'http://'.$flickrSetUrl;
+					// Get Flickr required stuff
+					$flickrRegex = "#flickr.com/photos/(.*?)/sets/(.*)/?#s";
 
-					$flickrRegex = "#flickr.com/photos/(.*?)/sets/(.*?)/#s";
 					if (preg_match_all($flickrRegex, $flickrSetUrl, $flickrMatches, PREG_PATTERN_ORDER) > 0)
 					{
 						$flickrUsername = $flickrMatches[1][0];
 						$flickrSetId = $flickrMatches[2][0];
+						if (substr($flickrSetId, -1)=='/')
+							$flickrSetId = substr($flickrSetId, 0, -1);
 
-						$flickrJson = 'http://query.yahooapis.com/v1/public/yql?q='.urlencode('SELECT * FROM query.multi WHERE queries=\'SELECT * FROM flickr.photosets.info WHERE api_key="'.$flickrApiKey.'" and photoset_id="'.$flickrSetId.'"; SELECT * FROM flickr.photosets.photos('.$gal_count.') WHERE api_key="'.$flickrApiKey.'" and photoset_id="'.$flickrSetId.'" and extras="description, date_upload, date_taken, path_alias, url_sq, url_t, url_s, url_m, url_o"\'').'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
-						if ($yqlMaxAge)
-							$flickrJson .= '&_maxage='.$yqlMaxAge;
-						$flickrJson .= '&callback=';
+						$flickrJson = 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&photoset_id='.$flickrSetId.'&format=json&media=photos&per_page='.$gal_count.'&api_key='.$flickrApiKey.'&nojsoncallback=1&extras=date_upload,date_taken,owner_name,original_format,last_update,tags,o_dims,views,media,path_alias,url_sq,url_t,url_s,url_m,url_o';
 
 						$getFlickrJson = SimpleImageGalleryProHelper::readFile($flickrJson, 'jw_sigpro');
 						$getFlickrData = json_decode($getFlickrJson);
 						if (is_null($getFlickrData))
 							continue;
 
-						$flickrSetTitle = $getFlickrData->query->results->results[0]->photoset->title;
+						$flickrSetTitle = $getFlickrData->photoset->title;
 
 						// Initiate array to hold gallery
 						$gallery = array();
-						$galleryData = @$getFlickrData->query->results->results[1]->photo;
+						$galleryData = @$getFlickrData->photoset->photo;
 
 						if (!count($galleryData))
+						{
+							JError::raiseNotice('', JText::_('JW_SIGP_PLG_FLICKR_PHOTOSET_NOT_AVAILABLE'));
 							continue;
+						}
+
+						if(!is_array($galleryData))
+						{
+							$galleryData = array($galleryData);
+						}
 
 						foreach ($galleryData as $key => $photo)
 						{
@@ -364,7 +368,7 @@ class plgContentJw_sigpro extends JPlugin
 
 							if ($downloadFile)
 							{
-								$gallery[$key]->downloadLink = SimpleImageGalleryProHelper::replaceHtml('<br /><a class="sigProDownloadLink" target="_blank" href="'.$photo->url_o.'">'.JText::_('JW_SIGP_LABELS_13').'</a>');
+								$gallery[$key]->downloadLink = SimpleImageGalleryProHelper::replaceHtml('<br /><a class="sigProDownloadLink" target="_blank" href="'.$photo->url_o.'" download>'.JText::_('JW_SIGP_LABELS_13').'</a>');
 							}
 							else
 							{
@@ -375,7 +379,7 @@ class plgContentJw_sigpro extends JPlugin
 							$gallery[$key]->filename = $tempFlickrFilename[0];
 							$gallery[$key]->sourceImageFilePath = substr($photo->url_m, 0, -4).'_b.jpg';
 							if($resizeSrcImage){
-								$gallery[$key]->sourceImageFilePath = 'http://src'.rand(1,6).'.sencha.io/'.$resizeSrcImage.'/'.$gallery[$key]->sourceImageFilePath;
+								$gallery[$key]->sourceImageFilePath = '//ir0.mobify.com/'.$resizeSrcImage.'/'.$gallery[$key]->sourceImageFilePath;
 							}
 							$gallery[$key]->thumbImageFilePath = $photo->url_s;
 							$gallery[$key]->width = $gal_width;
@@ -392,13 +396,13 @@ class plgContentJw_sigpro extends JPlugin
 					}
 					else
 					{
-						JError::raiseNotice('', JText::_('JW_SIGP_PLG_NOTICE_03'));
+						JError::raiseNotice('', JText::_('JW_SIGP_PLG_GALLERY_RENDER_PROBLEM'));
 						continue;
 					}
 
 				}
 
-				// CSS & JS includes: Append head includes, but not when we're outputing raw content (like in K2)
+				// JS & CSS includes: Append head includes, but not when we're outputing raw content (like in K2)
 				if (JRequest::getCmd('format') == '' || JRequest::getCmd('format') == 'html')
 				{
 
@@ -417,6 +421,7 @@ class plgContentJw_sigpro extends JPlugin
 						require ($popupRequire);
 					}
 
+					// JS
 					if (version_compare(JVERSION, '1.6.0', 'ge'))
 					{
 						JHtml::_('behavior.framework');
@@ -426,25 +431,33 @@ class plgContentJw_sigpro extends JPlugin
 						JHTML::_('behavior.mootools');
 					}
 
-					if (count($stylesheets))
-						foreach ($stylesheets as $stylesheet)
-							$document->addStyleSheet($popupPath.'/'.$stylesheet);
-					if (count($stylesheetDeclarations))
-						foreach ($stylesheetDeclarations as $stylesheetDeclaration)
-							$document->addStyleDeclaration($stylesheetDeclaration);
-
-					if ((strpos($gal_engine, 'jquery_') !== false && $jQueryHandling != 0) || $gal_template == 'Galleria')
-					{
-						if (version_compare(JVERSION, '3.0', 'ge')!==false)
-						{
-							JHtml::_('jquery.framework');
-						} else {
-							if($jQueryHandling=='1.9'){
-								$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
-							} else {
-								$document->addScript('//ajax.googleapis.com/ajax/libs/jquery/'.$jQueryHandling.'/jquery.min.js');
-							}
+					if (version_compare(JVERSION, '3.0.0', 'ge')){
+						JHtml::_('jquery.framework');
+					} else {
+						if(strpos($jQueryHandling, '1.')!==false) $jQueryHandling = 'googlecdn'; // Fallback fix for SIGPro versions before 3.0.7
+						if ($jQueryHandling){
+							$jQueryMinorReleaseMapping = array(
+								'1.7' => '1.7.2',
+								'1.8' => '1.8.3',
+								'1.9' => '1.9.1',
+								'1.10' => '1.10.2',
+								'1.11' => '1.11.3'
+							);
+							$jQueryMinorRelease = $jQueryMinorReleaseMapping[$jQueryRelease];
+							$jQueryLocation = array(
+								'local'		 	=> $pluginLivePath.'/includes/jquery/jquery-'.$jQueryMinorRelease.'.min.js',
+								'jquerycdn' 	=> '//code.jquery.com/jquery-'.$jQueryMinorRelease.'.min.js',
+								'googlecdn' 	=> '//ajax.googleapis.com/ajax/libs/jquery/'.$jQueryMinorRelease.'/jquery.min.js',
+								'mscdn' 		=> '//ajax.aspnetcdn.com/ajax/jQuery/jquery-'.$jQueryMinorRelease.'.min.js',
+								'yandexcdn' 	=> '//yastatic.net/jquery/'.$jQueryMinorRelease.'/jquery.min.js',
+								'cdnjs'			=> '//cdnjs.cloudflare.com/ajax/libs/jquery/'.$jQueryMinorRelease.'/jquery.min.js',
+								'jsdelivr' 		=> '//cdn.jsdelivr.net/jquery/'.$jQueryMinorRelease.'/jquery.min.js',
+								'qihoo360' 		=> 'http://ajax.useso.com/ajax/libs/jquery/'.$jQueryMinorRelease.'/jquery.min.js'
+							);
+							$jQueryURL = $jQueryLocation[$jQueryHandling];
+							$document->addScript($jQueryURL);
 						}
+
 					}
 
 					if (count($scripts))
@@ -465,6 +478,15 @@ class plgContentJw_sigpro extends JPlugin
 						foreach ($scriptDeclarations as $scriptDeclaration)
 							$document->addScriptDeclaration($scriptDeclaration);
 
+					// CSS
+					if (count($stylesheets))
+						foreach ($stylesheets as $stylesheet)
+							$document->addStyleSheet($popupPath.'/'.$stylesheet);
+					if (count($stylesheetDeclarations))
+						foreach ($stylesheetDeclarations as $stylesheetDeclaration)
+							$document->addStyleDeclaration($stylesheetDeclaration);
+
+					// Other
 					if ($legacyHeadIncludes)
 						$document->addCustomTag($this->plg_copyrights_start.$legacyHeadIncludes.$this->plg_copyrights_end);
 
@@ -488,7 +510,7 @@ class plgContentJw_sigpro extends JPlugin
 					$websiteURL = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https://".$_SERVER['HTTP_HOST'] : "http://".$_SERVER['HTTP_HOST'];
 					$itemPrintURL = $websiteURL.$_SERVER['REQUEST_URI'];
 					$itemPrintURL = explode("#", $itemPrintURL);
-					$itemPrintURL = $itemPrintURL[0].'#sigProGalleria'.$gal_id;
+					$itemPrintURL = $itemPrintURL[0].'#sigProId'.$gal_id;
 				}
 				else
 				{

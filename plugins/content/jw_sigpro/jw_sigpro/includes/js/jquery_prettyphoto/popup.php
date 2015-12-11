@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: popup.php 2829 2013-04-12 14:20:40Z joomlaworks $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -12,9 +12,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 $relName = 'prettyPhoto';
 
-$stylesheets = array('css/prettyPhoto.css?v=3.1.5');
+$stylesheets = array('css/prettyPhoto.css?v=3.1.6');
 $stylesheetDeclarations = array();
-$scripts = array('js/jquery.prettyPhoto.js?v=3.1.5');
+$scripts = array('js/jquery.prettyPhoto.js?v=3.1.6');
 
 if(!defined('PE_PRETTYPHOTO_LOADED')){
 	define('PE_PRETTYPHOTO_LOADED', true);

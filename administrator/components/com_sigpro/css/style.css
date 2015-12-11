@@ -1,8 +1,8 @@
 /**
- * @version		$Id: style.css 3341 2013-07-12 13:25:56Z krikor $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -723,7 +723,7 @@ label.sigCheckbox{padding:0;display:block;margin:0;position:relative;-webkit-tra
 			.isJVersion30 #system-message-container .alert.alert-error:before,
 			.isJVersion30 #system-message-container .alert-danger:before {background-color:#ca0c06;content:'🚫';position:relative;top:1px;}
 			.isJVersion30 #system-message-container .alert.alert-info:before {background-color:#e67f01;content:'\26a0';position:relative;top:1px;}
-		.isJVersion30 #system-message-container .alert h4 {padding:10px 0 0; margin: 0; font-size: 14px; line-height: 16px;}
+		.isJVersion30 #system-message-container .alert h4 {color: #fff; padding:10px 0 0; margin: 0; font-size: 14px; line-height: 16px;}
 		.isJVersion30 #system-message-container .alert p {padding:0 0 10px;margin:0; font-size: 13px; line-height: 18px;}
 		/* System Messages when inside a modal */
 		.contentpane #system-message-container {top:61px;}
@@ -875,6 +875,7 @@ div#deprecatedOverlay {position:absolute;width:100%;height:100%;z-index:99999;le
 /*
    Plupload
 ------------------------------------------------------------------- */
+.moxie-shim.moxie-shim-html5 { top: auto!important; bottom: 20px; }
 .plupload_button { padding-right: 20px; height: 35px; line-height: 35px; display: inline-block; vertical-align: middle; border-radius: 5px; margin: 0 10px 0 0; text-indent: 50px; position: relative; }
 .isIE8 .plupload_button { width: 140px; }
 .plupload_button:hover { text-decoration: none; }

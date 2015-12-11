@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 3341 2013-07-12 13:25:56Z krikor $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -53,7 +53,7 @@ defined('_JEXEC') or die;
 	  	  		<div class="sigProUpperToolbar">
 	  	  			<h3 class="sigProPageTitle sigPurple"><?php echo strip_tags($this->title); ?></h3>
 	  	  			<?php if($this->permissions->create): ?>
-	  	  			<a href="#" onclick="Joomla.submitbutton('add'); return false;" id="sigProUploader_browse" class="sigProBtnadd"><?php echo JText::_('COM_SIGPRO_ADD_NEW'); ?></a>
+	  	  			<a href="#" onclick="Joomla.submitbutton('add'); return false;" class="sigProBtnadd"><?php echo JText::_('COM_SIGPRO_ADD_NEW'); ?></a>
 	  	  			<?php endif; ?>
 	  	  			<div class="sigFloatRight sigProOrdering">
 	  	  				<label for="sorting"><?php echo JText::_('COM_SIGPRO_SORT'); ?>:</label>
@@ -105,10 +105,10 @@ defined('_JEXEC') or die;
 	                   		<div class="sigProNumOfImages"><?php echo $row->numOfImages;?></div>
 	                   		
 	                   		<?php if($this->editorName): ?>
-	                       	<div class="sigProGalleryPreviewImage sigCover sigProGalleryImageLink" style="background-image: url(<?php echo $row->url; ?>);"></div>
+	                       	<div class="sigProGalleryPreviewImage sigCover sigProGalleryImageLink" style="background-image:url('<?php echo $row->url; ?>');"></div>
 		                    
 		                    <div class="sigProGalleryActions">	
-		                    	<a class="sigProGalleryAction sigProInsertButton" title="<?php echo JText::_('COM_SIGPRO_INSERT'); ?>" href="<?php echo $row->insertPath; ?>">
+		                    	<a class="sigProGalleryAction sigProInsertButton" title="<?php echo JText::_('COM_SIGPRO_INSERT'); ?>" data-path="<?php echo $row->insertPath; ?>" href="<?php echo $row->insertPath; ?>">
 		                    		<span class="sigIcon sig-icon-login"></span>
 		                    		<?php echo JText::_('COM_SIGPRO_INSERT'); ?>
 		                    	</a>
@@ -118,7 +118,7 @@ defined('_JEXEC') or die;
 	                   			</a>
 		                   	</div>
 	                    	<?php else: ?>
-	                     	<a class="sigProGalleryImageLink sigCover sigSafeTransition" href="<?php echo $row->link; ?>" style="background-image: url(<?php echo $row->url; ?>);">
+	                     	<a class="sigProGalleryImageLink sigCover sigSafeTransition" href="<?php echo $row->link; ?>" style="background-image:url('<?php echo $row->url; ?>');">
 	                    	</a>                   		                    		
 	                    	<?php endif; ?>
 	                    </div>

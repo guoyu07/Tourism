@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
 	<name>COM_SIGPRO</name>
-	<creationDate>November 12th, 2013</creationDate>
+	<creationDate>June 22nd, 2015</creationDate>
 	<author>JoomlaWorks</author>
 	<authorEmail>please-use-the-contact-form@joomlaworks.net</authorEmail>
 	<authorUrl>www.joomlaworks.net</authorUrl>
-	<copyright>Copyright (c) 2006 - 2013 JoomlaWorks Ltd.</copyright>
+	<copyright>Copyright (c) 2006 - 2015 JoomlaWorks Ltd.</copyright>
 	<license>http://www.joomlaworks.net/license</license>
-	<version>3.0.4</version>
+	<version>3.0.8</version>
 	<description></description>
 	<installfile>install.sigpro.php</installfile>
 	<uninstallfile>uninstall.sigpro.php</uninstallfile>
@@ -16,7 +16,7 @@
 		<filename>sigpro.php</filename>
 	</files>
 	<updateservers>
-		<server type="extension" priority="1" name="Simple Image Gallery Pro">http://www.joomlaworks.net/updates/jw_sigpro.xml</server>
+		<server type="extension" priority="1" name="Simple Image Gallery Pro">http://cdn.joomlaworks.org/updates/sigpro.xml</server>
 	</updateservers>
 	<administration>
 		<menu img="components/com_sigpro/images/sigpro-icon.png">COM_SIGPRO</menu>

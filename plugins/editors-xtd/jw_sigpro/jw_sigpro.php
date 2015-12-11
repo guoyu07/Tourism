@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: jw_sigpro.php 3455 2013-08-27 15:36:43Z joomlaworks $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -32,23 +32,23 @@ class plgButtonJw_SigPro extends JPlugin
 		{
 			JHtml::_('jquery.framework');
 		}
-		$document->addScript(JURI::root(true).'/administrator/components/com_sigpro/js/fancybox/jquery.fancybox.pack.js?v=3.0.4');
-		$document->addStyleSheet(JURI::root(true).'/administrator/components/com_sigpro/js/fancybox/jquery.fancybox.css?v=3.0.4');
-		$document->addStyleSheet(JURI::root(true).'/administrator/components/com_sigpro/css/editor.css?v=3.0.4');
+		$document->addScript(JURI::root(true).'/administrator/components/com_sigpro/js/fancybox/jquery.fancybox.pack.js?v=3.0.8');
+		$document->addStyleSheet(JURI::root(true).'/administrator/components/com_sigpro/js/fancybox/jquery.fancybox.css?v=3.0.8');
+		$document->addStyleSheet(JURI::root(true).'/administrator/components/com_sigpro/css/editor.css?v=3.0.8');
 		if (version_compare(JVERSION, '3.0', 'lt'))
 		{
 			$option = JRequest::getCmd('option');
 			if ($option == 'com_virtuemart' || $option == 'com_tienda' || $option == 'com_k2')
 			{
-				$document->addScript(JURI::root(true).'/administrator/components/com_sigpro/js/jquery.noconflict.restore.js?v=3.0.4');
+				$document->addScript(JURI::root(true).'/administrator/components/com_sigpro/js/jquery.noconflict.restore.js?v=3.0.8');
 			}
 			else
 			{
-				$document->addScript(JURI::root(true).'/administrator/components/com_sigpro/js/jquery.noconflict.js?v=3.0.4');
+				$document->addScript(JURI::root(true).'/administrator/components/com_sigpro/js/jquery.noconflict.js?v=3.0.8');
 			}
 
 		}
-		$document->addScript(JURI::root(true).'/administrator/components/com_sigpro/js/editor.js?v=3.0.4');
+		$document->addScript(JURI::root(true).'/administrator/components/com_sigpro/js/editor.js?v=3.0.8');
 		$button = new JObject();
 		$link = 'index.php?option=com_sigpro&amp;tmpl=component&amp;type=site&amp;editorName='.$name;
 		$application = JFactory::getApplication();

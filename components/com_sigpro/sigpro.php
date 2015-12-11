@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: sigpro.php 2725 2013-04-06 17:05:49Z joomlaworks $
+ * @version		3.0.x
  * @package		Simple Image Gallery Pro
  * @author		JoomlaWorks - http://www.joomlaworks.net
- * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
+ * @copyright	Copyright (c) 2006 - 2015 JoomlaWorks Ltd. All rights reserved.
  * @license		http://www.joomlaworks.net/license
  */
 
@@ -61,7 +61,7 @@ if ($application->isSite() && $type == 'k2')
 {
 	$canAccess = true;
 	$task = JRequest::getWord('task');
-	$folder = JRequest::getInt('folder');
+	$folder = ($view == 'galleries' && $task == 'create') ? JRequest::getInt('newFolder') : JRequest::getInt('folder');
 	require_once JPATH_SITE.'/components/com_k2/helpers/permissions.php';
 	K2HelperPermissions::setPermissions();
 	JTable::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_k2/tables');

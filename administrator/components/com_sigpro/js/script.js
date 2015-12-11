@@ -48,6 +48,7 @@ if ( typeof (Joomla) === 'undefined') {
 Joomla.submitbutton = function(pressbutton) {
 	if (pressbutton === 'add') {
 		$sig('#sigProModal').css('margin-left', '-' + ($sig('#sigProModal').outerWidth()) / 2 + 'px');
+		window.scrollTo(0,0);
 		$sig('#sigProModal').animate({
 			'top' : '0'
 		}, 'fast');
@@ -123,13 +124,13 @@ function setupLabel() {
 
 // DOM ready
 $sig(document).ready(function() {
-
+	
 	//Browser detection
-	if ($sig.browser.msie) {
+	if((typeof($sig.browser) != 'undefined' && $sig.browser.msie) || (navigator.userAgent.indexOf("MSIE") != -1)) {
 		var bodyBrowserClass = 'isIE isIE' + parseInt($sig.browser.version, 10);
 		$sig('body').addClass(bodyBrowserClass);
-	}
-
+	} 
+	
 	//Joomla! version Body class
 	function JvClass() {
 		if ($sig('#sigPro').hasClass('J25')) {// J 2.5.x
@@ -361,7 +362,7 @@ $sig(document).ready(function() {
 	if (editor !== '') {
 		$sig('.sigProInsertButton').click(function(event) {
 			event.preventDefault();
-			var gallery = $sig(this).attr('href');
+			var gallery = $sig(this).data('path');
 			var width = $sig('input[name=width]').val();
 			var height = $sig('input[name=height]').val();
 			var displayMode = $sig('select[name=displayMode]').val();
@@ -447,19 +448,20 @@ $sig(document).ready(function() {
 		var token = $sig('#adminForm input[type=hidden]:last').attr('name');
 		var name = $sig('#adminForm input[name=folder]').val();
 		var type = $sig('#adminForm input[name=type]').val();
+		var iOS = /(iPad|iPhone|iPod)/g.test( navigator.userAgent );
 		$sig("#sigProUploader").pluploadQueue({
 			runtimes : 'html5,flash,html4',
 			url : 'index.php?option=com_sigpro&view=gallery&task=upload&folder=' + name + '&type=' + type + '&' + token + '=1&format=raw',
 			max_file_size : SIGMaxFileSize,
+			multiple_queues : true,
 			filters : [{
 				title : SIGImagesLabel,
 				extensions : 'jpg,jpeg,gif,png'
 			}],
-			flash_swf_url : 'components/com_sigpro/js/plupload/plupload.flash.swf',
+			unique_names : iOS,
+			flash_swf_url : 'components/com_sigpro/js/plupload/Moxie.swf',
 			init : {
 				UploadComplete : function(uploader, files) {
-					$sig('#sigProUploader .plupload_buttons').css('display', 'inline');
-					$sig('#sigProUploader .plupload_upload_status').css('display', 'inline');
 					$sig('.sigProGridColumn').each(function(index) {
 						if (index % 4 === 0) {
 							$sig(this).addClass('sigProGridFirstColumn');
@@ -489,14 +491,14 @@ $sig(document).ready(function() {
 					element.find('.sigProImageDimensionsValue').html(response.width + ' x ' + response.height);
 					$sig('.sigProGrid').append(element);
 					$sig('a.sigProPreviewButton').unbind('click');
-					$sig('a.sigProPreviewButton').swipebox();
+					$sig('a.sigProPreviewButton').swipebox({hideBarsDelay: 0});
 				}
 			}
 
 		});
 
 		// Preview image in modal
-		$sig('a.sigProPreviewButton').swipebox();
+		$sig('a.sigProPreviewButton').swipebox({hideBarsDelay: 0});
 
 		// Delete image
 		$sig('#sigPro').on('click', '.sigProDeleteButton', function(event) {
@@ -514,7 +516,7 @@ $sig(document).ready(function() {
 						$sig(container).fadeOut('slow', function() {
 							$sig(container).remove();
 							$sig('a.sigProPreviewButton').unbind('click');
-							$sig('a.sigProPreviewButton').swipebox();
+							$sig('a.sigProPreviewButton').swipebox({hideBarsDelay: 0});
 							if ($sig('.sigProGridColumn').length > 1) {
 								$sig('.sigProGridColumn').removeClass('sigProGridFirstColumn');
 								$sig('.sigProGridColumn').each(function(index) {
