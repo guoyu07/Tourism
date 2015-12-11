@@ -31,6 +31,30 @@ $(function () {
             return false;
         }
     });
+    if ($("#item-media .img").length > 1) {
+        createItemCarousel($("#item-media"));
+    }
+    function createItemCarousel ($o) {
+        $("#item-media").owlCarousel({
+            loop: true
+            , rtl: true
+            , margin: 0
+            , stagePadding: 0
+            , responsive: false
+            , autoHeight: true
+            , autoWidth: true
+            , items: 1
+            , singleItem: true
+            , autoplay: false
+            , animateOut: 'fadeOut'
+            , animateIn: 'fadeIn'
+            , dots: false
+            , dotsClass: ''
+            , dotClass: ''
+            , paginationNumbers: false
+            , nav: true
+        });
+    }
     
     $("[data-toggle]").click(function(e) {
         var $target = $($(this).attr('data-target'));
@@ -44,9 +68,10 @@ $(function () {
          }
         e.preventDefault();
     });
-
+    
     $('#item-modal').on('shown.bs.modal', function (e) {
         $('[data-toggle=tooltip]').tooltip({container: 'body'});
+        createItemCarousel($("#item-media"));
     });
     $('#item-modal').on('hidden.bs.modal', function (e) {
         $('#item-modal').find("#item-media").empty();
