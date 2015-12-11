@@ -35,19 +35,28 @@ defined('_JEXEC') or die('Restricted access');
 				$hasVideo = ' has-video';
 				$videoFile = ' data-video="' . $this->item->video . '"';
 			}
+			$gallery = false;
+			if ($this->item->params->get('itemImageGallery') && !empty($this->item->gallery)) {
+				$gallery = true;
+			}
 			?>
-			<div class="img<?php echo $hasVideo; ?>"<?php echo $videoFile; ?> id="item-media">
-				<img src="<?php echo $this->item->image; ?>" alt="<?php
-				if (!empty($this->item->image_caption))
-					echo K2HelperUtilities::cleanHtml($this->item->image_caption);
-				else
-					echo K2HelperUtilities::cleanHtml($this->item->title);
-				?>" />
-					 <?php if ($this->item->params->get('itemImageMainCaption') && !empty($this->item->image_caption)) { ?>
-					<span class="image-caption"><?php echo $this->item->image_caption; ?></span>
-				<?php } ?>
-				<?php if ($this->item->params->get('itemImageMainCredits') && !empty($this->item->image_credits)) { ?>
-					<span class="image-credits"><?php echo $this->item->image_credits; ?></span>
+			<div class="item-media<?php if ($gallery) { ?> item-gallery<?php } ?>"<?php if ($gallery) { ?> id="item-media"<?php } ?>>
+				<div class="img<?php echo $hasVideo; ?>"<?php echo $videoFile; ?> <?php if (!$this->item->params->get('itemImageGallery') && empty($this->item->gallery)) { ?> id="item-media"<?php } ?>>
+					<img src="<?php echo $this->item->image; ?>" alt="<?php
+					if (!empty($this->item->image_caption))
+						echo K2HelperUtilities::cleanHtml($this->item->image_caption);
+					else
+						echo K2HelperUtilities::cleanHtml($this->item->title);
+					?>" />
+						 <?php if ($this->item->params->get('itemImageMainCaption') && !empty($this->item->image_caption)) { ?>
+						<span class="image-caption"><?php echo $this->item->image_caption; ?></span>
+					<?php } ?>
+					<?php if ($this->item->params->get('itemImageMainCredits') && !empty($this->item->image_credits)) { ?>
+						<span class="image-credits"><?php echo $this->item->image_credits; ?></span>
+					<?php } ?>
+				</div>
+				<?php if ($this->item->params->get('itemImageGallery') && !empty($this->item->gallery)) { ?>
+				<?php echo $this->item->gallery; ?>
 				<?php } ?>
 			</div>
 		<?php } ?>
