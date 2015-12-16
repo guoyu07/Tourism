@@ -35,13 +35,10 @@ defined('_JEXEC') or die('Restricted access');
 				$hasVideo = ' has-video';
 				$videoFile = ' data-video="' . $this->item->video . '"';
 			}
-			$gallery = false;
-			if ($this->item->params->get('itemImageGallery') && !empty($this->item->gallery)) {
-				$gallery = true;
-			}
+			$gallery = ($this->item->params->get('itemImageGallery') && !empty($this->item->gallery)) ? true : false;
 			?>
 			<div class="item-media<?php if ($gallery) { ?> item-gallery<?php } ?>"<?php if ($gallery) { ?> id="item-media"<?php } ?>>
-				<div class="img<?php echo $hasVideo; ?>"<?php echo $videoFile; ?> <?php if (!$this->item->params->get('itemImageGallery') && empty($this->item->gallery)) { ?> id="item-media"<?php } ?>>
+				<div class="img<?php echo $hasVideo; ?>"<?php echo $videoFile; ?> <?php if (!$gallery) { ?> id="item-media"<?php } ?>>
 					<img src="<?php echo $this->item->image; ?>" alt="<?php
 					if (!empty($this->item->image_caption))
 						echo K2HelperUtilities::cleanHtml($this->item->image_caption);

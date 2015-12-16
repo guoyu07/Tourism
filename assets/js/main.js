@@ -31,29 +31,33 @@ $(function () {
             return false;
         }
     });
-    if ($("#item-media .img").length > 1) {
-        createItemCarousel($("#item-media"));
-    }
+//    if ($("#item-media .img").length > 1) {
+//        console.log($("#item-media .img").length);
+////        createItemCarousel($("#item-media"));
+//    }
+    createItemCarousel($("#item-media"));
     function createItemCarousel ($o) {
-        $("#item-media").owlCarousel({
-            loop: true
-            , rtl: true
-            , margin: 0
-            , stagePadding: 0
-            , responsive: false
-            , autoHeight: true
-            , autoWidth: true
-            , items: 1
-            , singleItem: true
-            , autoplay: false
-            , animateOut: 'fadeOut'
-            , animateIn: 'fadeIn'
-            , dots: false
-            , dotsClass: ''
-            , dotClass: ''
-            , paginationNumbers: false
-            , nav: true
-        });
+        if ($("#item-media .img").length > 1) {
+            $("#item-media").owlCarousel({
+                loop: true
+                , rtl: true
+                , margin: 0
+                , stagePadding: 0
+                , responsive: false
+                , autoHeight: true
+                , autoWidth: true
+                , items: 1
+                , singleItem: true
+                , autoplay: false
+                , animateOut: 'fadeOut'
+                , animateIn: 'fadeIn'
+                , dots: false
+                , dotsClass: ''
+                , dotClass: ''
+                , paginationNumbers: false
+                , nav: true
+            });
+        }
     }
     
     $("[data-toggle]").click(function(e) {
@@ -163,6 +167,19 @@ $(function () {
             $panorama.find(".prev").click(function () {
                 $items.trigger('prev.owl.carousel');
             });
+            $items.on('click', "a", function (e) {
+                var href = $(this).attr('href');
+                $.ajax({
+                    url: href
+                    , type: 'get'
+                    , data: 'format=raw'
+                    , success: function (r) {
+                        $("#item-modal").find(".modal-body").empty().html(r);
+                        $("#item-modal").modal('show');
+                    }
+                });
+                e.preventDefault();
+            /*
             $items.on('click', "li, a", function (e) {
                 var swf = $(this).find("img").attr('src').replace('.jpg', '.swf');
                 var $container = $(".slideshow.panorama .preview");
@@ -186,6 +203,7 @@ $(function () {
                         });
                     });
                 });
+                */
             });
         }
     }
