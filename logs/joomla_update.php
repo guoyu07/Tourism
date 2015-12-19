@@ -20,3 +20,45 @@
 2015-10-24T17:00:47+00:00	INFO ::1	update	Deleting removed files and folders.
 2015-10-24T17:00:48+00:00	INFO ::1	update	Cleaning up after installation.
 2015-10-24T17:00:48+00:00	INFO ::1	update	Update to version 3.4.5 is complete.
+2015-12-16T15:24:07+00:00	INFO ::1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T15:24:29+00:00	INFO ::1	update	Downloading update file from .
+2015-12-16T15:24:47+00:00	INFO ::1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T15:24:47+00:00	INFO ::1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-16T15:36:53+00:00	INFO ::1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-16T15:36:53+00:00	INFO ::1	update	Starting installation of new version.
+2015-12-16T15:37:58+00:00	INFO ::1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T15:37:59+00:00	INFO ::1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-16T15:43:38+00:00	INFO ::1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-16T15:43:38+00:00	INFO ::1	update	Starting installation of new version.
+2015-12-16T16:10:32+00:00	INFO ::1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T16:10:42+00:00	INFO ::1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-16T16:15:54+00:00	INFO ::1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-16T16:15:54+00:00	INFO ::1	update	Starting installation of new version.
+2015-12-16T16:16:31+00:00	INFO ::1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T16:16:35+00:00	INFO ::1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-16T16:19:14+00:00	INFO ::1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T16:19:15+00:00	INFO ::1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-16T16:28:39+00:00	INFO ::1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-16T16:31:19+00:00	INFO ::1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-16T16:31:19+00:00	INFO ::1	update	Starting installation of new version.
+2015-12-16T16:55:55+00:00	INFO 127.0.0.1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T16:55:56+00:00	INFO 127.0.0.1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-16T17:08:01+00:00	INFO 127.0.0.1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-16T17:08:01+00:00	INFO 127.0.0.1	update	Starting installation of new version.
+2015-12-16T17:08:22+00:00	INFO 127.0.0.1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T17:08:23+00:00	INFO 127.0.0.1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-16T17:18:28+00:00	INFO 127.0.0.1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-16T17:18:28+00:00	INFO 127.0.0.1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-16T17:20:27+00:00	INFO 127.0.0.1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-16T17:30:34+00:00	INFO 127.0.0.1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-17T14:11:03+00:00	INFO ::1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-17T14:11:04+00:00	INFO ::1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-17T14:23:09+00:00	INFO ::1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-19T10:16:13+00:00	INFO ::1	update	Update started by user Super User (550). Old version is 3.4.5.
+2015-12-19T10:16:14+00:00	INFO ::1	update	Downloading update file from https://github.com/joomla/joomla-cms/releases/download/3.4.6/Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip.
+2015-12-19T10:16:20+00:00	INFO ::1	update	File Joomla_3.4.5_to_3.4.6-Stable-Patch_Package.zip successfully downloaded.
+2015-12-19T10:16:20+00:00	INFO ::1	update	Starting installation of new version.
+2015-12-19T10:16:23+00:00	INFO ::1	update	Finalising installation.
+2015-12-19T10:16:23+00:00	INFO ::1	update	Deleting removed files and folders.
+2015-12-19T10:16:24+00:00	INFO ::1	update	Cleaning up after installation.
+2015-12-19T10:16:24+00:00	INFO ::1	update	Update to version 3.4.6 is complete.
