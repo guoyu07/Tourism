@@ -26,7 +26,7 @@ defined('_JEXEC') or die;
 						<li><a target="_blank" href="https://vimeo.com/user35891422"><i class="icon-vimeo"></i></a></li>
 						<li><a target="_blank" href="https://plus.google.com/u/0/109499617150127549017/posts"><i class="icon-gplus"></i></a></li>
 						<li><a target="_blank" href="http://www.aparat.com/mostanadsaz"><i class="icon-aparat"></i></a></li>
-						<li><a target="_blank" href="http://net.tebyan.net/pages/mostanad"><i class="icon-tebiyan"></i></a></li>
+						<!--<li><a target="_blank" href="http://net.tebyan.net/pages/mostanad"><i class="icon-tebiyan"></i></a></li>-->
 					</ul>
 					<div class="pages"></div>
 				</div>
