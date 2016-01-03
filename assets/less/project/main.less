@@ -9,19 +9,19 @@ body {
     &._gray{ background: @gray; }
     &._dark-gray{ background: @darkGray; }
     &._bg-contacts {
-	background: url('../data/contacts.jpg') no-repeat center center @gray;
+        background: url('../data/contacts.jpg') no-repeat center center @gray;
     }
 }
 #main {
     & > .wrapper {  }
     & > .page {
-	height: 100vh; max-width: 100vw; overflow: hidden; position: relative;
-	& > .page-inner { height: 100%; }
-	&#categories { padding-top: 100px; }
-	&.component { padding-top: 100px; }
-	&.full-page {
-	    max-height: none; height: auto; min-height: 95vh;
-	}
+        height: 100vh; max-width: 100vw; overflow: hidden; position: relative;
+        & > .page-inner { height: 100%; }
+        &#categories { padding-top: 100px; }
+        &.component { padding-top: 100px; }
+        &.full-page {
+            max-height: none; height: auto; min-height: 95vh;
+        }
     }
 }
 #interaction { max-height: none; overflow: visible; height: auto !important; min-height: 100vh; }
