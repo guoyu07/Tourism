@@ -35,7 +35,7 @@ defined('_JEXEC') or die;
 				<ul class="list-unstyled">
 					<li>
 						<a href="<?php echo JURI::base() . 'content/support'; ?>" data-catid="12">
-							<span class="title">حمایت و تولید</span>
+							<span class="title">حمایت از تولید</span>
 						</a>
 					</li>
 					<li>

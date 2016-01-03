@@ -34,7 +34,7 @@ defined('_JEXEC') or die;
 					<?php foreach ($items as $key=>$item) { ?>
 						<li>
 							<a href="<?php echo $item->link; ?>">
-								<span class="thumb"><img alt="<?php echo $item->title; ?>" src="<?php echo $item->image; ?>" /></span>
+								<span class="thumb"><img alt="<?php echo $item->title; ?>" src="<?php echo @$item->image; ?>" /></span>
 								<span class="title"><?php echo $item->title; ?></span>
 							</a>
 						</li>
