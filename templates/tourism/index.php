@@ -32,6 +32,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 	$programsTable = (stristr(JURI::getInstance()->toString(), 'programs-table')) ? true : false; // Check if we are on programs-table page
 	$sitename = $app->getCfg('sitename');
 	// $dir_suffix = ($this->direction == 'rtl') ? '_rtl' : '';
+	$color = (defined('COLOR')) ? array(' ' . COLOR, '_' . substr(COLOR, 0, 1)) : array('', '');
 	?>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -51,7 +52,7 @@ echo $helper->doctype . "\n"; // Doctype based on users platform (only differs i
 		JFactory::getDocument()->addScriptDeclaration('var base = "' . JURI::base() . '";', false);
 		?><jdoc:include type="head" />
 	</head>
-	<body id="bd" class="<?php echo strtolower($helper->device); ?>" data-spy="scroll" data-target="#menu">
+	<body id="bd" class="<?php echo strtolower($helper->device); ?><?php echo $color[0]; ?>" data-spy="scroll" data-target="#menu">
 		<header id="header">
 			<div class="wrapper _white">
 				<div class="container">
