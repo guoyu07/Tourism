@@ -53,7 +53,7 @@ defined('_JEXEC') or die('Restricted access');
 					<?php } ?>
 				</div>
 				<?php if ($this->item->params->get('itemImageGallery') && !empty($this->item->gallery)) { ?>
-				<?php echo $this->item->gallery; ?>
+					<?php echo $this->item->gallery; ?>
 				<?php } ?>
 			</div>
 		<?php } ?>
@@ -79,6 +79,20 @@ defined('_JEXEC') or die('Restricted access');
 			</div>
 		<?php } ?>
 		<div class="clearfix"></div>
+		<?php if ($this->item->params->get('itemAttachments') && count($this->item->attachments)) { ?>
+			<div class="item-attachments">
+				<!--<h4>پیوست‌ها</h4>-->
+				<?php foreach ($this->item->attachments as $attachment) { ?>
+					<a class="btn btn-warning" title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>" href="<?php echo $attachment->link; ?>">
+						<?php echo $attachment->title; ?> <i class="icon-download"></i>
+					</a>
+					<?php if ($this->item->params->get('itemAttachmentsCounter')) { ?>
+							<!--<span>(<?php echo $attachment->hits; ?> <?php echo ($attachment->hits == 1) ? JText::_('K2_DOWNLOAD') : JText::_('K2_DOWNLOADS'); ?>)</span>-->
+					<?php } ?>
+				<?php } ?>
+			</div>
+		<?php } ?>
+		<div class="clearfix"></div>
 		<?php if ($this->item->params->get('itemExtraFields') && count($this->item->extra_fields)) { ?>
 			<div class="item-fields">
 				<h3><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h3>
@@ -100,8 +114,8 @@ defined('_JEXEC') or die('Restricted access');
 		<div class="clearfix"></div>
 	</div>
 	<?php if (JRequest::getInt('print') == 1) { ?>
-		   <a class="itemPrintThisPage" rel="nofollow" href="#" onclick="window.print();
-	                   return false;">
+		<a class="itemPrintThisPage" rel="nofollow" href="#" onclick="window.print();
+	            return false;">
 			<span><?php echo JText::_('K2_PRINT_THIS_PAGE'); ?></span>
 		</a>
 	<?php } ?>
