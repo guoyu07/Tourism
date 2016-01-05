@@ -45,7 +45,7 @@ defined('_JEXEC') or die;
 					</li>
 					<li>
 						<a href="<?php echo JURI::base() . 'content/consult-room'; ?>" data-catid="14">
-							<span class="title">اتاق مشاوره</span>
+							<span class="title">مرکز مشاوره</span>
 						</a>
 					</li>
 				</ul>

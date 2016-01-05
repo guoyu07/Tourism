@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 ?>
 <div class="slideshow panorama">
 	<div class="img">
-		<img src="<?php echo JURI::base(); ?>assets/data/panorama.jpg" alt="Panorama" />
+		<img src="<?php echo JURI::base(); ?>assets/data/panorama_y.jpg" alt="Panorama" />
 	</div>
 	<div class="caption-container">
 		<div class="row">
