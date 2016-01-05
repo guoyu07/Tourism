@@ -384,6 +384,7 @@ $(function () {
 
     // Tiles
     $(".panel.tiles").on('click', ".tiles a", function (e) {
+        var eqMiddle = ($("body").hasClass('yellow')) ? 1 : 3;
         var speed = [300, 500, 600, 600];
         var $tiles = $(".panel.tiles").find(".tiles li");
         var $container = $(".panel.tiles").children(".tiles");
@@ -396,7 +397,7 @@ $(function () {
             j++;
         }
         $tiles.eq(0).promise().done(function () {
-            $tiles.eq(3).fadeOut(speed[1], function () {
+            $tiles.eq(eqMiddle).fadeOut(speed[1], function () {
                 $container.hide(1, function () {
                     $itemlist.find(".inner").empty();
                     $itemlist.animate({'margin-top': -50});
