@@ -22,8 +22,12 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="classname" type="text" default="" label="Class Name" description="Class Name Description" />
-			</fieldset>
+                <field name="classname" type="text" default="" label="Class Name" description="Class Name Description" />
+                <field name="layout" type="list" label="Module Layout" description="Select module template layout">
+                    <option value="default">Default</option>
+                    <option value="default_shams">Default [Shams]</option>
+                </field>
+            </fieldset>
 		</fields>
 	</config>			
 </extension>
