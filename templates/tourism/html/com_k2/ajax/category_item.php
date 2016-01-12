@@ -55,6 +55,24 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 	<?php if ($this->item->params->get('catItemIntroText')): ?>
 		<div class="item-text">
 			<?php echo $this->item->introtext; ?>
+			
+			<div class="clearfix"></div>
+			<?php if (!empty($this->item->attachments)) { ?>
+			<?php if ($this->item->params->get('itemAttachments') && count($this->item->attachments)) { ?>
+				<div class="item-attachments">
+					<!--<h4>پیوست‌ها</h4>-->
+					<?php foreach ($this->item->attachments as $attachment) { ?>
+						<a class="btn btn-warning" title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>" href="<?php echo $attachment->link; ?>">
+							<?php echo $attachment->title; ?> <i class="icon-download"></i>
+						</a>
+						<?php if ($this->item->params->get('itemAttachmentsCounter')) { ?>
+								<!--<span>(<?php echo $attachment->hits; ?> <?php echo ($attachment->hits == 1) ? JText::_('K2_DOWNLOAD') : JText::_('K2_DOWNLOADS'); ?>)</span>-->
+						<?php } ?>
+					<?php } ?>
+				</div>
+			<?php } ?>
+			<?php } ?>
+			<div class="clearfix"></div>
 		</div>
 	<?php endif; ?>
 	<?php echo $this->item->event->AfterDisplayContent; ?>
