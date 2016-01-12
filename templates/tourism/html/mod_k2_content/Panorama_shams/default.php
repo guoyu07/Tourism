@@ -18,6 +18,9 @@ defined('_JEXEC') or die;
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 				<h2><span>آرشیو چندرسانه‌ای</span></h2>
+				<div class="alert"><p>
+					شبکه مستند با هدف یاری هرچه بیشتر علاقه مندان و فیلم سازان در این بخش، امکان دسترسی مخاطبین گرامی به فیلمهای کارگاه های آموزشی و دانلود آنها جهت آموزش مجازی را فراهم آورده است.
+				</p></div>
 				<div class="inner">
 					<div class="controls">
 						<span class="prev"><i class="icon-left"></i></span>
