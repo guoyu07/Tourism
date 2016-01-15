@@ -51,5 +51,8 @@ body.yellow {
             .contact-form a:hover { color: @yellow-dark; }
         }
     }
-    .modal article.item .item-media { float: left; width: 50%; margin-right: 20px; }
+    .modal article.item .item-media {
+        float: left; width: 50%; margin-right: 20px;
+        &.has-video, &.item-gallery { float: none; width: 100%; margin-right: 0; }
+    }
 }
