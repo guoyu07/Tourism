@@ -54,6 +54,11 @@ defined('_JEXEC') or die('Restricted access');
 								</li>
 								<li>
 									<span class="title">
+										<i class="icon-phone"></i>تلفن اتاق شمس
+									</span>021-29152745
+								</li>
+								<li>
+									<span class="title">
 										<i class="icon-phone"></i>تلفن گوياي شبكه
 									</span>27869000
 								</li>
@@ -70,7 +75,7 @@ defined('_JEXEC') or die('Restricted access');
 								<li>
 									<span class="title">
 										<i class="icon-mail"></i>پست الکترونیکی
-									</span><a href="mailto:intl@mostanadtv.com">office@mostanadtv.com</a>
+									</span><a href="mailto:intl@mostanadtv.com">shams.mostanadtv@gmail.com</a>
 								</li>
 							</ul>
 						</div>
