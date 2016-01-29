@@ -26,6 +26,7 @@
                 <field name="layout" type="list" label="Module Layout" description="Select module template layout">
                     <option value="default">Default</option>
                     <option value="default_shams">Default [Shams]</option>
+                    <option value="default_shams_pakhsh">Default [Shams - Pakhsh]</option>
                 </field>
             </fieldset>
         </fields>
