@@ -21,7 +21,7 @@ defined('_JEXEC') or die('Restricted access');
 						<li>
 							<a href="<?php echo JURI::base() . 'enthusiasts/introduction?format=raw'; ?>" data-catid="5">
 								<span class="icon">
-									<i class="icon-placeholder"></i>
+									<i class="icon-group"></i>
 								</span>
 								<span class="title">آشنایی</span>
 							</a>
@@ -29,7 +29,7 @@ defined('_JEXEC') or die('Restricted access');
 						<li>
 							<a href="<?php echo JURI::base() . 'enthusiasts/join?format=raw'; ?>" data-catid="19">
 								<span class="icon">
-									<i class="icon-placeholder"></i>
+									<i class="icon-user-add"></i>
 								</span>
 								<span class="title">عضویت</span>
 							</a>

@@ -189,6 +189,12 @@
       "src": "fontawesome"
     },
     {
+      "uid": "6274e0601f2feef7eced89146e708de0",
+      "css": "user-add",
+      "code": 59429,
+      "src": "entypo"
+    },
+    {
       "uid": "b08cfe8039de2ce815686aced2caef06",
       "css": "download",
       "code": 59406,
@@ -289,6 +295,12 @@
       "css": "facebook",
       "code": 59396,
       "src": "brandico"
+    },
+    {
+      "uid": "e36d581e4f2844db345bddc205d15dda",
+      "css": "group",
+      "code": 59428,
+      "src": "elusive"
     },
     {
       "uid": "21f6a88daf13c62e5a70f5ef6ad9e23f",
