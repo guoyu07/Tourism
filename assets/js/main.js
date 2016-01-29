@@ -386,10 +386,10 @@ $(function () {
     $(".panel.tiles").on('click', ".tiles a", function (e) {
         var eqMiddle = ($("body").hasClass('yellow')) ? 1 : 3;
         var speed = [300, 500, 600, 600];
-        var $tiles = $(".panel.tiles").find(".tiles li");
-        var $container = $(".panel.tiles").children(".tiles");
+        var $tiles = $(this).parents(".panel.tiles").find(".tiles li");
+        var $container = $(this).parents(".panel.tiles").children(".tiles");
         var $this = $(this);
-        var $itemlist = $(".panel.tiles").find(".itemlist");
+        var $itemlist = $(this).parents(".panel.tiles").find(".itemlist");
         var j = 0;
         for (var i = 1; i < 4; i++) {
             $tiles.eq(i - 1).fadeOut(speed[j]);
