@@ -62,7 +62,7 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 				<div class="item-attachments">
 					<!--<h4>پیوست‌ها</h4>-->
 					<?php foreach ($this->item->attachments as $attachment) { ?>
-						<a class="btn btn-warning" title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>" href="<?php echo $attachment->link; ?>">
+						<a class="btn btn-warning" target="_blank" title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>" href="<?php echo $attachment->link; ?>">
 							<?php echo $attachment->title; ?> <i class="icon-download"></i>
 						</a>
 						<?php if ($this->item->params->get('itemAttachmentsCounter')) { ?>
