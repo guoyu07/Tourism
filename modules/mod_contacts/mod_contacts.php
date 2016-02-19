@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access'); // no direct access
 require_once __DIR__ . '/helper.php';
 $item = modContactsHelper::getItem($params);
 require JModuleHelper::getLayoutPath('mod_contacts', $params->get('layout', 'default'));
-echo JModuleHelper::getLayoutPath('mod_contacts', $params->get('layout'));
+//echo JModuleHelper::getLayoutPath('mod_contacts', $params->get('layout'));
 //require_once ('helper.php');
 
 ?>
