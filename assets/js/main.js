@@ -448,7 +448,6 @@ $(function () {
         }
     });
 
-
     var $content = $(".panel.content");
     $.fn.pages = function (options) {
         var o = $.extend({
