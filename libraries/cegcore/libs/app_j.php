@@ -306,7 +306,10 @@ class AppJ {
 		});
 		<?php
 		$js = ob_get_clean();
-		$doc->addJsCode($js);
+		$app = \JFactory::getApplication();
+		$admin = $app->isAdmin();
+		if ($admin) 
+			$doc->addJsCode($js);
 
 		if($this->tvout != 'ajax' AND strpos($doc->theme, 'bootstrap3') !== false){
 			$this->buffer = '<div class="gbs3">'.$this->buffer.'</div>';

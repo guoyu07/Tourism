@@ -106,12 +106,15 @@ class Document {
 	}
 
 	function _($name, $params = array()){
+		$app = \JFactory::getApplication();
+		$admin = $app->isAdmin();
 		switch($name){
 			case 'jquery':
 				if(\GCore\C::get('GSITE_PLATFORM') == 'wordpress'){
 					wp_enqueue_script('jquery');
 				}else{
-					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/jquery/jquery.js');
+					if ($admin)
+						$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/jquery/jquery.js');
 				}
 			break;
 			case 'jquery-noconflict':
@@ -154,15 +157,18 @@ class Document {
 			break;
 			case 'bootstrap':
 				$bs_style = !empty($params['style']) ? '-'.$params['style'] : '';
-				//$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/js/bootstrap.js');
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/css/bootstrap'.$bs_style.'.css');
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/css/bootstrap-theme.css');
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/css/bootstrap-gcore.css');
-				//$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/css/bootstrap-ltr.css');
-				$this->_('font-awesome');
+				if ($admin) {
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/js/bootstrap.js');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/css/bootstrap'.$bs_style.'.css');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/css/bootstrap-theme.css');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/css/bootstrap-gcore.css');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/css/bootstrap-ltr.css');
+					$this->_('font-awesome');
+				}
 			break;
 			case 'bootstrap.js':
-				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/js/bootstrap.js');
+				if ($admin) 
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/bootstrap/js/bootstrap.js');
 			break;
 			case 'semantic-ui':
 				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/semantic-ui/js/semantic.min.js');
@@ -173,24 +179,29 @@ class Document {
 				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/semantic-ui/js/semantic.min.js');
 			break;
 			case 'gcore-ui':
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gcore-ui/css/gcore-ui.css');
+				if ($admin) 
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gcore-ui/css/gcore-ui.css');
 			break;
 			case 'font-awesome':
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/font_awesome/css/font-awesome.css');
+				if ($admin) 
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/font_awesome/css/font-awesome.css');
 			break;
 			case 'jquery.validate':
 				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/jquery/jquery.validate.js');
 			break;
 			case 'jquery.inputmask':
-				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/jquery/jquery.inputmask.js');
+				if ($admin) 
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/jquery/jquery.inputmask.js');
 			break;
 			case 'gvalidation':
 				$this->_('gtooltip');
-				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gvalidation/gvalidation.js');
-				if(!empty($params['lang'])){
-					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gvalidation/lang/'.$params['lang'].'.js');
+				if ($admin) {
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gvalidation/gvalidation.js');
+					if(!empty($params['lang'])){
+						$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gvalidation/lang/'.$params['lang'].'.js');
+					}
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gvalidation/gvalidation.css');
 				}
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gvalidation/gvalidation.css');
 			break;
 			case 'gdatetimepicker':
 				$this->_('gtooltip');
@@ -202,16 +213,22 @@ class Document {
 				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gmagnify/gmagnify.css');
 			break;
 			case 'gtooltip':
-				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gtooltip/gtooltip.js');
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gtooltip/gtooltip.css');
+				if ($admin) {
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gtooltip/gtooltip.js');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gtooltip/gtooltip.css');
+				}
 			break;
 			case 'gmodal':
-				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gmodal/gmodal.js');
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gmodal/gmodal.css');
+				if ($admin) {
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gmodal/gmodal.js');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gmodal/gmodal.css');
+				}
 			break;
 			case 'gdropdown':
-				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gdropdown/gdropdown.js');
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gdropdown/gdropdown.css');
+				if ($admin) {
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gdropdown/gdropdown.js');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gdropdown/gdropdown.css');
+				}
 			break;
 			case 'gcompleter':
 				$this->_('gdropdown');
@@ -219,12 +236,16 @@ class Document {
 				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gcompleter/gcompleter.css');
 			break;
 			case 'gtabs':
-				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gtabs/gtabs.js');
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gtabs/gtabs.css');
+				if ($admin) {
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gtabs/gtabs.js');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gtabs/gtabs.css');
+				}
 			break;
 			case 'gsliders':
-				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gsliders/gsliders.js');
-				$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gsliders/gsliders.css');
+				if ($admin) {
+					$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gsliders/gsliders.js');
+					$this->addCssFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gsliders/gsliders.css');
+				}
 			break;
 			case 'gloader':
 				$this->addJsFile(\GCore\C::get('GCORE_FRONT_URL').'assets/gplugins/gloader/gloader.js');
