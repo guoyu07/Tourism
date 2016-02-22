@@ -73,6 +73,7 @@ Class Html extends \GCore\Admin\Extensions\Chronoforms\Action{
 			');
 		}
 		if($form->params->get('rtl_support', 0)){
+			/*
 			$doc->addCssCode('
 				#'.$form_id.'.chronoform{direction:rtl;}
 			');
@@ -156,13 +157,16 @@ Class Html extends \GCore\Admin\Extensions\Chronoforms\Action{
 					}
 				');
 			}
+			*/
 		}
 		if($form->params->get('labels_right_aligned', 0)){
+			/*
 			$doc->addCssCode('
 				#'.$form_id.' .gcore-label-left{
 					text-align:'.($form->params->get('rtl_support', 0) ? 'left' : 'right').' !important;
 				}
 			');
+			*/
 		}
 		if($form->params->get('labels_auto_width', 0)){
 			$doc->addCssCode('
@@ -311,6 +315,7 @@ Class Html extends \GCore\Admin\Extensions\Chronoforms\Action{
 			$doc->_('editor');
 			$js_scripts[] = '$(\'*[data-wysiwyg="1"]\').each(function(){ tinymce.init({"selector":"#"+$(this).attr("id")}); });';
 		}
+		/*
 		if(strpos($form_content, 'validate[') !== false){
 			$doc->_('jquery');
 			$doc->_('gtooltip');
@@ -431,10 +436,11 @@ Class Html extends \GCore\Admin\Extensions\Chronoforms\Action{
 				chronoforms_data_loadstate($("#chronoform-'.$form->form['Form']['title'].'"));
 			';
 		}
+		*/
 		if(strpos($output, 'data-inputmask=') !== false){
-			$doc->_('jquery');
-			$doc->_('jquery.inputmask');
-			$js_scripts[] = '$(":input").inputmask();';
+//			$doc->_('jquery');
+//			$doc->_('jquery.inputmask');
+//			$js_scripts[] = '$(":input").inputmask();';
 		}
 		if(strpos($output, 'data-gdatetimepicker') !== false OR strpos($output, 'data-fieldtype="gdatetimepicker"') !== false){
 			$doc->_('jquery');
@@ -492,6 +498,7 @@ Class Html extends \GCore\Admin\Extensions\Chronoforms\Action{
 				});
 			';
 		}
+		/*
 		if((bool)$config->get('ajax_submit', 0) === true){
 			$doc->_('jquery');
 			$doc->_('gtooltip');
@@ -559,6 +566,7 @@ Class Html extends \GCore\Admin\Extensions\Chronoforms\Action{
 				';
 		}
 		$js_scripts[] = implode("\n", $events_codes);
+		*/
 		
 		if(!empty($js_scripts)){
 			$doc->addJsCode('jQuery(document).ready(function($){
