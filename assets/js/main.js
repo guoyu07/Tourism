@@ -76,9 +76,13 @@ $(function () {
     $('#item-modal').on('shown.bs.modal', function (e) {
         $('[data-toggle=tooltip]').tooltip({container: 'body'});
         createItemCarousel($("#item-media"));
+        if ($('#item-modal').find("form").length) {
+            loadForm();
+        }
     });
     $('#item-modal').on('hidden.bs.modal', function (e) {
         $('#item-modal').find("#item-media").empty();
+        clearForm();
     });
 
     $(".video-container").on('click', function (e) {
