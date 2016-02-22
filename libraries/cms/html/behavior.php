@@ -396,6 +396,8 @@ abstract class JHtmlBehavior
 		$options = JHtml::getJSObject($opt);
 
 		// Attach modal behavior to document
+		// Farid
+		/*
 		$document
 			->addScriptDeclaration(
 			"
@@ -409,6 +411,7 @@ abstract class JHtmlBehavior
 			SqueezeBox.close();
 		}"
 		);
+		 */
 
 		// Set static array
 		static::$loaded[__METHOD__][$sig] = true;
