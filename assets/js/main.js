@@ -77,12 +77,14 @@ $(function () {
         $('[data-toggle=tooltip]').tooltip({container: 'body'});
         createItemCarousel($("#item-media"));
         if ($('#item-modal').find("form").length) {
-            loadForm();
+            if (typeof loadForm == 'function')
+                loadForm();
         }
     });
     $('#item-modal').on('hidden.bs.modal', function (e) {
         $('#item-modal').find("#item-media").empty();
-        clearForm();
+        if (typeof clearForm == 'function')
+            clearForm();
     });
 
     $(".video-container").on('click', function (e) {
