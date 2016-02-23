@@ -28,6 +28,8 @@ $scripts = array(
 
 if(!defined('PE_FANCYBOX_LOADED')){
 	define('PE_FANCYBOX_LOADED', true);
+	$scriptDeclarations = array();
+	/*
 	$scriptDeclarations = array('
 		jQuery.noConflict();
 		jQuery(function($) {
@@ -44,6 +46,7 @@ if(!defined('PE_FANCYBOX_LOADED')){
 			});
 		});
 	');
+	 */
 } else {
 	$scriptDeclarations = array();
 }
