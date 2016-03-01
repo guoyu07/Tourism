@@ -1,3 +1,4 @@
+var isShams = (document.body.classList.contains('yellow')) ? true : false;
 $(function () {
     $('body').scrollspy({target: '#menu'});
     var Body = {
@@ -236,9 +237,16 @@ $(function () {
             };
         }
         if ($parent.hasClass("open"))
-            Pane.close($parent);
+            // shams rules
+//            Pane.close($parent);
+            Pane.open($parent, o);
         else
             Pane.open($parent, o);
+        $(document).on('click', ".close-pane", function(e) {
+            var $parent = $(this).parents(".panel.content:first .panel-body");
+            Pane.close($parent);
+            e.preventDefault();
+        });
         e.preventDefault();
     });
 
@@ -301,7 +309,8 @@ $(function () {
         , delegateClose: function ($pane) {
             // Delegating close
             $pane.off('click').on('click', function (e) {
-                Pane.close($pane);
+                // shams rules
+                // Pane.close($pane);
                 e.preventDefault();
             });
         }
@@ -365,7 +374,7 @@ $(function () {
             $form.find('input[name=t]').val($.now());
             $form.find('input[name=format]').val('raw');
             $.ajax({
-                url: '/index.php?option=com_k2&view=itemlist&task=search'
+                url: base + '/index.php?option=com_k2&view=itemlist&task=search'
                 , type: 'get'
                 , data: $form.serialize()
                 , success: function (d) {
@@ -392,51 +401,65 @@ $(function () {
 
     // Tiles
     $(".panel.tiles").on('click', ".tiles a", function (e) {
-        var eqMiddle = ($("body").hasClass('yellow')) ? 1 : 3;
-        var speed = [300, 500, 600, 600];
-        var $tiles = $(this).parents(".panel.tiles").find(".tiles li");
-        var $container = $(this).parents(".panel.tiles").children(".tiles");
-        var $this = $(this);
-        var $itemlist = $(this).parents(".panel.tiles").find(".itemlist");
-        var j = 0;
-        for (var i = 1; i < 4; i++) {
-            $tiles.eq(i - 1).fadeOut(speed[j]);
-            $tiles.eq(7 - i).fadeOut(speed[j]);
-            j++;
-        }
-        $tiles.eq(0).promise().done(function () {
-            $tiles.eq(eqMiddle).fadeOut(speed[1], function () {
-                $container.hide(1, function () {
-                    $itemlist.find(".inner").empty();
-                    $itemlist.animate({'margin-top': -50});
-                    $itemlist.slideDown(function () {
-                        $.ajax({
-                            url: $this.attr('href')
-                            , type: 'get'
-                            , success: function (r) {
-                                $itemlist.find(".inner").empty().html(r).slideDown();
-                                // new 
-                                if (!$itemlist.find(".inner .item.first").length)
-                                    $itemlist.find(".inner .items .item:last").addClass("first").prependTo($itemlist.find(".inner .items"));
-                                // end of new
-                            }
+        if ($(this).hasClass('load-item')) {
+            var href = $(this).attr('href');
+            $.ajax({
+                url: href
+                , type: 'get'
+                , data: 'format=raw'
+                , success: function (r) {
+                    $("#item-modal").find(".modal-body").empty().html(r);
+                    $("#item-modal").modal('show');
+                }
+            });
+            e.preventDefault();
+        } else {
+            var eqMiddle = ($("body").hasClass('yellow')) ? 1 : 3;
+            var speed = [300, 500, 600, 600];
+            var $tiles = $(this).parents(".panel.tiles").find(".tiles li");
+            var $container = $(this).parents(".panel.tiles").children(".tiles");
+            var $this = $(this);
+            var $itemlist = $(this).parents(".panel.tiles").find(".itemlist");
+            var j = 0;
+            for (var i = 1; i < 4; i++) {
+                $tiles.eq(i - 1).fadeOut(speed[j]);
+                $tiles.eq(7 - i).fadeOut(speed[j]);
+                j++;
+            }
+            $tiles.eq(0).promise().done(function () {
+                $tiles.eq(eqMiddle).fadeOut(speed[1], function () {
+                    $container.hide(1, function () {
+                        $itemlist.find(".inner").empty();
+                        $itemlist.animate({'margin-top': -50});
+                        $itemlist.slideDown(function () {
+                            $.ajax({
+                                url: $this.attr('href')
+                                , type: 'get'
+                                , success: function (r) {
+                                    $itemlist.find(".inner").empty().html(r).slideDown();
+                                    // new 
+                                    if (!$itemlist.find(".inner .item.first").length)
+                                        $itemlist.find(".inner .items .item:last").addClass("first").prependTo($itemlist.find(".inner .items"));
+                                    // end of new
+                                }
+                            });
                         });
                     });
                 });
             });
-        });
-        e.preventDefault();
-
-        $(".panel.tiles").on('click', ".close", function (e) {
-            $itemlist.slideUp(function () {
-                $container.show(1, function () {
-                    $tiles.fadeIn(speed[0]);
+            e.preventDefault();
+            
+            $(".panel.tiles").on('click', ".close", function (e) {
+                $itemlist.slideUp(function () {
+                    $container.show(1, function () {
+                        $tiles.fadeIn(speed[0]);
+                    });
+                });
+                $itemlist.animate({'margin-top': 0}, function () {
+                    $itemlist.find(".inner").hide(1);
                 });
             });
-            $itemlist.animate({'margin-top': 0}, function () {
-                $itemlist.find(".inner").hide(1);
-            });
-        });
+        }
     });
     $(document).on('click', ".panel.tiles .itemlist a", function (e) {
         if (!$(this).hasClass("btn")) {

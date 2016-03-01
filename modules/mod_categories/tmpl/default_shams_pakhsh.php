@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
 				<div class="tiles">
 					<ul class="list-unstyled list-inline text-center">
 						<li>
-							<a href="<?php echo JURI::base() . 'broadcast/introduction?format=raw'; ?>" data-catid="21">
+							<a class="load-item" href="<?php echo JURI::base() . 'broadcast/introduction/289/%D9%BE%D8%AE%D8%B4'; ?>" data-caturl="<?php echo JURI::base() . 'broadcast/introduction?format=raw'; ?>" data-catid="21">
 								<span class="icon">
 									<i class="icon-group"></i>
 								</span>
@@ -27,7 +27,7 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo JURI::base() . 'broadcast/join?format=raw'; ?>" data-catid="22">
+							<a class="load-item" href="<?php echo JURI::base() . 'broadcast/join/297/فرم-عضویت'; ?>" data-caturl="<?php echo JURI::base() . 'broadcast/join?format=raw'; ?>" data-catid="22">
 								<span class="icon">
 									<i class="icon-user-add"></i>
 								</span>

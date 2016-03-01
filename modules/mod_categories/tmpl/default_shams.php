@@ -14,12 +14,12 @@ defined('_JEXEC') or die('Restricted access');
 		<div class="col-xs-12">
 			<div class="panel tiles">
 				<div class="panel-heading text-center">
-					<h2>علاقه‌مندان</h2>
+					<h2>علاقه‌مندان</h2>a
 				</div>
 				<div class="tiles">
 					<ul class="list-unstyled list-inline text-center">
 						<li>
-							<a href="<?php echo JURI::base() . 'enthusiasts/introduction?format=raw'; ?>" data-catid="5">
+							<a class="load-item" href="<?php echo JURI::base() . 'enthusiasts/introduction/270/علاقمندان'; ?>" data-caturl="<?php echo JURI::base() . 'enthusiasts/introduction?format=raw'; ?>" data-catid="5">
 								<span class="icon">
 									<i class="icon-group"></i>
 								</span>
@@ -27,7 +27,7 @@ defined('_JEXEC') or die('Restricted access');
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo JURI::base() . 'enthusiasts/join?format=raw'; ?>" data-catid="19">
+							<a class="load-item" href="<?php echo JURI::base() . 'enthusiasts/join/271/فرم-علاقه‌مندان'; ?>" data-caturl="<?php echo JURI::base() . 'enthusiasts/join?format=raw'; ?>" data-catid="19">
 								<span class="icon">
 									<i class="icon-user-add"></i>
 								</span>

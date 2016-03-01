@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 ?>
 <div class="panel content">
 	<div class="panel-body">
+		<div class="close-pane">&times;</div>
 		<?php if (count($items)) { ?>
 		<ul class="items list-unstyled">
 			<?php foreach ($items as $key => $item) { ?>
