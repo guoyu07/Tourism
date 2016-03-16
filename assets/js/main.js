@@ -17,6 +17,13 @@ $(function () {
         }
     }
     $("#menu a").click(function (e) {
+        if ($("body").find("#mainbody article.item").length || $("body").find("#mainbody .category-items .itemlist").length) {
+            if ($(this).attr('href').indexOf('#') === 0) 
+                location.href = base + $(this).attr('href');
+            else
+                location.href = $(this).attr('href')
+            return true;
+        }
         if (typeof $(this).attr('target') === "undefined" || $(this).attr('target') !== "_blank") {
             if ($(this).attr('href').indexOf('#') === 0) {
                 gotoPage($(this).attr('href'));
